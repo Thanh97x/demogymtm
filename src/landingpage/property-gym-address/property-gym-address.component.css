@@ -1,0 +1,172 @@
+.box2 {
+    background: #f1f1f1;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.box-title-header h3 {
+    padding: 50px 0px;
+    /* color: rgb(255, 255, 255); */
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'roboto-bold', sans-serif;
+}
+
+h3 {
+    font-size: 25px;
+    text-transform: uppercase;
+    /* font-weight: 1000; */
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'roboto-bold', sans-serif;
+    /* color: rgb(255, 255, 255); */
+    padding: 64px;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.box2 .row .left {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.color-address {}
+
+.gym-address1 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    padding: 30px 15px;
+}
+
+.gym-address-name {
+    color: rgb(237, 28, 40);
+    font-weight: bold;
+}
+
+.gym-address2 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    padding: 30px 15px;
+}
+
+.gym-address3 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    padding: 30px 15px;
+    margin-bottom: 10px;
+
+}
+
+.gym-address4 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    padding: 30px 15px;
+    margin-bottom: 10px;
+
+}
+
+.gym-address5 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    padding: 30px 15px;
+    margin-bottom: 10px;
+
+}
+
+.gym-address6 {
+    height: 129px;
+    background: rgb(255, 255, 255);
+    padding: 30px 15px;
+    margin-bottom: 10px;
+
+}
+
+.gym-address-list1,
+.gym-address-list4 {
+    flex-basis: 50%;
+    max-width: 50%;
+}
+
+.gym-address-list1.left,
+.gym-address-list4.right {
+    align-self: flex-start;
+}
+
+.gym-address-list4.right {
+    justify-content: flex-end;
+}
+
+.btn-button {
+    padding: 50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: registration 2s cubic-bezier(0.4, 0, 1, 1) infinite both;
+}
+
+@keyframes registration {
+    0% {
+        transform: scale(1);
+        transform-origin: center center;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        transform: scale(0.91);
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        transform: scale(0.98);
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        transform: scale(0.87);
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        transform: scale(1);
+        animation-timing-function: ease-out;
+    }
+}
+
+.btn-button button {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    background: rgb(237, 28, 39);
+    border: 2px solid rgb(237, 28, 39);
+    padding: 0 20px;
+    font-family: 'roboto-bold', sans-serif;
+    cursor: pointer;
+}

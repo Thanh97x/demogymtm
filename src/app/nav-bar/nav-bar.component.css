@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-shadow: 0;
+}
+
+.navbar-expand-lg {
+    height: 50px;
+}
+
+.nav-link a {
+    padding: 0 24px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 0px 5px;
+    margin: 0 80px;
+}
+
+a.navbar-brand {
+    margin: 0 60px;
+}
+
+button.button-navbar-login {
+    padding: 0 24px;
+    margin: 0 40px;
+    border-radius: 5px;
+    font-size: 17px;
+}

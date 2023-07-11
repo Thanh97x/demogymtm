@@ -1,0 +1,181 @@
+.add-coach {
+    margin-top: 70px;
+    background-color: #efefeb;
+}
+
+h1.header-coach-title {
+    padding: 64px 0;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px solid #3f1414;
+
+}
+
+.container {
+    max-width: 1210px;
+    padding: 40px 0;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    background-color: #fff;
+}
+
+.bt-content-wrap {
+    width: 70%;
+    max-width: 70%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 70%;
+    flex: 1 0 65%;
+    margin-top: 20px;
+    /* flex-basis: 70% */
+}
+
+.agent-list-wrap {
+    padding: 30px;
+    background-color: #efefeb;
+    margin-bottom: 20px;
+    margin-right: -30px;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    justify-content: space-around;
+    /* line-height: 40px; */
+}
+
+.agent-list-wrap .agent-list-image {
+    max-height: 240px;
+    overflow: hidden;
+}
+
+.agent-list-wrap .agent-list-image {
+    margin-right: 30px;
+    max-width: 240px;
+}
+
+img {
+    max-width: 85%;
+    height: auto;
+}
+
+.flex-grow-1 {
+    -ms-flex-positive: 1 !important;
+    flex-grow: 1 !important;
+}
+
+.rating-score-wrap {
+    padding-left: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.star .fa-solid {
+    width: 14px;
+    height: 14px;
+    margin-right: 1px;
+    background-size: 14px;
+    color: gold;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.agent-list-wrap .agent-list-contact li {
+    clear: both;
+    border-bottom: 1px solid #dce0e0;
+    line-height: 30px;
+}
+
+strong {
+    font-weight: 600;
+}
+
+a {
+    float: right;
+    color: #222222;
+}
+
+a.coach-viewhlv {
+    float: left;
+    color: #09e206;
+    font-size: 18px;
+}
+
+i.fa-brands {
+    font-size: 30px;
+    padding: 0 5px;
+}
+
+img.member-img {
+    height: 272px;
+}
+
+/* .bt-sidebar-wrap.left-bt-sidebar-wrap.houzez_sticky {
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
+    min-height: 1px;
+} */
+
+.theiaStickySidebar {
+    padding-top: 0px;
+    padding-bottom: 1px;
+    position: absolute;
+    /* transform: translateX(880px); */
+    width: 333px;
+    top: 0px;
+    margin: 20px 30px;
+}
+
+.widget-wrap {
+    padding: 30px;
+    background-color: #efefeb;
+    height: 300px;
+    width: 360px;
+}
+
+.col-lg-4 .col-md-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.widget-contact-us li {
+    padding: 5px 0;
+}
+
+.widget-read-more {
+    float: left;
+}
+
+a.name-gmail-gym {
+    float: inherit;
+    margin: 0 4px;
+}
+
+a.name-reg-lh {
+    color: blue;
+    font-size: 17px;
+}

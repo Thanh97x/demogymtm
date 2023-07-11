@@ -1,0 +1,62 @@
+.container-fuild {
+    min-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 64px 0;
+}
+
+h2 {
+    font-weight: 900;
+}
+
+.box-table-gym {
+    max-width: 100%;
+    padding-bottom: 64px;
+}
+
+ul {
+    list-style: none;
+}
+
+.box-table-gym tbody tr th {
+    background-color: #dddddd;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    height: 40px;
+    padding: 15px;
+    text-align: center;
+}
+
+.box-table-gym tbody tr td {
+    background: #ddd;
+    padding: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+.box-table-gym tbody tr .table-name {
+    background-color: rgb(237, 28, 39);
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    text-align: center;
+    width: 139px;
+    height: 100px;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    min-width: 1200px;
+}

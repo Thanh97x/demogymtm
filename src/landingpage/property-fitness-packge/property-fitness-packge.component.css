@@ -1,0 +1,103 @@
+.property-fitness {
+    background-color: black;
+}
+
+.clear {
+    clear: both;
+}
+
+.property-fitness-section {
+    width: 1200px;
+    padding-top: 15px 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+}
+
+.section-heading {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding-top: 64px;
+    /* margin-top: 64px; */
+}
+
+.section-sub-heading {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 25px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.content-img-list {
+    margin: 32px 0px 48px;
+}
+
+.member-name {
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.content-img-item {
+    float: left;
+    width: 33.3333%;
+    text-align: center;
+    padding: 10px 8px;
+}
+
+.member-img {
+    width: 100%;
+    display: block;
+}
+
+.btn-button {
+    padding: 50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: registration 2s cubic-bezier(0.4, 0, 1, 1) infinite both;
+}
+
+@keyframes registration {
+    0% {
+        transform: scale(1);
+        transform-origin: center center;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        transform: scale(0.91);
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        transform: scale(0.98);
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        transform: scale(0.87);
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        transform: scale(1);
+        animation-timing-function: ease-out;
+    }
+}
+
+.btn-button button {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    background: rgb(237, 28, 39);
+    border: 2px solid rgb(237, 28, 39);
+    padding: 0 20px;
+    font-family: 'roboto-bold', sans-serif;
+    cursor: pointer;
+}

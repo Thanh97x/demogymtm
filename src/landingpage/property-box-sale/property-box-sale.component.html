@@ -1,0 +1,113 @@
+<div class="box-sale" id="BoxSale">
+    <div class="container posison-relative text-content">
+        <div class="box-sale-heading">
+            <h3>ĐĂNG KÝ BÁO GIÁ HOẶC ĐẶT LỊCH TẬP THỬ MIỄN PHÍ</h3>
+        </div>
+        <div class="row from-table-box-sale">
+            <div class="from-left">
+                <div class="simple-table" id="login-from">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="required" id="username" name="name"
+                                        placeholder="Họ và Tên" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="number" class="required" id="phone" name="phone"
+                                        placeholder="Số điện thoại" pattern="\+84|0\d{9.0}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="select-address">
+                                    <select name="address" id="address" class="required">
+                                        <option value="chuachon" selected>Chọn địa chỉ</option>
+                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
+                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
+                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
+                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
+                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
+                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="item-salebox">
+                                        <label for="bao_gia">
+                                            <input type="checkbox" name="bao_gia" id="bao_gia" value="Báo giá"
+                                                class="box-sale-bg">
+                                            Báo Giá
+                                        </label>
+                                        <label for="dat_lich">
+                                            <input type="checkbox" name="dat_lich" id="dat_lich" value="Đặt Lịch"
+                                                class="box-sale-dl">
+                                            Đặt Lịch
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="btn-presen">
+                                    <div>
+                                        <input type="submit" name="" id="btn_qua_tang_gym"
+                                            class="toggle-disabled required" value="Đăng Ký Nhận Ngay Quà">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="note-form" class="note-form"></div>
+                                    <p class="color-white" style="padding-left: 15px;">
+                                        (Chúng tôi cam kết bảo mật thông tin khách hàng)
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="from-right">
+                <div class="title-time">Thời gian còn lại:</div>
+                <div class="countdownt">
+                    <div class="box">
+                        <span class="num" id="day-box">
+                            {{ remainingTime?.days | number: '2.0' }}
+                        </span>
+                        <span class="text">Ngày</span>
+                    </div>
+                    <div class="box">
+                        <span class="num" id="hour-box">
+                            {{ remainingTime?.hours | number: '2.0' }}
+                        </span>
+                        <span class="text">Giờ</span>
+                    </div>
+                    <div class="box">
+                        <span class="num" id="minute-box">
+                            {{ remainingTime?.minutes | number: '2.0' }}
+                        </span>
+                        <span class="text">Phút</span>
+                    </div>
+                    <div class="box">
+                        <span class="num" id="second-box">
+                            {{ remainingTime?.seconds | number: '2.0' }}
+                        </span>
+                        <span class="text">Giây</span>
+                    </div>
+                </div>
+                <div class="box-sale-content">
+                    <div class="box-sale-person">
+                        <p class="content-sale-box">QUÀ TẶNG ĐẶC BIỆT:</p>
+                    </div>
+                    <div class="box-sale-content">
+                        <div class="box-sale-person">
+                            <p>Tặng thẻ tập <b>30 NGÀY</b> khi đăng kí hôm nay</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

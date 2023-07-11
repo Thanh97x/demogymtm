@@ -1,0 +1,248 @@
+.box-sale {
+    position: relative;
+    background: url('https://kickfit-sports.com/wp-content/themes/black_theme/landingpage-gym/images/qua-tang/tap-gym-the-hinh-tai-kickfit-sports.jpg') top center / cover no-repeat;
+    /* margin-top: 30px; */
+    padding-top: 40%;
+    /* padding: 50px 0; */
+}
+
+h3 {
+    font-size: 25px;
+    text-transform: uppercase;
+    /* font-weight: 1000; */
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'roboto-bold', sans-serif;
+    color: rgb(255, 255, 255);
+    padding-bottom: 64px;
+}
+
+
+
+.text-content {
+    left: 50%;
+    position: absolute;
+    color: #dedede;
+    transform: translateX(-50%);
+    /* text-align: center; */
+    top: 0;
+    padding-top: 64px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.box-sale-content {
+    width: 100%;
+    padding: 30px 15px;
+    border: solid 2px #ae221f;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+.title-time {
+    width: 100%;
+    display: flex;
+    margin-bottom: 18px;
+    font-weight: bold;
+    font-size: 19px;
+    color: #fff;
+    line-height: 1;
+}
+
+.box-sale-content {
+    width: 100%;
+    /* display: flex; */
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    top: 50%;
+    padding-top: 10px;
+    position: relative;
+}
+
+.item-salebox {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.item-salebox label {
+    width: calc(50% - 10px);
+    display: flex;
+    align-items: center;
+    color: #222222;
+    cursor: pointer;
+    padding: 10px;
+    background: #fff;
+    border: 2px solid rgb(237, 28, 39);
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 50%;
+    /* max-width: 100%; */
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.box-sale {
+    width: 100%;
+    height: 54px;
+    font-size: 15px;
+    border: 2px solid rgb(237, 28, 39);
+    /* margin-bottom: 10px; */
+    padding-left: 10px;
+}
+
+.from-left {
+    width: 100%;
+    height: 54px;
+    font-size: 15px;
+    /* border: 2px solid rgb(237, 28, 39); */
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.required {
+    width: 100%;
+    height: 54px;
+    font-size: 15px;
+    border: 2px solid rgb(237, 28, 39);
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.box-sale-bg {
+    width: calc(50% - 10px);
+    display: flex;
+    align-items: center;
+    color: #222222;
+    cursor: pointer;
+    padding: 10px;
+    background: #fff;
+    border: 2px solid rgb(237, 28, 39);
+}
+
+table {
+    width: 90%;
+    height: 54px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+select {
+    width: 100%;
+    height: 54px;
+    font-size: 15px;
+    border: 2px solid rgb(237, 28, 39);
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.item-salebox label input {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 500;
+}
+
+.countdownt {
+    width: 36vw;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    position: absolute;
+    transform: translateX(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    margin-top: 8px;
+}
+
+.box {
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+    width: 28vmin;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 15px 15px 35px rgba(0.0.0.5);
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    top: 50%;
+    left: 0;
+}
+
+span.num {
+    /* background-color: #202020; */
+    height: 100%;
+    width: 100%;
+    display: grid;
+    font-weight: 600;
+    place-items: center;
+    font-size: 3.5rem;
+    /* align-items: end;
+    justify-content: left; */
+}
+
+span.text {
+    font-size: 20px;
+    background-color: rgba(131, 26, 26, 0.7);
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+}
+
+p.content-sale-box {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.btn-presen input {
+    -webkit-animation: btn-hv 1.5s infinite ease-in-out;
+    animation: btn-hv 1.5s infinite ease-in-out;
+}
+
+@keyframes btn-hv {
+    0% {
+        color: #ffffff;
+        background: #dc0001;
+        border: none;
+    }
+
+    50% {
+        background: #222222;
+        color: #ffffff;
+        border: solid 2px #dc0001;
+    }
+
+    100% {
+        color: #ffffff;
+        background: #dc0001;
+        border: none;
+    }
+}

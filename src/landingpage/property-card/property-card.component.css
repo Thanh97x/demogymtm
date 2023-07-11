@@ -1,0 +1,32 @@
+.slider-header {
+    position: relative;
+    margin-top: 5px;
+    padding-top: 50%;
+    background: url('slider/Background-dep-gym.jpg') top center / cover no-repeat;
+}
+
+
+.text-content {
+    left: 50%;
+    position: absolute;
+    bottom: 50px;
+    color: #dedede;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.text-heading {
+    font-size: 50px;
+    text-transform: uppercase;
+    font-family: "SFUFuturaB";
+    text-shadow: 2px 7px rgba(0, 0, 0, 0.56);
+    font-style: italic;
+    font-weight: 1000;
+}
+
+.text-discription {
+    font-family: "SFUFuturaB";
+    font-size: 20px;
+    text-shadow: 2px 7px rgba(0, 0, 0, 0.56);
+    font-style: italic;
+}
