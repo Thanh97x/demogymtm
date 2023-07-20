@@ -20,4 +20,10 @@ export class PageMenuComponent implements OnInit {
     const PropertycardElement = document.getElementById("home")
     PropertycardElement.scrollIntoView({ behavior: "smooth" })
   }
+
+  navigateToLogin() {
+    const loginElement = document.getElementById("login")
+    loginElement.scrollIntoView({ behavior: "smooth" })
+  }
+
 }

@@ -4,12 +4,13 @@ import { LayoutStoreService } from '@shared/layout/layout-store.service';
 @Component({
   selector: 'header-left-navbar',
   templateUrl: './header-left-navbar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./header-left-navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderLeftNavbarComponent implements OnInit {
   sidebarExpanded: boolean;
 
-  constructor(private _layoutStore: LayoutStoreService) {}
+  constructor(private _layoutStore: LayoutStoreService) { }
 
   ngOnInit(): void {
     this._layoutStore.sidebarExpanded.subscribe((value) => {

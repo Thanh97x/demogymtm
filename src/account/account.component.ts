@@ -21,7 +21,7 @@ export class AccountComponent extends AppComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.renderer.addClass(document.body, 'login-page');
+    this.renderer.addClass(document.body, 'login-page');
   }
 
 

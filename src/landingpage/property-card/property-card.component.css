@@ -20,7 +20,7 @@
     text-transform: uppercase;
     font-family: "SFUFuturaB";
     text-shadow: 2px 7px rgba(0, 0, 0, 0.56);
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: 1000;
 }
 
@@ -28,5 +28,5 @@
     font-family: "SFUFuturaB";
     font-size: 20px;
     text-shadow: 2px 7px rgba(0, 0, 0, 0.56);
-    font-style: italic;
+    /* font-style: italic; */
 }

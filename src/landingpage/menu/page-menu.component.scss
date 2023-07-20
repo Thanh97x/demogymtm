@@ -26,7 +26,7 @@
 }
 
 a.navbar-brand {
-    margin: 0 60px;
+    margin: 0 30px;
 }
 
 .bg-secondary {
@@ -39,4 +39,20 @@ button.button-navbar-login {
     border-radius: 7px;
     font-size: 17px;
     background-color: RGBA(100, 149, 237, 1);
+}
+
+.login.navbar-login {
+    margin: 0 70px;
+    padding: 8px 6px;
+    color: #fff;
+}
+
+i.fa-regular.fa-user {
+    margin: 0 10px;
+}
+
+img {
+    width: 130px;
+    margin-left: 20px;
+    -webkit-filter: brightness(0.9);
 }

@@ -35,6 +35,7 @@ import { FitnessNewssExpComponent } from './fitness-newss/fitness-newss-nhucau/f
 import { FitnessNewssHieuquaComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-hieuqua/fitness-newss-hieuqua.component';
 import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-kientri/fitness-newss-kientri.component';
 import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component';
+import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/f
     FitnessNewssHieuquaComponent,
     FitnessNewssKientriComponent,
     FitnessNewssDepComponent,
+    InforHlv2Component,
   ]
 })
 export class LandingpageModule { }

@@ -9,14 +9,19 @@ import {
 } from '@shared/service-proxies/service-proxies';
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
 import { AppAuthService } from '@shared/auth/app-auth.service';
+import { style } from '@angular/animations';
 
 @Component({
   templateUrl: './register.component.html',
-  animations: [accountModuleAnimation()]
+  animations: [accountModuleAnimation()],
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent extends AppComponentBase {
   model: RegisterInput = new RegisterInput();
   saving = false;
+
+  //name
+  tenTaiKhoan: string = '';
 
   constructor(
     injector: Injector,
@@ -39,6 +44,7 @@ export class RegisterComponent extends AppComponentBase {
       .subscribe((result: RegisterOutput) => {
         if (!result.canLogin) {
           this.notify.success(this.l('SuccessfullyRegistered'));
+          // debugger
           this._router.navigate(['/login']);
           return;
         }
@@ -47,9 +53,14 @@ export class RegisterComponent extends AppComponentBase {
         this.saving = true;
         this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
         this.authService.authenticateModel.password = this.model.password;
+
         this.authService.authenticate(() => {
           this.saving = false;
+          this.tenTaiKhoan = this.authService.authenticateModel.userNameOrEmailAddress;
+
         });
       });
   }
+
+
 }

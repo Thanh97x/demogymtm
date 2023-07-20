@@ -40,7 +40,16 @@ import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FitnessNewsComponent } from './fitness-news/fitness-news.component';
+import { FooterLandingpageComponent } from './footer-landingpage/footer-landingpage.component';
+import { AboutManagerComponent } from './about-manager/about-manager.component';
+import { AboutGiahanComponent } from './about-giahan/about-giahan.component';
 
+
+//calendar
+// import { FlatpickrModule } from 'angularx-flatpickr';
+// import { CalendarModule, DateAdapter } from 'angular-calendar';
+// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+// import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap'
 @NgModule({
     declarations: [
         AppComponent,
@@ -72,6 +81,9 @@ import { FitnessNewsComponent } from './fitness-news/fitness-news.component';
         SidebarMenuComponent,
         NavBarComponent,
         FitnessNewsComponent,
+        FooterLandingpageComponent,
+        AboutManagerComponent,
+        AboutGiahanComponent,
     ],
     imports: [
         CommonModule,
@@ -87,6 +99,12 @@ import { FitnessNewsComponent } from './fitness-news/fitness-news.component';
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
+        // FlatpickrModule.forRoot(),
+        // CalendarModule.forRoot({
+        //     provide: DateAdapter,
+        //     useFactory: adapterFactory,
+        // })
+
     ],
     providers: []
 })

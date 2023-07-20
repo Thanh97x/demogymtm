@@ -9,12 +9,46 @@ import {
     AuthenticateResultModel,
     TokenAuthServiceProxy,
 } from '@shared/service-proxies/service-proxies';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
+
 export class AppAuthService {
     authenticateModel: AuthenticateModel;
     authenticateResult: AuthenticateResultModel;
     rememberMe: boolean;
+
+
+    private authenticatedUserName: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+    setAuthenticatedUserName(username: string): void {
+        this.authenticatedUserName.next(username);
+    }
+
+    getAuthenticatedUserName(): Observable<string> {
+        return this.authenticatedUserName.asObservable();
+    }
+    // authenticatedUserName: string = '';
+
+    // setAuthenticatedUserName(username: string): void {
+    //     this.authenticatedUserName = username;
+    // }
+    // authenticatedUserName: string = '';
+
+    // setAuthenticatedUserName(username: string): void {
+    //     this.authenticatedUserName = username;
+    // }
+
+    // getAuthenticatedUserName(): string {
+    //     return this.authenticatedUserName;
+    // }
+
+    // getFullName(): string {
+    //     return 'fullNameValue';
+    // }
+
 
     constructor(
         private _tokenAuthService: TokenAuthServiceProxy,
@@ -65,11 +99,11 @@ export class AppAuthService {
             );
         } else {
             // Unexpected result!
-
+            // debugger
             this._logService.warn('Unexpected authenticateResult!');
             this._router.navigate(['landingpage']);
             // this._router.navigate(['homepage']);
-            // this._router.navigate(['account/login']);
+            this._router.navigate(['/landingpage/login']);
 
         }
     }
@@ -97,8 +131,8 @@ export class AppAuthService {
         if (initialUrl.indexOf('/login') > 0) {
             initialUrl = AppConsts.appBaseUrl;
         }
-
-        location.href = initialUrl;
+        // debugger;
+        location.href = initialUrl + "/app/about";
     }
 
     private clear(): void {

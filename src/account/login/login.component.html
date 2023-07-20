@@ -1,53 +1,124 @@
-﻿<div [@routerTransition]>
-  <h4 class="text-center mb-3">{{ "LogIn" | localize }}</h4>
-  <form novalidate autocomplete="off" #loginForm="ngForm" (ngSubmit)="login()">
-    <div class="form-group">
-      <div class="input-group">
-        <input type="text" class="form-control" name="userNameOrEmailAddress"
-          [(ngModel)]="authService.authenticateModel.userNameOrEmailAddress"
-          [placeholder]="'UserNameOrEmail' | localize" required maxlength="256" #userNameOrEmailAddressModel="ngModel"
-          #userNameOrEmailAddressEl />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-user"></span>
+﻿<div class="img js-fullheight" style="background-image: url(https://universidadeuropea.com/resources/media/images/entrenamiento_funcional_og.original.jpg) 
+  ; height: 680px; margin-top: 70px; background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;">
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">LOGIN GYM TM</h2>
+        </div>
+      </div>
+      <div [@routerTransition] id="login">
+        <!-- <h4 class="text-center mb-3">{{ "LOGIN GYM TM" | localize }}</h4> -->
+        <form novalidate autocomplete="off" #loginForm="ngForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" name="userNameOrEmailAddress"
+                [(ngModel)]="authService.authenticateModel.userNameOrEmailAddress"
+                [placeholder]="'UserNameOrEmail' | localize" required maxlength="256"
+                #userNameOrEmailAddressModel="ngModel" #userNameOrEmailAddressEl />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <abp-validation-summary [control]="userNameOrEmailAddressModel"
+              [controlEl]="userNameOrEmailAddressEl"></abp-validation-summary>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="password" class="form-control" name="password"
+                [(ngModel)]="authService.authenticateModel.password" [placeholder]="'Password' | localize" required
+                maxlength="32" #passwordModel="ngModel" #passwordEl />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl"></abp-validation-summary>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-8">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="rememberMe" name="rememberMe"
+                  [(ngModel)]="authService.rememberMe" />
+                <label for="rememberMe" class="custom-control-label">
+                  {{ "RememberMe" | localize }}
+                </label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.form.valid || submitting">
+                {{ "LogIn" | localize }}
+              </button>
+            </div>
+          </div>
+        </form>
+        <p *ngIf="isSelfRegistrationAllowed" class="mb-1">
+          <!-- <a [routerLink]="['../register']">
+            <i class="fa fa-plus-circle"></i> {{ "Register" | localize }}
+          </a> -->
+        </p>
+      </div>
+    </div>
+    <div class="icon-logo-login">
+      <div class="icon-all vc_row wpb_row vc_inner vc_row-fluid social">
+        <div class="font-icon wpb_column vc_column_container vc_col-sm-3">
+          <div class="vc_column-inner">
+            <div class="wpb_wrapper">
+              <div
+                class="wpb_single_image wpb_content_element vc_align_left  wpb_animate_when_almost_visible wpb_zoomIn zoomIn wpb_start_animation animated">
+                <figure class="wpb_wrapper vc_figure">
+                  <a href="" target="_self" class="vc_single_image-wrapper   vc_box_border_grey">
+                    <i class="icon-logo-fb vc_single_image-img attachment-full fa-brands fa-facebook"></i>
+                  </a>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="font-icon wpb_column vc_column_container vc_col-sm-3">
+          <div class="vc_column-inner">
+            <div class="wpb_wrapper">
+              <div
+                class="wpb_single_image wpb_content_element vc_align_left  wpb_animate_when_almost_visible wpb_zoomIn zoomIn wpb_start_animation animated">
+                <figure class="wpb_wrapper vc_figure">
+                  <a href="" target="_self" class="vc_single_image-wrapper   vc_box_border_grey">
+                    <!-- <i style="width: 60px;" class="vc_single_image-img attachment-full fa-brands fa-instagram ">
+                    </i> -->
+                    <i style="width: 60px;"
+                      class="icon-logo-google vc_single_image-img attachment-full fa-brands fa-google"></i>
+                  </a>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="font-icon wpb_column vc_column_container vc_col-sm-3">
+          <div class="vc_column-inner">
+            <div class="wpb_wrapper">
+              <div
+                class="wpb_single_image wpb_content_element vc_align_left  wpb_animate_when_almost_visible wpb_zoomIn zoomIn wpb_start_animation animated">
+                <figure class="wpb_wrapper vc_figure">
+                  <a href="" target="_self" class="vc_single_image-wrapper   vc_box_border_grey">
+                    <!-- <i class="vc_single_image-img attachment-full fa-brands fa-youtube">
+                    </i> -->
+                    <i class="icon-logo-twitter vc_single_image-img attachment-full fa-brands fa-twitter"></i>
+                  </a>
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <abp-validation-summary [control]="userNameOrEmailAddressModel"
-        [controlEl]="userNameOrEmailAddressEl"></abp-validation-summary>
     </div>
-    <div class="form-group">
-      <div class="input-group">
-        <input type="password" class="form-control" name="password" [(ngModel)]="authService.authenticateModel.password"
-          [placeholder]="'Password' | localize" required maxlength="32" #passwordModel="ngModel" #passwordEl />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-lock"></span>
-          </div>
-        </div>
-      </div>
-      <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl"></abp-validation-summary>
+    <div class="box-register">
+      <p class="title-register-p">Don't have an account?
+        <a href="/landingpage/register" class="register-title"><b>Sign up</b></a>
+      </p>
     </div>
-    <div class="form-group row">
-      <div class="col-md-8">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="rememberMe" name="rememberMe"
-            [(ngModel)]="authService.rememberMe" />
-          <label for="rememberMe" class="custom-control-label">
-            {{ "RememberMe" | localize }}
-          </label>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.form.valid || submitting">
-          {{ "LogIn" | localize }}
-        </button>
-      </div>
-    </div>
-  </form>
-  <p *ngIf="isSelfRegistrationAllowed" class="mb-1">
-    <a [routerLink]="['../register']">
-      <i class="fa fa-plus-circle"></i> {{ "Register" | localize }}
-    </a>
-  </p>
+  </section>
 </div>

@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-secondary fixed-top ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">GYM TM</a>
+        <a class="navbar-brand" href="#">
+            <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/360090502_3283215168491705_7801321260646373346_n.jpg?_nc_cat=111&cb=99be929b-59f725be&ccb=1-7&_nc_sid=dbeb18&_nc_ohc=sxkwnTZFNBEAX9VVvDx&_nc_ht=scontent.fhan14-3.fna&oh=00_AfAAJBk7aXdeGdzx1V0yWf-GaAue4tED6ZuSinX2VmxysQ&oe=64B6EC5C"
+                alt="">
+
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,10 +30,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/landingpage/support">SUPPORT</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/landingpage/login" class="login navbar-login" (click)="navigateToLogin">
+                        <i class="fa-regular fa-user"></i>
+                        Login
+                    </a>
+                </li>
             </ul>
         </div>
-        <div class="login navbar-login">
-            <button class="button-navbar-login">Longin</button>
-        </div>
+        <!-- <div class="login navbar-login">
+            <a href="">
+                <i class="fa-regular fa-user"></i>
+                Login
+            </a> -->
+        <!-- </div> -->
     </div>
 </nav>

@@ -1,0 +1,85 @@
+img {}
+
+// .img.js-fullheight.ng-tns-c94-0 {
+//     background-image: url('https://images2.thanhnien.vn/Uploaded/dieutrang-qc/2022_07_27/hanh-dung-1-7664.jpg');
+//     height: 415px;
+// }
+
+div#login {
+    max-width: 50%;
+    margin: 0 25%;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+    // margin: 50px 0;
+}
+
+.text-center {
+    text-align: center !important;
+    // margin: 64px 0px;
+    margin-top: 100px;
+}
+
+h2 {
+    color: rgba(255, 200, 200, 0.7);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+//register 
+
+.title-register-p {
+    color: #fff;
+    text-align: center;
+    font-size: 17px;
+}
+
+a.register-title.ng-tns-c94-0 {
+    color: #fff;
+}
+
+//login logo mxh
+// i.vc_single_image-img.attachment-full.fa-brands.fa-facebook {
+//     height: auto;
+//     max-width: 100%;
+//     vertical-align: top;
+//     color: #3b5998;
+
+// }
+
+.icon-all {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.font-icon {
+    font-size: 34px;
+    margin: 10px 10px;
+}
+
+//facebook
+.icon-logo-fb {
+    color: #286eff;
+    height: auto;
+    max-width: 100%;
+    /* vertical-align: top; */
+}
+
+//twitter
+.fa-twitter:before {
+    // content: "\f099";
+    color: rgb(66 179 255);
+}
+
+//google
+.icon-logo-google {
+    color: #ff2121;
+}
+
+.register-title:hover {
+    text-decoration: underline;
+}

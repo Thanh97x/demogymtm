@@ -15,6 +15,9 @@ import { FitnessNewssExpComponent } from './fitness-newss/fitness-newss-nhucau/f
 import { FitnessNewssHieuquaComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-hieuqua/fitness-newss-hieuqua.component'
 import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-kientri/fitness-newss-kientri.component'
 import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component'
+import { LoginComponent } from '../account/login/login.component'
+import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component'
+import { RegisterComponent } from '../account/register/register.component'
 
 const routes: Routes = [];
 
@@ -30,6 +33,7 @@ const routes: Routes = [];
           { path: 'fitness', component: FitnessComponent },
           { path: 'support', component: SupportComponent },
           { path: 'coach/hlv', component: InforHlvComponent },
+          { path: 'coach/hlv/sang-nguyen', component: InforHlv2Component },
           { path: 'fitness/cach-hit-tho-cho-nguoi-moi-tap', component: FitnessNewssHitthoComponent },
           { path: 'fitness/bai-tap-co-ban-cho-nu-moi-bat-dau', component: FitnessNewssCobanchonuComponent },
           { path: 'fitness/gym-bien-phap-ho-tro-giam-can', component: FitnessNewssGymSupportComponent },
@@ -39,6 +43,8 @@ const routes: Routes = [];
           { path: 'fitness/mot-so-bai-hieu-qua-nu-gioi', component: FitnessNewssHieuquaComponent },
           { path: 'fitness/kinh-nghiem-dong-luc-ben-bi', component: FitnessNewssKientriComponent },
           { path: 'fitness/than-hinh-dep', component: FitnessNewssDepComponent },
+          { path: 'login', component: LoginComponent },
+          { path: 'register', component: RegisterComponent },
 
         ]
       }

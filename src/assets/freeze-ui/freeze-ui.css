@@ -24,7 +24,7 @@
   opacity: 0;
 }
 
-.freeze-ui:after {
+/* .freeze-ui:after {
   content: attr(data-text);
   display: block;
   max-width: 125px;
@@ -37,7 +37,7 @@
   color: #343a40;
   text-align: center;
   text-transform: uppercase;
-}
+} */
 
 .freeze-ui:before {
   content: "";

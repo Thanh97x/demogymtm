@@ -1,147 +1,133 @@
-﻿<div [@routerTransition]>
-  <h4 class="text-center mb-3">{{ "Register" | localize }}</h4>
-  <form autocomplete="off" #registerForm="ngForm" (ngSubmit)="save()">
-    <div class="form-group">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          placeholder="{{ 'Name' | localize }}"
-          required
-          maxlength="64"
-          [(ngModel)]="model.name"
-          #nameModel="ngModel"
-          #nameEl
-        />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-arrow-left"></span>
+﻿<div class="box-register">
+  <div class="justify-content-center">
+    <div class="col-md-6 text-center mb-5">
+      <h2 class="heading-section">SIGNUP GYM TM</h2>
+    </div>
+  </div>
+  <div [@routerTransition]>
+    <!-- <h4 class="text-center mb-3">{{ "Register" | localize }}</h4> -->
+    <form class="form-register" autocomplete="off" #registerForm="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <div class="input-group">
+          <!-- <input type="text" class="form-control" name="name" placeholder="{{ 'Name' | localize }}" required
+            maxlength="64" [(ngModel)]="model.name" #nameModel="ngModel" #nameEl
+            [ngModelOptions]="{ standalone: true }" /> -->
+          <input type="text" class="form-control" name="name" placeholder="{{ 'Name' | localize }}" required
+            maxlength="64" [(ngModel)]="model.name" #nameModel="ngModel" #nameEl
+            [ngModelOptions]="{ standalone: true }" />
+
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-arrow-left"></span>
+            </div>
           </div>
         </div>
+        <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
       </div>
-      <abp-validation-summary
-        [control]="nameModel"
-        [controlEl]="nameEl"
-      ></abp-validation-summary>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          name="surname"
-          placeholder="{{ 'Surname' | localize }}"
-          required
-          maxlength="64"
-          [(ngModel)]="model.surname"
-          #surnameModel="ngModel"
-          #surnameEl
-        />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-arrow-left"></span>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" name="surname" placeholder="{{ 'Surname' | localize }}" required
+            maxlength="64" [(ngModel)]="model.surname" #surnameModel="ngModel" #surnameEl />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-arrow-left"></span>
+            </div>
           </div>
         </div>
+        <abp-validation-summary [control]="surnameModel" [controlEl]="surnameEl"></abp-validation-summary>
       </div>
-      <abp-validation-summary
-        [control]="surnameModel"
-        [controlEl]="surnameEl"
-      ></abp-validation-summary>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <input
-          type="email"
-          class="form-control"
-          name="emailAddress"
-          placeholder="{{ 'EmailAddress' | localize }}"
-          required
-          maxlength="256"
-          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
-          [(ngModel)]="model.emailAddress"
-          #emailAddressModel="ngModel"
-          #emailAddressEl
-        />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-envelope"></span>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="email" class="form-control" name="emailAddress" placeholder="{{ 'EmailAddress' | localize }}"
+            required maxlength="256" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+            [(ngModel)]="model.emailAddress" #emailAddressModel="ngModel" #emailAddressEl />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
           </div>
         </div>
+        <abp-validation-summary [control]="emailAddressModel" [controlEl]="emailAddressEl"></abp-validation-summary>
       </div>
-      <abp-validation-summary
-        [control]="emailAddressModel"
-        [controlEl]="emailAddressEl"
-      ></abp-validation-summary>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <input
-          type="email"
-          class="form-control"
-          name="userName"
-          placeholder=" {{ 'UserName' | localize }}"
-          required
-          maxlength="32"
-          [(ngModel)]="model.userName"
-          #userNameModel="ngModel"
-          #userNameEl
-        />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-user"></span>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="email" class="form-control" name="userName" placeholder=" {{ 'UserName' | localize }}" required
+            maxlength="32" [(ngModel)]="model.userName" #userNameModel="ngModel" #userNameEl />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
           </div>
         </div>
+        <abp-validation-summary [control]="userNameModel" [controlEl]="userNameEl"></abp-validation-summary>
       </div>
-      <abp-validation-summary
-        [control]="userNameModel"
-        [controlEl]="userNameEl"
-      ></abp-validation-summary>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          placeholder="{{ 'Password' | localize }}"
-          [(ngModel)]="model.password"
-          required
-          maxlength="32"
-          #passwordModel="ngModel"
-          #passwordEl
-        />
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-lock"></span>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="password" class="form-control" name="password" placeholder="{{ 'Password' | localize }}"
+            [(ngModel)]="model.password" required maxlength="32" #passwordModel="ngModel" #passwordEl />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
           </div>
         </div>
+        <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl"></abp-validation-summary>
       </div>
-      <abp-validation-summary
-        [control]="passwordModel"
-        [controlEl]="passwordEl"
-      ></abp-validation-summary>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <button
-          type="button"
-          class="btn btn-default"
-          [disabled]="saving"
-          [routerLink]="['../login']"
-        >
-          <i class="fa fa-arrow-circle-left"></i> {{ "Back" | localize }}
-        </button>
+      <!-- phone -->
+      <div class="form-group">
+        <div class="input-group">
+          <input type="tel" class="form-control" name="txtTelephone" placeholder="{{ 'Phone' | localize }}"
+            [(ngModel)]="model.phone" required maxlength="32" #phoneModel="ngModel" #phoneEl />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa-solid fa-phone"></i>
+              <!-- <span class="fas fa-lock"></span> -->
+            </div>
+          </div>
+        </div>
+        <abp-validation-summary [control]="phoneModel" [controlEl]="phoneEl"></abp-validation-summary>
       </div>
-      <div class="col-4">
-        <button
-          type="submit"
-          class="btn btn-primary btn-block"
-          [disabled]="!registerForm.form.valid || saving"
-        >
-          {{ "Register" | localize }}
-        </button>
+      <!-- list gym? -->
+      <div class="form-group">
+        <div class="input-group">
+          <!-- <input type="tel" class="form-control" name="txtTelephone" placeholder="{{ 'Phone' | localize }}"
+            [(ngModel)]="model.phone" required maxlength="32" #phoneModel="ngModel" #phoneEl /> -->
+          <select name="your-club" id="" class="form-control wpcf7-form-control wpcf7-select select">
+            <option value="Chọn Gói Tập" hidden disabled selected>Chọn Gói Tập</option>
+            <option value="Lớp Tập Thể(Zumba- Yoga) - Giá từ: 450.000 VND/tháng">
+              Lớp Tập Thể - Giá từ: 450.000 VND/tháng
+            </option>
+            <option value="Lớp Tự Tập - Giá từ:  500.000VND/tháng">
+              Lớp Tự Tập - Giá từ: 500.000VND/tháng
+            </option>
+            <option value="Lớp PT 1-1, 1-2 - Giá từ: 300.000 -> 500.000 -> 800.000VND/buổi">
+              Lớp PT 1-1, 1-2, 1-3 - Giá từ: 300.000 -> 500.000 -> 800.000VND/buổi
+            </option>
+            <option value="Lớp Nhóm Đoàn Kết - Giá từ: 1.000.000 - 1.800.000 VND/tháng">
+              Lớp Nhóm Đoàn Kết - Giá từ: 1.000.000 - 1.800.000 VND/tháng
+            </option>
+          </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </div>
+        </div>
+        <!-- <abp-validation-summary [control]="phoneModel" [controlEl]="phoneEl"></abp-validation-summary> -->
       </div>
-    </div>
-  </form>
+      <!-- back and register -->
+      <div class="row">
+        <div class="col-8">
+          <button type="button" class="btn btn-default" [disabled]="saving" [routerLink]="['../login']">
+            <i class="fa fa-arrow-circle-left"></i> {{ "Back" | localize }}
+          </button>
+        </div>
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.form.valid || saving">
+            {{ "Register" | localize }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
