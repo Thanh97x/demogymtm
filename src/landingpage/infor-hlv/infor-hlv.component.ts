@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,8 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./infor-hlv.component.scss']
 })
 export class InforHlvComponent {
-  navigateCoachhvl() {
-    const InforhvlElement = document.getElementById("cb-review-title")
-    InforhvlElement.scrollIntoView({ behavior: "smooth" })
+  navigateCoachhvl(event: Event) {
+
+    event.preventDefault();
+    const element = document.getElementById('cb-review-title');
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
   }
+
 }

@@ -24,6 +24,17 @@ import { LandingpageComponent } from './landingpage.component';
 import { FitnessComponent } from './fitness/fitness.component';
 import { SupportComponent } from './support/support.component';
 import { InforHlvComponent } from './infor-hlv/infor-hlv.component';
+import { FitnessNewssComponent } from './fitness-newss/fitness-newss.component';
+import { FitnessNewssHitthoComponent } from './fitness-newss/fitness-newss-hittho/fitness-newss-hittho.component';
+import { FitnessNewssCobanchonuComponent } from './fitness-newss/fitness-newss-cobanchonu/fitness-newss-cobanchonu.component';
+import { FitnessNewssGymSupportComponent } from './fitness-newss/fitness-newss-gym-support/fitness-newss-gym-support.component';
+import { FitnessNewssBiquyetComponent } from './fitness-newss/fitness-newss-biquyet/fitness-newss-biquyet.component';
+import { FitnessNewssWhyGymComponent } from './fitness-newss/fitness-newss-why-gym/fitness-newss-why-gym.component';
+import { FitnessNewssNhucauComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-nhucau.component';
+import { FitnessNewssExpComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-exp/fitness-newss-exp.component';
+import { FitnessNewssHieuquaComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-hieuqua/fitness-newss-hieuqua.component';
+import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-kientri/fitness-newss-kientri.component';
+import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component';
 
 
 @NgModule({
@@ -54,6 +65,17 @@ import { InforHlvComponent } from './infor-hlv/infor-hlv.component';
     FitnessComponent,
     SupportComponent,
     InforHlvComponent,
+    FitnessNewssComponent,
+    FitnessNewssHitthoComponent,
+    FitnessNewssCobanchonuComponent,
+    FitnessNewssGymSupportComponent,
+    FitnessNewssBiquyetComponent,
+    FitnessNewssWhyGymComponent,
+    FitnessNewssNhucauComponent,
+    FitnessNewssExpComponent,
+    FitnessNewssHieuquaComponent,
+    FitnessNewssKientriComponent,
+    FitnessNewssDepComponent,
   ]
 })
 export class LandingpageModule { }

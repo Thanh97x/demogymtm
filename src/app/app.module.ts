@@ -39,6 +39,7 @@ import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FitnessNewsComponent } from './fitness-news/fitness-news.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
         SidebarUserPanelComponent,
         SidebarMenuComponent,
         NavBarComponent,
+        FitnessNewsComponent,
     ],
     imports: [
         CommonModule,

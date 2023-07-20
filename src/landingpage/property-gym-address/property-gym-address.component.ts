@@ -15,9 +15,5 @@ export class PropertyGymAddressComponent {
     // console.log(propertyBoxSaleElement)
     propertyBoxSaleElement.scrollIntoView({ behavior: 'smooth' });
   }
-
-  // navigateToRegistration() {
-  //   this._router.navigate(['account/homepage/box-sale']);
-  // }
 }
 
