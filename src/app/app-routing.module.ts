@@ -10,6 +10,11 @@ import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import { AboutManagerComponent } from './about-manager/about-manager.component';
 import { AboutGiahanComponent } from './about-giahan/about-giahan.component'
+import { FullcalendartestComponent } from './fullcalendar/fullcalendartest.component';
+import { AboutListZumbaComponent } from './about-list-package/about-list-zumba/about-list-zumba.component'
+import { AboutListTtComponent } from './about-list-package/about-list-tt/about-list-tt.component'
+import { AboutListDkComponent } from './about-list-package/about-list-dk/about-list-dk.component';
+import { AboutListPtComponent } from './about-list-package/about-list-pt/about-list-pt.component';
 
 @NgModule({
     imports: [
@@ -26,6 +31,12 @@ import { AboutGiahanComponent } from './about-giahan/about-giahan.component'
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
                     { path: 'about/quan-ly-the-tap', component: AboutManagerComponent, canActivate: [AppRouteGuard] },
                     { path: 'about/gia-han', component: AboutGiahanComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/calendar', component: FullcalendartestComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/gia-han/goi-zumba-yoga', component: AboutListZumbaComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/gia-han/goi-tu-tap', component: AboutListTtComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/gia-han/goi-doan-ket', component: AboutListDkComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/gia-han/goi-pt', component: AboutListPtComponent, canActivate: [AppRouteGuard] },
+
                 ]
             }
         ])

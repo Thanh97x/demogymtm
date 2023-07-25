@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about-giahan',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./about-giahan.component.scss']
 })
 export class AboutGiahanComponent {
+
 
 }

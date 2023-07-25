@@ -10,6 +10,7 @@ import { LayoutStoreService } from '@shared/layout/layout-store.service';
   // tslint:disable-next-line:component-selector
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
@@ -18,7 +19,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private _layoutStore: LayoutStoreService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._layoutStore.sidebarExpanded.subscribe((value) => {

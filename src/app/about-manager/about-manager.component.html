@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
                 <div class="block-account">
-                    <p>Xin Chào :
+                    <!-- <p>Xin Chào :
                         <span>{{ shownLoginName }}</span>
-                    </p>
+                    </p> -->
                     <ul>
                         <li>
                             <a href="/app/about" class="title-info active infomation" disabled="disabled">
@@ -14,10 +14,17 @@
                                 <strong></strong>
                             </a>
                         </li>
+
                         <li>
                             <a href="/app/about/quan-ly-the-tap" class="title-info active manager" disabled="disabled">
                                 <i class="fa-solid fa-bars-progress"></i>
                                 Quản lý thẻ tập
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/app/about/calendar" class="title-info active" disabled="disabled">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Calendar
                             </a>
                         </li>
                         <li>
@@ -127,6 +134,8 @@
         </div>
     </div>
     <div class="calender">
+        <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
+
         <!-- <mdb-calendar [events]="events" (eventEdited)="onEventEdit($event)" (eventAdded)="onEventAdd($event)"
             (eventDeleted)="onEventDelete($event)">
         </mdb-calendar> -->

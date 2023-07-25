@@ -26,12 +26,15 @@ export class HeaderLanguageMenuComponent extends AppComponentBase
     super(injector);
   }
 
+  shownLoginName = '';
   ngOnInit() {
     this.languages = _filter(
       this.localization.languages,
       (l) => !l.isDisabled
     );
     this.currentLanguage = this.localization.currentLanguage;
+    this.shownLoginName = this.appSession.getShownLoginName();
+
   }
 
   changeLanguage(languageName: string): void {

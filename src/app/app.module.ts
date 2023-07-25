@@ -43,13 +43,22 @@ import { FitnessNewsComponent } from './fitness-news/fitness-news.component';
 import { FooterLandingpageComponent } from './footer-landingpage/footer-landingpage.component';
 import { AboutManagerComponent } from './about-manager/about-manager.component';
 import { AboutGiahanComponent } from './about-giahan/about-giahan.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullcalendartestComponent } from './fullcalendar/fullcalendartest.component';
+import { AboutListPackageComponent } from './about-list-package/about-list-package.component';
+import { AboutListZumbaComponent } from './about-list-package/about-list-zumba/about-list-zumba.component';
+import { AboutListTtComponent } from './about-list-package/about-list-tt/about-list-tt.component';
+import { AboutListDkComponent } from './about-list-package/about-list-dk/about-list-dk.component';
+import { AboutListPtComponent } from './about-list-package/about-list-pt/about-list-pt.component';
 
 //calendar
 // import { FlatpickrModule } from 'angularx-flatpickr';
 // import { CalendarModule, DateAdapter } from 'angular-calendar';
 // import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 // import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap'
+
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -84,6 +93,12 @@ import { AboutGiahanComponent } from './about-giahan/about-giahan.component';
         FooterLandingpageComponent,
         AboutManagerComponent,
         AboutGiahanComponent,
+        FullcalendartestComponent,
+        AboutListPackageComponent,
+        AboutListZumbaComponent,
+        AboutListTtComponent,
+        AboutListDkComponent,
+        AboutListPtComponent,
     ],
     imports: [
         CommonModule,
@@ -99,6 +114,8 @@ import { AboutGiahanComponent } from './about-giahan/about-giahan.component';
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
+        FullCalendarModule
+
         // FlatpickrModule.forRoot(),
         // CalendarModule.forRoot({
         //     provide: DateAdapter,
@@ -106,6 +123,6 @@ import { AboutGiahanComponent } from './about-giahan/about-giahan.component';
         // })
 
     ],
-    providers: []
+    providers: [],
 })
 export class AppModule { }
