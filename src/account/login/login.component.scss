@@ -1,9 +1,17 @@
-img {}
+img {
+    position: absolute;
+}
 
-// .img.js-fullheight.ng-tns-c94-0 {
-//     background-image: url('https://images2.thanhnien.vn/Uploaded/dieutrang-qc/2022_07_27/hanh-dung-1-7664.jpg');
-//     height: 415px;
-// }
+
+.img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Điều chỉnh mức độ mờ ở đây, giá trị từ 0 (không mờ) đến 1 (hoàn toàn mờ) */
+}
 
 div#login {
     max-width: 50%;

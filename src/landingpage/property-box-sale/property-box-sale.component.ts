@@ -1,3 +1,4 @@
+import { SaleServiceProxy, SaleDto } from './../../shared/service-proxies/service-proxies';
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
 
-  targetDate: Date = new Date('2023-7-30'); // Set your target date here
+  targetDate: Date = new Date('2023-8-15'); // Set your target date here
   remainingTime: any;
   countdownInterval: any;
 
@@ -42,11 +43,52 @@ export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
     clearInterval(this.countdownInterval);
   }
 
-  constructor(private elementRef: ElementRef) { }
+  newSale: SaleDto = new SaleDto();
+  isRegistrationSuccess: boolean = false;
+  isFormSubmitted: boolean = false;
 
-  // navigateToRegistration() {
-  //   const propertyBoxSaleElement = this.elementRef.nativeElement.querySelector('#khuyen_mai');
-  //   propertyBoxSaleElement.scrollIntoView({ behavior: 'smooth' });
-  // }
+  constructor(
+    private elementRef: ElementRef,
+    private saleservice:SaleServiceProxy
+    ) { }
 
-}
+
+    createSale(){
+      if(this.newSale.address && this.newSale.address.trim() !== ''){
+        this.saleservice.addAyns(this.newSale).subscribe(
+          (res) => {
+            console.log("thanh cong", res);
+            this.isRegistrationSuccess = true;
+            this.isFormSubmitted = true;
+            this.newSale = new SaleDto();
+    
+            // Đặt thời gian chờ 5 giây trước khi ẩn thông báo
+            setTimeout(()=> {
+              this.isRegistrationSuccess = false;
+              this.isFormSubmitted = false;
+            }, 5000);
+          },
+          (error) => {
+            console.log("that bai", error);
+            this.isRegistrationSuccess = false;
+            this.isFormSubmitted = true;
+    
+            // Đặt thời gian chờ 5 giây trước khi ẩn thông báo thành công và thất bại
+            setTimeout(()=> {
+              this.isRegistrationSuccess = false;
+              this.isFormSubmitted = false;
+            }, 5000);
+          },
+        );
+      } else {
+        this.isRegistrationSuccess = false;
+        this.isFormSubmitted = true;
+
+        setTimeout(()=> {
+          this.isRegistrationSuccess = false;
+          this.isFormSubmitted = false;
+        }, 5000);
+      }
+    }
+  }
+

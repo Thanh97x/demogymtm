@@ -50,6 +50,12 @@ import { AboutListZumbaComponent } from './about-list-package/about-list-zumba/a
 import { AboutListTtComponent } from './about-list-package/about-list-tt/about-list-tt.component';
 import { AboutListDkComponent } from './about-list-package/about-list-dk/about-list-dk.component';
 import { AboutListPtComponent } from './about-list-package/about-list-pt/about-list-pt.component';
+import { SalesComponent } from './sales/sales.component';
+import { CreateSalesComponent } from './sales/create-sales/create-sales.component';
+import { EditSalesComponent } from './sales/edit-sales/edit-sales.component';
+import { SupportComponent } from './support/support.component';
+import { SupportAdminComponent } from './support-admin/support-admin.component';
+
 
 //calendar
 // import { FlatpickrModule } from 'angularx-flatpickr';
@@ -99,6 +105,13 @@ import { AboutListPtComponent } from './about-list-package/about-list-pt/about-l
         AboutListTtComponent,
         AboutListDkComponent,
         AboutListPtComponent,
+        //Sales
+        SalesComponent,
+        CreateSalesComponent,
+        EditSalesComponent,
+        SupportComponent,
+        SupportAdminComponent,
+
     ],
     imports: [
         CommonModule,

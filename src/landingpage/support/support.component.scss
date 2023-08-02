@@ -365,6 +365,8 @@ input.hs-button.primary.large {
     padding: 12px 30px;
     border-radius: 7px;
     margin-top: 20px;
+    width: 112px;
+    height: 44px;
 }
 
 span {
@@ -387,4 +389,14 @@ span.hs-form-required {
 //
 .login.navbar-login {
     margin: 0 70px;
+}
+
+//thong bao thanh cong - that bai
+
+.alert-alert-danger {
+    color: red;
+}
+
+.alert-alert-success {
+    color: #689F38;
 }

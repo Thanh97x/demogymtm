@@ -15,6 +15,8 @@ import { AccountLanguagesComponent } from './layout/account-languages.component'
 import { AccountHeaderComponent } from './layout/account-header.component';
 import { AccountFooterComponent } from './layout/account-footer.component';
 import { Routes, RouterModule, Route } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // tenants
 import { TenantChangeComponent } from './tenant/tenant-change.component';
@@ -35,7 +37,9 @@ import { TenantChangeDialogComponent } from './tenant/tenant-change-dialog.compo
         ServiceProxyModule,
         AccountRoutingModule,
         ModalModule.forChild(),
-        // RouterModule.forRoot(appRoutes)
+        BrowserModule,
+        ReactiveFormsModule,
+        // SocialLoginModule,
     ],
     declarations: [
         AccountComponent,

@@ -15,6 +15,10 @@ import { AboutListZumbaComponent } from './about-list-package/about-list-zumba/a
 import { AboutListTtComponent } from './about-list-package/about-list-tt/about-list-tt.component'
 import { AboutListDkComponent } from './about-list-package/about-list-dk/about-list-dk.component';
 import { AboutListPtComponent } from './about-list-package/about-list-pt/about-list-pt.component';
+import { SalesComponent } from './sales/sales.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SupportComponent } from 'landingpage/support/support.component';
+import { SupportAdminComponent } from './support-admin/support-admin.component';
 
 @NgModule({
     imports: [
@@ -26,6 +30,8 @@ import { AboutListPtComponent } from './about-list-package/about-list-pt/about-l
                     { path: 'home', component: HomeComponent, canActivate: [AppRouteGuard] },
                     { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
+                    { path: 'sales', component: SalesComponent, canActivate: [AppRouteGuard] },
+                    { path: 'support', component: SupportAdminComponent, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },

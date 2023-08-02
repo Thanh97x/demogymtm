@@ -77,7 +77,11 @@
       <div class="form-group">
         <div class="input-group">
           <input type="tel" class="form-control" name="txtTelephone" placeholder="{{ 'Phone' | localize }}"
-            [(ngModel)]="model.phone" required maxlength="32" #phoneModel="ngModel" #phoneEl />
+          required maxlength="32" 
+          />
+          <!-- #phoneModel="ngModel" -->
+          <!-- [(ngModel)]="model.phone"  -->
+            <!-- #phoneEl -->
           <div class="input-group-append">
             <div class="input-group-text">
               <i class="fa-solid fa-phone"></i>
@@ -85,13 +89,14 @@
             </div>
           </div>
         </div>
-        <abp-validation-summary [control]="phoneModel" [controlEl]="phoneEl"></abp-validation-summary>
+        <abp-validation-summary
+        >
+         <!-- [control]="phoneModel" [controlEl]="phoneEl" -->
+      </abp-validation-summary>
       </div>
       <!-- list gym? -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <div class="input-group">
-          <!-- <input type="tel" class="form-control" name="txtTelephone" placeholder="{{ 'Phone' | localize }}"
-            [(ngModel)]="model.phone" required maxlength="32" #phoneModel="ngModel" #phoneEl /> -->
           <select name="your-club" id="" class="form-control wpcf7-form-control wpcf7-select select">
             <option value="Chọn Gói Tập" hidden disabled selected>Chọn Gói Tập</option>
             <option value="Lớp Tập Thể(Zumba- Yoga) - Giá từ: 450.000 VND/tháng">
@@ -113,8 +118,7 @@
             </div>
           </div>
         </div>
-        <!-- <abp-validation-summary [control]="phoneModel" [controlEl]="phoneEl"></abp-validation-summary> -->
-      </div>
+      </div> -->
       <!-- back and register -->
       <div class="row">
         <div class="col-8">

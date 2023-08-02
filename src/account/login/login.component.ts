@@ -9,7 +9,8 @@ import { AppAuthService } from '@shared/auth/app-auth.service';
   styleUrls: ['./login.component.scss'],
   animations: [accountModuleAnimation()]
 })
-export class LoginComponent extends AppComponentBase {
+export class LoginComponent extends AppComponentBase  {
+  isLoggedin?: boolean = undefined;
   submitting = false;
   //name
   tenTaiKhoan: string = '';
@@ -17,8 +18,6 @@ export class LoginComponent extends AppComponentBase {
   constructor(
     injector: Injector,
     public authService: AppAuthService,
-    // private authService: AppAuthService,
-    // private authDataService: AppAuthService,
     private _sessionService: AbpSessionService,
   ) {
     super(injector);

@@ -10,6 +10,7 @@ import {
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
 import { AppAuthService } from '@shared/auth/app-auth.service';
 import { style } from '@angular/animations';
+import { error } from 'console';
 
 @Component({
   templateUrl: './register.component.html',
@@ -41,25 +42,26 @@ export class RegisterComponent extends AppComponentBase {
           this.saving = false;
         })
       )
-      .subscribe((result: RegisterOutput) => {
-        if (!result.canLogin) {
-          this.notify.success(this.l('SuccessfullyRegistered'));
-          // debugger
-          this._router.navigate(['/login']);
-          return;
-        }
+      .subscribe
+      ((result) => {
 
         // Autheticate
         this.saving = true;
         this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
         this.authService.authenticateModel.password = this.model.password;
 
-        this.authService.authenticate(() => {
-          this.saving = false;
-          this.tenTaiKhoan = this.authService.authenticateModel.userNameOrEmailAddress;
-
-        });
-      });
+        // if (!result.canLogin) {
+        //   this.notify.success(this.l('SuccessfullyRegistered'));
+        //   // debugger
+        //   this._router.navigate(['/login']);
+        //   return;
+        },(error) => {
+          console.log(error)
+        },() => {
+          this._router.navigate(['/landingpage/login']);
+          this.notify.success(this.l("SuccessfullyRegistered"));
+        }
+      );
   }
 
 

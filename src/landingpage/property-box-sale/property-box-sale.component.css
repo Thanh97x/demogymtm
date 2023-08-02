@@ -18,6 +18,32 @@ h3 {
     padding-bottom: 64px;
 }
 
+/* báo đúng sai */
+.hidden-but-space-occupied {
+    visibility: hidden;
+  }
+
+  .fa-regular, .far {
+    font-weight: 400;
+    font-size: 18px;
+    margin: 2px 6px;
+}
+
+.alert-danger {
+    width: 473px;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #d32535;
+}
+
+.alert-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #23923d;
+    width: 472px;
+}
+
+/* end báo đúng sai */
 
 
 .text-content {

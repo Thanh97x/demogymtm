@@ -5,31 +5,50 @@
         </div>
         <div class="row from-table-box-sale">
             <div class="from-left">
+                <div *ngIf="isFormSubmitted">
+                    <div *ngIf="isRegistrationSuccess" class="alert alert-success">
+                        <i class="fa-solid fa-check"></i>
+                      Đăng ký thành công!
+                    </div>
+                    <div *ngIf="!isRegistrationSuccess" class="alert alert-danger">
+                        <i class="fa-regular fa-rectangle-xmark"></i>     
+                        Đăng ký thất bại! Vui lòng điền đầy đủ thông tin.
+                    </div>
+                </div>
                 <div class="simple-table" id="login-from">
                     <table>
-                        <tbody>
+                        <tbody (ngSubmit)="createSale()">
                             <tr>
                                 <td>
-                                    <input type="text" class="required" id="username" name="name"
+                                    <input type="text" class="required" id="name" name="name" [(ngModel)]= 'newSale.name'
                                         placeholder="Họ và Tên" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" class="required" id="phone" name="phone"
+                                    <input type="number" class="required" id="phone" name="phone" [(ngModel)]='newSale.phone'
                                         placeholder="Số điện thoại" pattern="\+84|0\d{9.0}" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="select-address">
-                                    <select name="address" id="address" class="required">
+                                    <select name="address" id="address" class="required" type="text" [(ngModel)]= 'newSale.address'>
                                         <option value="chuachon" selected>Chọn địa chỉ</option>
-                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
-                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
-                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
-                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
-                                        <option value="01. [Cầu Giấy] Số 33 đường Mạc Thái Tổ, Yên Hòa">01. [Cầu Giấy]
-                                            Số 33 đường Mạc Thái Tổ, Yên Hòa</option>
+                                        <option value="48 Xóm tân hậu - Hương Mạc - Từ Sơn">
+                                           01. 48 Xóm tân hậu - Hương Mạc - Từ Sơn, Bắc Ninh
+                                        </option>
+                                        <option value="Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bac Ninh, Bắc Ninh">
+                                            02. Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bắc Ninh
+                                        </option>
+                                        <option value="03. Đang updating">01. [Cầu Giấy]
+                                            03. Đang updating
+                                        </option>
+                                        <option value="04. Đang updating">01. [Cầu Giấy]
+                                            04. Đang updating
+                                        </option>
+                                        <option value="05. Đang updating">01. [Cầu Giấy]
+                                            05. Đang updating
+                                        </option>
                                     </select>
                                 </td>
                             </tr>
@@ -52,7 +71,7 @@
                             <tr>
                                 <td class="btn-presen">
                                     <div>
-                                        <input type="submit" name="" id="btn_qua_tang_gym"
+                                        <input type="submit" name="" id="btn_qua_tang_gym" (click)="createSale()" 
                                             class="toggle-disabled required" value="Đăng Ký Nhận Ngay Quà">
                                     </div>
                                 </td>
@@ -65,6 +84,8 @@
                                     </p>
                                 </td>
                             </tr>
+                            
+                        <!-- </form> -->
                         </tbody>
                     </table>
                 </div>
@@ -108,6 +129,7 @@
                     </div>
                 </div>
             </div>
+   
         </div>
     </div>
 </div>

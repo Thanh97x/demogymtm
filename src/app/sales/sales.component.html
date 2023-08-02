@@ -1,0 +1,131 @@
+<!-- <div
+    *ngFor="let item of SaleList; let i = index"
+    class="col-lg-3 "
+    style="cursor: pointer"
+  >
+{{item.name}}:{{item.phone}}
+<button (click)="deleteSale([item.id])">delete1</button>
+
+</div > -->
+
+<div [@routerTransition]>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1>{{ "Sale" | localize }}</h1>
+        </div>
+        <div class="col-6 text-right">
+          <a href="javascript:;"
+          (click)="showCreateForm = true"
+            class="btn bg-blue"
+            >
+            <i class="fa fa-plus-square"></i>
+            {{ "Create" | localize }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="showCreateForm">
+    <div (ngSubmit)="createSale()">
+      <!-- Hiển thị form thêm mới nếu biến showCreateForm là true -->
+      <div >
+        <!-- <div class="header-box-sale">
+          <h2>Thêm mới</h2>
+        </div> -->
+        <form (ngSubmit)="createSale()">
+          <div class="form-group">
+            <label for="name">Họ và Tên:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]= 'newSale.name' required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]='newSale.phone' required>
+          </div>
+          <!-- Thêm các trường thông tin khác nếu cần -->
+          <div class="text-box-sale">
+            <a href="javascript:;"
+              class="btn bg-blue"
+              (click)="hideCreateForm()">
+              <i class="fa-solid fa-backward"></i>
+              {{ "Hủy" | localize }}
+            </a>
+            <a href="javascript:;"
+              class="btn bg-blue"
+              (click)="createSale()">
+              <i class="fa-sharp fa-solid fa-plus"></i>
+              {{ "Add" | localize }}
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="content px-2" >
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">&emsp;</div>
+            <div class="col-md-6">
+              <div class="input-group">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" >
+          <div class="table-responsive" >
+            <table class="table table-striped table-bordered"
+              >
+              <thead class="bg-light">
+                <tr>
+                  <th>{{ "Họ và Tên" | localize }}</th>
+                  <th>{{ "Số Điện Thoại" | localize }}</th>
+                  <th>{{ "Địa chỉ" | localize }}</th>
+                  <th style="width: 200px;">{{ "Actions" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                *ngFor="let item of SaleList
+                | paginate
+                      : {
+                          id: 'server',
+                          itemsPerPage: pageSize,
+                          currentPage: p,
+                          totalItems: totalItems
+                        }">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.phone }}</td>
+                  <td>{{ item.address }}</td>
+                  <td>
+                    <button type="button"
+                      class="btn btn-sm bg-danger mx-2"
+                      (click)="deleteSale([item.id])">
+                      <i class="fas fa-trash"></i>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer table-card-footer bg-light border-top">
+            <div class="row">
+              <div class="col-12">
+                <div class="float-sm-right m-auto">
+                    <abp-pagination-controls
+                            id="server"
+                            (pageChange)="getDataPage($event)"
+                    >
+                    </abp-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

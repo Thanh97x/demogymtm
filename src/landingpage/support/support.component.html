@@ -192,13 +192,16 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="wpb_column vc_column_container vc_col-sm-8">
+                    
                             <div class="vc_column-inner">
                                 <div class="wpb_wrapper">
                                     <h2 class="vc_custom_heading venee wpb_animate_when_almost_visible wpb_bounceInLeft bounceInLeft wpb_start_animation animated"
                                         style="font-size: 36px;text-align: left;font-family: svn-veneerregular !important;font-weight:400;font-style:normal">
                                         Nhận Tư Vấn Miễn Phí
                                     </h2>
+                                    
                                     <div
                                         class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_70 vc_sep_border_width_2 vc_sep_pos_align_left vc_separator_no_text  wpb_animate_when_almost_visible wpb_bounceInLeft bounceInLeft wpb_animate_when_almost_visible wpb_bounceInLeft bounceInLeft wpb_start_animation animated">
                                         <span class="vc_sep_holder vc_sep_holder_l">
@@ -236,8 +239,9 @@
                                                 <div class="input">
                                                     <input type="text"
                                                         id="firstname-834691fc-0194-4dcc-9785-f0a740bb652b"
-                                                        name="firstname" class="hs-input" autocomplete="given-name">
-
+                                                        name="firstname" class="hs-input" autocomplete="given-name"
+                                                        [(ngModel)]= 'newSupport.name' required
+                                                        >
                                                 </div>
                                             </div>
                                             <div class="hs_phone hs-phone hs-fieldtype-phonenumber field hs-form-field">
@@ -252,8 +256,7 @@
                                                 <div class="input">
                                                     <input type="text" id="phone-834691fc-0194-4dcc-9785-f0a740bb652b"
                                                         name="phone" class="hs-input" autocomplete="tel" type="tel"
-                                                        inputmode="tel">
-
+                                                        inputmode="tel" [(ngModel)]='newSupport.phone' required>
                                                 </div>
                                             </div>
                                             <div class="hs_email hs-email hs-fieldtype-text field hs-form-field">
@@ -268,7 +271,7 @@
                                                 <div class="input">
                                                     <input type="text" id="email-834691fc-0194-4dcc-9785-f0a740bb652b"
                                                         name="email" class="hs-input" autocomplete="tel" type="tel"
-                                                        inputmode="tel">
+                                                        inputmode="tel" [(ngModel)]='newSupport.email' required>
 
                                                 </div>
                                             </div>
@@ -283,12 +286,14 @@
                                                 </legend>
                                                 <div class="input">
                                                     <select name="a_i_m" id="a_i_m-834691fc-0194-4dcc-9785-f0a740bb652b"
-                                                        required class="hs-input is-placeholder">
+                                                        required class="hs-input is-placeholder" [(ngModel)]='newSupport.address' required>
                                                         <option hidden disabled selected value="">
                                                             Vui lòng chọn</option>
                                                         <option value="48 xóm Tân Hậu - Hương Mạc - Từ Sơn - Bắc Ninh">
-                                                            48 xóm Tân Hậu - Hương Mạc - Từ Sơn - Bắc Ninh</option>
-                                                        <option value="Đang update">Đang update</option>
+                                                            01. 48 xóm Tân Hậu - Hương Mạc - Từ Sơn - Bắc Ninh</option>
+                                                            <option value="Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bac Ninh, Bắc Ninh">
+                                                                02. Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bắc Ninh
+                                                            </option>
                                                         <option value="Đang update">Đang update</option>
                                                         <option value="Đang update">Đang update</option>
                                                         <option value="Đang update">Đang update</option>
@@ -315,19 +320,30 @@
                                                 <div class="input">
                                                     <input type="text" id="ghi_ch_-834691fc-0194-4dcc-9785-f0a740bb652b"
                                                         name="ghi_ch_" class="hs-input" autocomplete="text" type="text"
-                                                        inputmode="tel">
+                                                        inputmode="tel" [(ngModel)]='newSupport.comment' required>
 
+                                                </div>
+                                            </div>
+                                            <div *ngIf="isFormSubmitted">
+                                                <div *ngIf="isRegistrationSuccess" class="alert-alert-success">
+                                                    <i class="fa-solid fa-check"></i>
+                                                  Đăng ký thành công!
+                                                </div>
+                                                <div *ngIf="!isRegistrationSuccess" class="alert-alert-danger">
+                                                    <i class="fa-regular fa-rectangle-xmark"></i>     
+                                                    Đăng ký thất bại! Vui lòng điền đầy đủ thông tin.
                                                 </div>
                                             </div>
                                             <div class="hs_submit hs-submit">
                                                 <div class="hs-field-desc">
                                                     <div class="actions">
                                                         <input type="submit" class="hs-button primary large"
-                                                            value="Add">
+                                                            value="Add" (click)="createSupport()">
 
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -340,3 +356,4 @@
         </div>
     </div>
 </div>
+
