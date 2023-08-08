@@ -51,7 +51,9 @@
                             </p>
                             <p>
                                 <span>
-                                    <b>Điện thoại : </b>
+                                    <b>Điện thoại : 
+                                        <strong>{{ShownLoginPhone}}</strong>
+                                    </b>
                                 </span>
                             </p>
                             <p>
@@ -69,76 +71,28 @@
                         <div class="dashboard">
                             <div class="recen-orders">
                                 <div class="table-responsive-block tab-all table-scroll" style="overflow-x:auto;">
+                                    
                                     <table class="table table-cart table-order" id="my-orders-table">
                                         <thead class="thead-default">
                                             <tr>
                                                 <th>Tên đơn hàng</th>
+                                                <th>Số Tháng</th>
                                                 <th>Giá</th>
                                                 <th>Ngày đặt</th>
+                                                <th>Ngày hết hạn</th>
+
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
+                                      
+                                        
+                                        <tbody *ngIf="DSDKList$ | async as DSDKList" >
+                                            <tr *ngFor="let item of DSDKList;let i=index">
+                                                <td>{{item.tenGoi}}</td>
+                                                <td>{{item.goiThang}}</td>
+                                                <td>{{item.tongTien}}</td>
+                                                <td>{{item.ngayDangKy | date:'dd/MM/yyyy HH:mm'}}</td>
+                                                <td>{{item.ngayHetHan | date:'dd/MM/yyyy HH:mm'}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                            </tr>
-
                                         </tbody>
                                     </table>
                                 </div>

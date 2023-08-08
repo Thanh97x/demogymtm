@@ -6,7 +6,21 @@ import { Component, ElementRef } from '@angular/core';
   styleUrls: ['./property-box-covenient.component.css']
 })
 export class PropertyBoxCovenientComponent {
-  constructor(private elementRef: ElementRef) { }
+  constructor(
+    private elementRef: ElementRef,
+    private el: ElementRef
+    ) { }
+
+    zoomImage(event: MouseEvent) {
+      const imgElement = event.target as HTMLImageElement;
+      imgElement.style.transform = 'scale(1.4)';
+    }
+    
+    // Hàm này sẽ reset kích thước ảnh khi hết hover
+    resetImage(event: MouseEvent) {
+      const imgElement = event.target as HTMLImageElement;
+      imgElement.style.transform = 'scale(1)';
+    }
 
   navigateToRegistration() {
     const propertyBoxSaleElement = document.getElementById("BoxSale");

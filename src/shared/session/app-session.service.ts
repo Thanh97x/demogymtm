@@ -55,8 +55,15 @@ export class AppSessionService {
         if (!this._abpMultiTenancyService.isEnabled) {
             return emailAddress;
         }
-
         return (this._tenant ? this._tenant.tenancyName : '.') + '\\' + emailAddress;
+    }
+
+    getShownLoginPhone(): string {
+        const phoneNumber = this._user.phoneNumber;
+        if (!this._abpMultiTenancyService.isEnabled) {
+            return phoneNumber;
+        }
+        return (this._tenant ? this._tenant.tenancyName : '.') + '\\' + phoneNumber;
     }
 
     init(): Promise<boolean> {

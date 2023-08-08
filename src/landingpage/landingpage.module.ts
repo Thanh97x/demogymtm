@@ -37,7 +37,6 @@ import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhuc
 import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component';
 import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -78,6 +77,7 @@ import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
     FitnessNewssKientriComponent,
     FitnessNewssDepComponent,
     InforHlv2Component,
+
   ]
 })
 export class LandingpageModule { }

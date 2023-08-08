@@ -9,6 +9,21 @@
     background-position: center center;
 }
 
+.form-group {
+    position: relative;
+    z-index: 2;
+}
+
+.row{
+    position: relative;
+    z-index: 2;
+}
+
+.heading-section {
+    position: relative;
+    z-index: 2;
+}
+
 // css register
 div#login {
     max-width: 50%;
@@ -37,6 +52,10 @@ h2.heading-section {
     margin-top: 70px;
 }
 
+.heading-section {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
 .col-8 {
     flex: 0 0 66.666667%;
     max-width: 50%;
@@ -50,6 +69,7 @@ h2.heading-section {
 }
 
 .box-register::before {
+    z-index: 1;
     content: "";
     position: absolute;
     top: 0;

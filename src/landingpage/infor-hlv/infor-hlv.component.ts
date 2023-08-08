@@ -15,5 +15,5 @@ export class InforHlvComponent {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
-
+  value!: number;
 }

@@ -77,11 +77,11 @@ getDataPage(pageNumber: number): void {
   });
 }
 
-refresh(): void {
-  // Dùng router để navigat lại cùng route, sẽ tái tải trang
-  this.router.navigateByUrl('/sales', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['sales']);
-  });
-}
+// refresh(): void {
+//   // Dùng router để navigat lại cùng route, sẽ tái tải trang
+//   this.router.navigateByUrl('/sales', { skipLocationChange: true }).then(() => {
+//     this.router.navigate(['sales']);
+//   });
+// }
 
 }

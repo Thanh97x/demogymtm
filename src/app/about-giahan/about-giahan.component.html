@@ -12,22 +12,21 @@
                             <th>Tiện ích</th>
                             <th>Chọn Gói</th>
                         </tr>
-
                         <!-- Gói Zumba và Yoga -->
-                        <tr>
-                            <td class="table-name">Gói Zumba và Yoga</td>
+                        <!-- <tr *ngFor="let item of ListGoiTap">
+                            <td class="table-name">{{item.tenGoi}}</td>
                             <td>
                                 <ul>
                                     <li>
                                         - Giá gói :
-                                        <b>450.000 VND/tháng</b>
+                                        <b>{{ item.tongTien }}  VNĐ/Tháng</b> 
                                     </li>
                                     <li>
                                         -
-                                        <b>Yoga - Group Fitness</b> và <b>tư vấn dinh dưỡng</b>
-                                        không giới hạn
+                                        <b>{{ item.service }}</b>
+                                      
                                     </li>
-                                    <li>- Mỗi ca <b>10 - 15</b> học viên</li>
+                                    <li>-{{ item.ca }}</li>
                                     <li>- Tập cùng <b>HLV nước ngoài</b></li>
                                     <li>- Ca tập linh hoạt - <b>1h/1ca</b></li>
                                     <li>- Các lớp chuyên sâu giãn cơ</li>
@@ -36,20 +35,52 @@
                             <td class="">
                                 <div class="btn-box-gym-gh ">
                                     <div class="btn-box-gym-gh-1 button-wrapper">
-                                        <a href="/app/about/gia-han/goi-zumba-yoga">
-                                            <button class="btn-box-gym">
+                                        <a href="javascipt:;">
+                                            <button class="btn-box-gym"  (click)="createDSDK(item)">
                                                 Gia Hạn
-
                                             </button>
                                         </a>
                                     </div>
                                 </div>
                             </td>
 
-                        </tr>
+                        </tr> -->
                         <!-- kết thúc  -->
+                        <!-- goi ZUmba -->
+                        <tr>
+                            <td class="table-name">Gói Zumba and YoGa</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        - Giá gói : <b>450.000VND/tháng</b>
+                                    </li>
+                                    <li>
+                                        - <b>Yoga - Group Fitness và tư vấn dinh dưỡng</b> không giới hạn
+                                    </li>
+                                    <li>- Mỗi ca 10 - 15 học viên </li>
+                                    <li>- Ca tập linh hoạt - <b>1h/1ca</b></li>
+                                    <li>- Các lớp chuyên sâu giãn cơ</li>
+                                </ul>
+                            </td>
+                            <td class="">
+                                <div class="a1 ">
+                                    <div class="btn-box-gym-gh-1 button-wrapper">
+                                        <a href="/app/about/gia-han/goi-zumba-yoga">
 
-                        <!-- Gói Tự Tập -->
+                                            <button class="btn-box-gym">
+                                                Gia Hạn
+                                            </button>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr> 
+                        <!-- goi ZUmba -->
+
+
+                        <!-- Gói Tự Tập  -->
                         <tr>
                             <td class="table-name">Gói Tự Tập</td>
                             <td>
@@ -81,7 +112,7 @@
                                 </div>
                             </td>
 
-                        </tr>
+                        </tr> 
 
                         <!-- kết thúc -->
 
@@ -157,7 +188,6 @@
                                 <div class="btn-box-gym-gh ">
                                     <div class="btn-box-gym-gh-1 button-wrapper">
                                         <a href="/app/about/gia-han/goi-pt">
-
                                             <button class="btn-box-gym">
                                                 Gia Hạn
                                             </button>

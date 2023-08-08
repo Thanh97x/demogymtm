@@ -26,32 +26,28 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" class="required" id="phone" name="phone" [(ngModel)]='newSale.phone'
+                                    <input type="text" class="required" id="phone" name="phone" [(ngModel)]='newSale.phone'
                                         placeholder="Số điện thoại" pattern="\+84|0\d{9.0}" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="select-address">
-                                    <select name="address" id="address" class="required" type="text" [(ngModel)]= 'newSale.address'>
-                                        <option value="chuachon" selected>Chọn địa chỉ</option>
-                                        <option value="48 Xóm tân hậu - Hương Mạc - Từ Sơn">
-                                           01. 48 Xóm tân hậu - Hương Mạc - Từ Sơn, Bắc Ninh
+                                    <select name="address" id="address" class="required" type="text"  [(ngModel)]='newSale.address'
+                                    >
+                                        <option value="chuachon" selected disabled>Chọn địa chỉ</option>
+                                        <option value="48 Xóm tân hậu - Hương Mạc - Từ Sơn" >
+                                            01. 48 Xóm tân hậu - Hương Mạc - Từ Sơn, Bắc Ninh
                                         </option>
                                         <option value="Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bac Ninh, Bắc Ninh">
                                             02. Tầng 2 Chợ Giàu Phú Điền - Từ Sơn, Bắc Ninh
                                         </option>
-                                        <option value="03. Đang updating">01. [Cầu Giấy]
-                                            03. Đang updating
-                                        </option>
-                                        <option value="04. Đang updating">01. [Cầu Giấy]
-                                            04. Đang updating
-                                        </option>
-                                        <option value="05. Đang updating">01. [Cầu Giấy]
-                                            05. Đang updating
-                                        </option>
+                                        <option value="03. Đang updating">01. [Cầu Giấy] 03. Đang updating</option>
+                                        <option value="04. Đang updating">01. [Cầu Giấy] 04. Đang updating</option>
+                                        <option value="05. Đang updating">01. [Cầu Giấy] 05. Đang updating</option>
                                     </select>
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td>
                                     <div class="item-salebox">

@@ -54,7 +54,13 @@
 .member-img {
     width: 100%;
     display: block;
+    transition: transform 0.3s;/* Thêm hiệu ứng transition để giảm dần khi hover */
+
 }
+
+.member-img:hover {
+    transform: scale(1.2); /* Tăng kích thước ảnh khi hover */
+  }
 
 .btn-button {
     padding: 50px 0px;

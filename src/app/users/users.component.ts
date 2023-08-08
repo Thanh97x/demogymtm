@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -9,7 +9,7 @@ import {
 import {
   UserServiceProxy,
   UserDto,
-  UserDtoPagedResultDto
+  UserDtoPagedResultDto,
 } from '@shared/service-proxies/service-proxies';
 import { CreateUserDialogComponent } from './create-user/create-user-dialog.component';
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
@@ -131,4 +131,5 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
       this.refresh();
     });
   }
+  
 }

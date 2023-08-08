@@ -77,7 +77,7 @@
       <div class="form-group">
         <div class="input-group">
           <input type="tel" class="form-control" name="txtTelephone" placeholder="{{ 'Phone' | localize }}"
-          required maxlength="32" 
+          required maxlength="32" [(ngModel)]="model.phone"
           />
           <!-- #phoneModel="ngModel" -->
           <!-- [(ngModel)]="model.phone"  -->

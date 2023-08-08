@@ -10,7 +10,7 @@
             </span>
         </div>
         <div class="title-header-gh">
-            <h2>CHỌN GIA HẠN GÓI ZUMBA VÀ YOGA</h2>
+            <h2 >CHỌN GIA HẠN GÓI ZUMBA VÀ YOGA</h2>
         </div>
         <div class="wrapper">
             <div class="home-3-slide relative">
@@ -25,20 +25,11 @@
                                         <img src="https://phongtap.thehinh.com/wp-content/uploads/2019/07/zumbapic-1.jpg"
                                             alt="">
                                     </div>
-                                    <div class="info">
+                                    <div class="info" *ngFor="let item of ListZumbaYoga">
                                         <div class="top">
-                                            <div class="title">Gói 1 Tháng</div>
-                                            <div class="price">450.000 VNĐ
+                                            <div class="title" >Gói 1 Tháng</div>
+                                            <div class="price"  >{{ item.tongTien }} VNĐ
                                             </div>
-                                            <!-- <div class="icon">
-                                                    <svg class="triple-arrow">
-                                                        <path
-                                                            d="M84.9945 0L66.9999 18.003L84.9884 36H104.994L87.0054 18.003L105 0H84.9945Z"
-                                                            fill="url(#paint0_linear_622_5547)">
-    
-                                                        </path>
-                                                    </svg>
-                                                </div> -->
                                         </div>
                                         <div class="content">
                                             <div class="ctn">
@@ -53,11 +44,12 @@
                                                 <p> Buổi tập PT miễn phí</p>
                                             </div>
                                             <div class="button mt-35px">
-                                                <a href="" class="btn btn-40" has-popup-qr data-fancybox
-                                                    data-src="#popup-qr">
-                                                    Đăng Ký
+                                                <a href="#" class="btn btn-40" has-popup-qr 
+                                                data-fancybox data-src="#popup-qr" 
+                                                (click)="createDSDK(item)">
+                                                  Đăng Ký
                                                 </a>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>

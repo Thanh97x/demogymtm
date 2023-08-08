@@ -16,6 +16,10 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.ConfigurationServiceProxy,
         ApiServiceProxies.SaleServiceProxy,
         ApiServiceProxies.SupportServiceProxy,
+        ApiServiceProxies.DSDKServiceProxy,
+        ApiServiceProxies.CTGoiTapServiceProxy,
+        ApiServiceProxies.GoiTapServiceProxy,
+        
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

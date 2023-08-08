@@ -24,8 +24,9 @@ export class SupportComponent {
       this.supportService.addSupport(this.newSupport).subscribe((res) => {
         console.log('thanh công', res),
         this.isRegistrationSuccess = true;
-            this.isFormSubmitted = true;
+        this.isFormSubmitted = true;
         this.newSupport = new SupporDto();
+        console.log(this.newSupport)
 
         setTimeout(()=> {
           this.isRegistrationSuccess = false;
