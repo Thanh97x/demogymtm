@@ -19,6 +19,7 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.DSDKServiceProxy,
         ApiServiceProxies.CTGoiTapServiceProxy,
         ApiServiceProxies.GoiTapServiceProxy,
+        ApiServiceProxies.CalenderServiceProxy,
         
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]

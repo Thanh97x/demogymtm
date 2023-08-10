@@ -59,66 +59,19 @@
                                     <table class="table table-cart table-order" id="my-orders-table">
                                         <thead class="thead-default">
                                             <tr>
+                                                <th>Tên Gói Tập</th>
                                                 <th>Ngày Đặt</th>
                                                 <th>Ngày Kết Thúc</th>
                                                 <th>Trạng Thái</th>
-                                                <!-- <th>Ngày đặt</th> -->
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
+                                        <tbody *ngIf="DSDKList$ | async as DSDKList" >
+                                            <tr *ngFor="let item of DSDKList;let i=index">
+                                                <td>{{item.tenGoi}}</td>
+                                                <td>{{item.ngayDangKy | date:'dd/MM/yyyy HH:mm'}}</td>
+                                                <td>{{item.ngayHetHan | date:'dd/MM/yyyy HH:mm'}}</td>
+                                                <td>{{item.trangThai}}</td>
                                             </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> 19/6/2023 </td>
-                                                <td>19/7/2023</td>
-                                                <td>Hết Hạn</td>
-
-                                            </tr>
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -130,10 +83,5 @@
         </div>
     </div>
     <div class="calender">
-        <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
-
-        <!-- <mdb-calendar [events]="events" (eventEdited)="onEventEdit($event)" (eventAdded)="onEventAdd($event)"
-            (eventDeleted)="onEventDelete($event)">
-        </mdb-calendar> -->
     </div>
 </section>

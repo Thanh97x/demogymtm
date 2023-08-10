@@ -12,6 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
+
+
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
 // tenants
@@ -55,7 +60,6 @@ import { CreateSalesComponent } from './sales/create-sales/create-sales.componen
 import { EditSalesComponent } from './sales/edit-sales/edit-sales.component';
 import { SupportComponent } from './support/support.component';
 import { SupportAdminComponent } from './support-admin/support-admin.component';
-
 
 //calendar
 // import { FlatpickrModule } from 'angularx-flatpickr';
@@ -111,7 +115,6 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
         EditSalesComponent,
         SupportComponent,
         SupportAdminComponent,
-
     ],
     imports: [
         CommonModule,
@@ -127,7 +130,9 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
-        FullCalendarModule
+        FullCalendarModule,
+        MessagesModule
+        
 
         // FlatpickrModule.forRoot(),
         // CalendarModule.forRoot({

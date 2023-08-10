@@ -19,6 +19,7 @@ export class AboutComponent extends AppComponentBase
   shownLoginName = '';
   ShownLoginEmail = '';
   ShownLoginPhone = '';
+  newDSDK: DSDKDto = new DSDKDto;
 
   DSDKList$: Observable<DSDKDto[]>;
 
@@ -40,6 +41,15 @@ export class AboutComponent extends AppComponentBase
     this.shownLoginName = this.appSession.getShownLoginName();
     this.ShownLoginEmail = this.appSession.getShownLoginEmail();
     this.ShownLoginPhone = this.appSession.getShownLoginPhone();
+  }
+
+  getList(){
+    // debugger
+    this.dsdk.getDSDK().subscribe((res) => {
+      this.newDSDK = new DSDKDto();
+      console.log(res)
+      console.log(this.newDSDK)
+    });
   }
 
 }

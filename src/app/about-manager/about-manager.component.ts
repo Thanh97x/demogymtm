@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { AppComponentBase } from '@shared/app-component-base';
 import { AppAuthService } from '@shared/auth/app-auth.service';
 import { Component, Injector, OnInit } from '@angular/core';
@@ -6,10 +7,7 @@ import {
   ViewChild,
   TemplateRef,
 } from '@angular/core';
-//
-// import { startOfDay, endOfDay } from 'date-fns';
-// import { CalendarEvent } from 'mdb-calendar';
-
+import { DSDKDto, DSDKServiceProxy } from '@shared/service-proxies/service-proxies';
 @Component({
   selector: 'app-about-manager',
   templateUrl: './about-manager.component.html',
@@ -18,15 +16,30 @@ import {
 export class AboutManagerComponent extends AppComponentBase
   implements OnInit {
   shownLoginName = '';
+  newDSDK: DSDKDto = new DSDKDto;
+  DSDKList$: Observable<DSDKDto[]>;
+  DSDKList: any[];
 
-  constructor(injector: Injector) {
+  constructor(
+    injector: Injector,
+    private dsdk: DSDKServiceProxy
+    ) {
     super(injector);
   }
 
   ngOnInit() {
     this.shownLoginName = this.appSession.getShownLoginName();
+    this.DSDKList$ = this.dsdk.getDSDK(); 
   }
   isContainerVisible = false;
 
+  //getall
+  getList(){
+    this.dsdk.getDSDK().subscribe((res) => {
+      this.newDSDK = new DSDKDto();
+      console.log(res)
+      console.log(this.newDSDK)
+    });
+  }
 
 }

@@ -711,6 +711,185 @@ export class BookServiceProxy {
 }
 
 @Injectable()
+export class CalenderServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addCalender(body: InputDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Calender/AddCalender";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddCalender(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddCalender(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddCalender(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getCalender(): Observable<CalenderDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/Calender/GetCalender";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCalender(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCalender(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CalenderDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CalenderDto[]>;
+        }));
+    }
+
+    protected processGetCalender(response: HttpResponseBase): Observable<CalenderDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CalenderDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    deleteCalender(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Calender/DeleteCalender?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteCalender(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteCalender(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteCalender(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
 export class CategoryServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -4777,6 +4956,61 @@ export interface ICTGoiTapDto {
     thongTinMoTa: string | undefined;
 }
 
+export class CalenderDto implements ICalenderDto {
+    id: number;
+    nameCalender: string | undefined;
+    event: string | undefined;
+    time: moment.Moment;
+
+    constructor(data?: ICalenderDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.nameCalender = _data["nameCalender"];
+            this.event = _data["event"];
+            this.time = _data["time"] ? moment(_data["time"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CalenderDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CalenderDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["nameCalender"] = this.nameCalender;
+        data["event"] = this.event;
+        data["time"] = this.time ? this.time.toISOString() : <any>undefined;
+        return data;
+    }
+
+    clone(): CalenderDto {
+        const json = this.toJSON();
+        let result = new CalenderDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICalenderDto {
+    id: number;
+    nameCalender: string | undefined;
+    event: string | undefined;
+    time: moment.Moment;
+}
+
 export class ChangePasswordDto implements IChangePasswordDto {
     currentPassword: string;
     newPassword: string;
@@ -5258,6 +5492,7 @@ export class DSDKDto implements IDSDKDto {
     soThang: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 
     constructor(data?: IDSDKDto) {
@@ -5276,6 +5511,7 @@ export class DSDKDto implements IDSDKDto {
             this.soThang = _data["soThang"];
             this.ngayDangKy = _data["ngayDangKy"] ? moment(_data["ngayDangKy"].toString()) : <any>undefined;
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
+            this.trangThai = _data["trangThai"];
             this.tongTien = _data["tongTien"];
         }
     }
@@ -5294,6 +5530,7 @@ export class DSDKDto implements IDSDKDto {
         data["soThang"] = this.soThang;
         data["ngayDangKy"] = this.ngayDangKy ? this.ngayDangKy.toISOString() : <any>undefined;
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
+        data["trangThai"] = this.trangThai;
         data["tongTien"] = this.tongTien;
         return data;
     }
@@ -5312,6 +5549,7 @@ export interface IDSDKDto {
     soThang: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 }
 
@@ -5322,6 +5560,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
     soThang: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 
     constructor(data?: IDSDKOuputDto) {
@@ -5341,6 +5580,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
             this.soThang = _data["soThang"];
             this.ngayDangKy = _data["ngayDangKy"] ? moment(_data["ngayDangKy"].toString()) : <any>undefined;
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
+            this.trangThai = _data["trangThai"];
             this.tongTien = _data["tongTien"];
         }
     }
@@ -5360,6 +5600,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
         data["soThang"] = this.soThang;
         data["ngayDangKy"] = this.ngayDangKy ? this.ngayDangKy.toISOString() : <any>undefined;
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
+        data["trangThai"] = this.trangThai;
         data["tongTien"] = this.tongTien;
         return data;
     }
@@ -5379,6 +5620,7 @@ export interface IDSDKOuputDto {
     soThang: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 }
 
@@ -5397,6 +5639,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
     tenGoi: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 
     constructor(data?: IDanhSachDangKy) {
@@ -5424,6 +5667,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
             this.tenGoi = _data["tenGoi"];
             this.ngayDangKy = _data["ngayDangKy"] ? moment(_data["ngayDangKy"].toString()) : <any>undefined;
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
+            this.trangThai = _data["trangThai"];
             this.tongTien = _data["tongTien"];
         }
     }
@@ -5451,6 +5695,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
         data["tenGoi"] = this.tenGoi;
         data["ngayDangKy"] = this.ngayDangKy ? this.ngayDangKy.toISOString() : <any>undefined;
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
+        data["trangThai"] = this.trangThai;
         data["tongTien"] = this.tongTien;
         return data;
     }
@@ -5478,6 +5723,7 @@ export interface IDanhSachDangKy {
     tenGoi: string | undefined;
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
+    trangThai: string | undefined;
     tongTien: number;
 }
 
@@ -7977,6 +8223,57 @@ export interface IZumbaAndYogaDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     tongTien: number;
+}
+
+export class InputDto implements IInputDto {
+    nameCalender: string | undefined;
+    event: string | undefined;
+    time: moment.Moment;
+
+    constructor(data?: IInputDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.nameCalender = _data["nameCalender"];
+            this.event = _data["event"];
+            this.time = _data["time"] ? moment(_data["time"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): InputDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new InputDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["nameCalender"] = this.nameCalender;
+        data["event"] = this.event;
+        data["time"] = this.time ? this.time.toISOString() : <any>undefined;
+        return data;
+    }
+
+    clone(): InputDto {
+        const json = this.toJSON();
+        let result = new InputDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IInputDto {
+    nameCalender: string | undefined;
+    event: string | undefined;
+    time: moment.Moment;
 }
 
 export class ApiException extends Error {

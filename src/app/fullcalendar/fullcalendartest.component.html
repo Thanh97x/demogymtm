@@ -2,14 +2,14 @@
 
     <div class='demo-app-sidebar'>
         <div class='demo-app-sidebar-section'>
-            <h2>Instructions</h2>
+            <h2>Hướng Dẫn Sử Dụng</h2>
             <ul>
-                <li>Select dates and you will be prompted to create a new event</li>
-                <li>Drag, drop, and resize events</li>
-                <li>Click an event to delete it</li>
+                <li>Chọn ngày và bạn sẽ được nhắc tạo một sự kiện mới</li>
+                <li>Kéo, thả và thay đổi kích thước sự kiện</li>
+                <li>Nhấp vào một sự kiện để xóa nó</li>
             </ul>
         </div>
-        <div class='demo-app-sidebar-section'>
+        <!-- <div class='demo-app-sidebar-section'>
             <label>
                 <input type='checkbox' [checked]='calendarVisible' (change)='handleCalendarToggle()' />
                 toggle whole calendar
@@ -20,9 +20,9 @@
                 <input type='checkbox' [checked]='calendarOptions.weekends' (change)='handleWeekendsToggle()' />
                 toggle weekends
             </label>
-        </div>
+        </div> -->
         <div class='demo-app-sidebar-section'>
-            <h2>All Events ({{currentEvents.length}})</h2>
+            <h2>Tât Cả Sự Kiện ({{currentEvents.length}})</h2>
             <ul>
                 <li *ngFor='let event of currentEvents'>
                     <b>{{event.startStr}}</b>

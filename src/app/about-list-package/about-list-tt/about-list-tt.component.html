@@ -4,7 +4,7 @@
     <div class="header-home-3">
         <div class="header-icon">
             <span class="x-gh">
-                <a href="/app/about/gia-han">
+                <a href="app/about/gia-han">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </span>
@@ -20,24 +20,15 @@
                         <!-- goi 1 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width:33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
-                                <div class="bn-wrapper">
-                                    <div class="img">
+                                <div class="bn-wrapper" *ngFor="let item of ListTT1"> 
+                                    <div class="img" (click)="confirmSignUp(item, '1')">
                                         <img src="https://toplist.vn/images/800px/tech-gym-890536.jpg" alt="">
                                     </div>
-                                    <div class="info">
-                                        <div class="top">
+                                    <div class="info" *ngFor="let item of ListTT1">
+                                        <div class="top" (click)="confirmSignUp(item, '1')">
                                             <div class="title">Gói 1 Tháng</div>
                                             <div class="price">500.000 VNĐ
                                             </div>
-                                            <!-- <div class="icon">
-                                                    <svg class="triple-arrow">
-                                                        <path
-                                                            d="M84.9945 0L66.9999 18.003L84.9884 36H104.994L87.0054 18.003L105 0H84.9945Z"
-                                                            fill="url(#paint0_linear_622_5547)">
-    
-                                                        </path>
-                                                    </svg>
-                                                </div> -->
                                         </div>
                                         <div class="content">
                                             <div class="ctn">
@@ -52,8 +43,8 @@
                                                 <p> Buổi tập PT miễn phí</p>
                                             </div>
                                             <div class="button mt-35px">
-                                                <a href="" class="btn btn-40" has-popup-qr data-fancybox
-                                                    data-src="#popup-qr">
+                                                <a href="javascipt:;" class="btn btn-40" has-popup-qr data-fancybox
+                                                    data-src="#popup-qr" (click)="confirmSignUp(item, '1')">
                                                     Đăng Ký
                                                 </a>
                                             </div>
@@ -66,25 +57,16 @@
                         <!-- goi 6 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
-                                <div class="bn-wrapper">
-                                    <div class="img-6t">
+                                <div class="bn-wrapper" *ngFor="let item of ListTT6">
+                                    <div class="img-6t" (click)="confirmSignUp(item, '6')">
                                         <img src="https://gymlink.vn/wp-content/uploads/2021/10/xgym-le-hanh-1.jpg"
                                             alt="">
                                     </div>
-                                    <div class="info">
-                                        <div class="top">
+                                    <div class="info" *ngFor="let item of ListTT6">
+                                        <div class="top" (click)="confirmSignUp(item, '6')">
                                             <div class="title">Gói 6 Tháng</div>
                                             <div class="price">2.800.000 VNĐ
                                             </div>
-                                            <!-- <div class="icon">
-                                                    <svg class="triple-arrow">
-                                                        <path
-                                                            d="M84.9945 0L66.9999 18.003L84.9884 36H104.994L87.0054 18.003L105 0H84.9945Z"
-                                                            fill="url(#paint0_linear_622_5547)">
-    
-                                                        </path>
-                                                    </svg>
-                                                </div> -->
                                         </div>
                                         <div class="content">
                                             <div class="ctn">
@@ -99,8 +81,8 @@
                                                 <p> Buổi tập PT miễn phí</p>
                                             </div>
                                             <div class="button mt-35px">
-                                                <a href="#" class="btn btn-40" has-popup-qr data-fancybox
-                                                    data-src="#popup-qr">
+                                                <a href="javascipt:;" class="btn btn-40" has-popup-qr data-fancybox
+                                                    data-src="#popup-qr" (click)="confirmSignUp(item, '6')">
                                                     Đăng Ký
                                                 </a>
                                             </div>
@@ -113,24 +95,15 @@
                         <!-- goi 12 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
-                                <div class="bn-wrapper">
-                                    <div class="img-12t">
+                                <div class="bn-wrapper" *ngFor="let item of ListTT12">
+                                    <div class="img-12t" (click)="confirmSignUp(item, '12')">
                                         <img src="https://e.com.vn/uploads/tin-tuc/2021_08/phuong-phap-quy-trinh-cach-tap-gym-dung-cach-va-hieu-qua-cho-nam-1.jpg"
                                             alt="">
                                     </div>
-                                    <div class="info">
-                                        <div class="top">
+                                    <div class="info" *ngFor="let item of ListTT12">
+                                        <div class="top" (click)="confirmSignUp(item, '12')">
                                             <div class="title">Gói 12 Tháng</div>
                                             <div class="price">5.000.000 VNĐ</div>
-                                            <!-- <div class="icon">
-                                                    <svg class="triple-arrow">
-                                                        <path
-                                                            d="M84.9945 0L66.9999 18.003L84.9884 36H104.994L87.0054 18.003L105 0H84.9945Z"
-                                                            fill="url(#paint0_linear_622_5547)">
-    
-                                                        </path>
-                                                    </svg>
-                                                </div> -->
                                         </div>
                                         <div class="content">
                                             <div class="ctn">
@@ -145,8 +118,8 @@
                                                 <p> Buổi tập PT miễn phí</p>
                                             </div>
                                             <div class="button mt-35px">
-                                                <a href="" class="btn btn-40" has-popup-qr data-fancybox
-                                                    data-src="#popup-qr">
+                                                <a href="javascipt:;" class="btn btn-40" has-popup-qr data-fancybox
+                                                    data-src="#popup-qr" (click)="confirmSignUp(item, '12')" >
                                                     Đăng Ký
                                                 </a>
                                             </div>
@@ -156,6 +129,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="popup-overlay" *ngIf="showConfirmationPopup && selectedPackage">
+                    <p-messages class="notification" ></p-messages> 
+                        <div class="popup" >
+                            <div class="popup-content">
+                                <div class="box-content"> 
+                                    <b>Xác nhận đăng ký {{selectedPackage.tenGoi}} - Gói {{selectedPackage.soThang}}</b>
+                                    <p class="box-title">Kiểm tra: Profile -> Thông tin tài khoản xem chi tiết</p>
+                                </div>
+                                <div class="popup-div">
+                                    <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/d91264e165ed6facc6178994d5afae79.png" 
+                                    class="img-qr"
+                                    alt="mã QR">
+                                </div>
+                                <div class="popup-btn">
+                                    <button (click)="createDSDK(selectedPackage)" class="popup-btn-left" 
+                                    pButton pRipple label="Single"
+                                    >
+                                        Xác nhận
+                                    </button>
+                                    <button (click)="cancelSignUp()" class="popup-btn-right">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
