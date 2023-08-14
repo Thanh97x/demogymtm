@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-secondary fixed-top ">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/360090502_3283215168491705_7801321260646373346_n.jpg?_nc_cat=111&cb=99be929b-59f725be&ccb=1-7&_nc_sid=dbeb18&_nc_ohc=sxkwnTZFNBEAX9VVvDx&_nc_ht=scontent.fhan14-3.fna&oh=00_AfAAJBk7aXdeGdzx1V0yWf-GaAue4tED6ZuSinX2VmxysQ&oe=64B6EC5C"
+            <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/360090502_3283215168491705_7801321260646373346_n.jpg?_nc_cat=111&cb=99be929b-59f725be&ccb=1-7&_nc_sid=dbeb18&_nc_ohc=ne5sQRRgfXMAX_cKXfP&_nc_ht=scontent.fhan2-3.fna&oh=00_AfC_AXE59frq0La782q0IMHUxViOxAnCedDG08V3hsRUzw&oe=64DA84DC"
                 alt="">
 
         </a>
@@ -30,7 +30,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/landingpage/support">SUPPORT</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isLoggedin">
+                    <a class="nav-link" href="/app/about">
+                        <i class="fa-solid fa-user-ninja"></i>
+                        PROFILE {{ tenTaiKhoan }}
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedin">
                     <a href="/landingpage/login" class="login navbar-login" (click)="navigateToLogin">
                         <i class="fa-regular fa-user"></i>
                         Login
@@ -38,11 +44,5 @@
                 </li>
             </ul>
         </div>
-        <!-- <div class="login navbar-login">
-            <a href="">
-                <i class="fa-regular fa-user"></i>
-                Login
-            </a> -->
-        <!-- </div> -->
     </div>
 </nav>

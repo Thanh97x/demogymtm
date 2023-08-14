@@ -27,6 +27,7 @@ export class AboutComponent extends AppComponentBase
     injector: Injector,
     private authService: AppAuthService,
     private dsdk: DSDKServiceProxy,
+    private _authService: AppAuthService
   ) {
     super(injector);
   }
@@ -50,6 +51,10 @@ export class AboutComponent extends AppComponentBase
       console.log(res)
       console.log(this.newDSDK)
     });
+  }
+
+  logout(): void {
+    this._authService.logout();
   }
 
 }

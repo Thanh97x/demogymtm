@@ -1,3 +1,4 @@
+import { CarouselModule } from './carousel/carousel.module';
 import { RootModule } from './../root.module';
 import { HttpClientJsonpModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +37,7 @@ import { FitnessNewssHieuquaComponent } from './fitness-newss/fitness-newss-nhuc
 import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-kientri/fitness-newss-kientri.component';
 import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component';
 import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   imports: [
@@ -47,6 +49,8 @@ import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
     SharedModule,
     ServiceProxyModule,
     ModalModule.forChild(),
+    RatingModule,
+    CarouselModule
   ],
   declarations: [
     PropertyCardComponent,
@@ -78,6 +82,8 @@ import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
     FitnessNewssDepComponent,
     InforHlv2Component,
 
-  ]
+  ],
+  bootstrap: [InforHlvComponent]
+  
 })
 export class LandingpageModule { }

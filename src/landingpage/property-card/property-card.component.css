@@ -3,8 +3,6 @@
     margin-top: 5px;
     padding-top: 50%;
     background-size: cover;
-    overflow: hidden; /* Để ảnh không tràn ra khỏi phần tử */
-    transition: background-image 1s ease-in-out; /* Hiệu ứng chuyển đổi */
     background-image: url('slider/wp3018787.jpg');
 }
 

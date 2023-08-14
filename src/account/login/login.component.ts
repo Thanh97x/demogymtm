@@ -41,6 +41,9 @@ export class LoginComponent extends AppComponentBase  {
     this.authService.authenticate(() => {
       this.submitting = false;
       this.authService.setAuthenticatedUserName(this.authService.authenticateModel.userNameOrEmailAddress);
+
+      // this.isLoggedin = true;
+      // this.tenTaiKhoan = this.authService.authenticateModel.userNameOrEmailAddress;
     });
   }
 }
