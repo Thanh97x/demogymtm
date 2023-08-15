@@ -63,29 +63,42 @@ implements OnInit {
       super(injector);
   }
 
-  handleCalendarToggle() {
+handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }
 
-  handleWeekendsToggle() {
+handleWeekendsToggle() {
     const { calendarOptions } = this;
     calendarOptions.weekends = !calendarOptions.weekends;
   }
 
 
-  handleDateSelect(selectInfo: DateSelectArg) {
+handleDateSelect(selectInfo: DateSelectArg) {
     const title = prompt('Vui lòng nhập tiêu đề mới cho sự kiện của bạn');
     if(title !== null){
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect(); // clear date selection
-
+    
+    //hiển thị từ api
     this.newCalender.nameCalender = this.shownLoginName;
     this.newCalender.event = title;
 
+    //local storage
+    const storedEvents = JSON.parse(localStorage.getItem('storedEvents') || '[]');
+    storedEvents.push({
+      title: title,
+      start: selectInfo.startStr,
+    });
+    localStorage.setItem('storedEvents', JSON.stringify(storedEvents));
+
+    //apt thêm mới
     this.calenderList.addCalender(this.newCalender)
     .subscribe((res)=>{
       this.newCalender = new CalenderDto();
       console.log(res)
+
+    //tải
+    this.refreshEventList();
 
     if (title) {
       calendarApi.addEvent({
@@ -95,25 +108,60 @@ implements OnInit {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
+      this.calendarOptions.initialEvents = this.listCalender.map((item) => ({
+            id: createEventId(),
+            title: item.event,
+            start: item.time,
+      }));
     }})
   }
-  }
+}
+refreshEventList() {
+  this.DSDKList$ = this.calenderList.getCalender();
+}
 
+handleEventClick(clickInfo: EventClickArg, id: number) {
+  if (confirm(`Bạn có chắc chắn muốn xóa sự kiện '${clickInfo.event.title}'`)) {
+    // Xóa sự kiện khỏi giao diện FullCalendar
+    clickInfo.event.remove();
 
-  handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Bạn có chắc chắn muốn xóa sự kiện '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
+    // Xóa sự kiện khỏi local storage
+    const storedEvents = JSON.parse(localStorage.getItem('storedEvents') || '[]');
+    const eventIndex = storedEvents.findIndex(
+      (event) => 
+      event.title === clickInfo.event.title && 
+      event.start === clickInfo.event.startStr
+    );
+    if (eventIndex !== -1) {
+      storedEvents.splice(eventIndex, 1);
+      localStorage.setItem('storedEvents', JSON.stringify(storedEvents));
     }
-  }
 
-  handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
+    // Xóa sự kiện khỏi API
+    const eventIdToDelete = id; // Assuming you use the event ID as an identifier
+    this.calenderList.deleteCalender(eventIdToDelete).subscribe(
+      (response) => {
+        console.log('Event deleted from API', response);
+      },
+      (error) => {
+        console.error('Error deleting event from API', error);
+      }
+    );
+
+    // Kích hoạt kiểm tra thay đổi để cập nhật giao diện
     this.changeDetector.detectChanges();
   }
-  savedEvents: EventApi[] = [];
-  DSDKList$: Observable<CalenderDto[]>;
+}
 
-  ngOnInit() {
+
+handleEvents(events: EventApi[]) {
+    this.currentEvents = events;
+    this.changeDetector.detectChanges();
+}
+savedEvents: EventApi[] = [];
+DSDKList$: Observable<CalenderDto[]>;
+
+ngOnInit() {
     this.DSDKList$ = this.calenderList.getCalender();
     this.shownLoginName = this.appSession.getShownLoginName();
     const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
@@ -125,18 +173,29 @@ implements OnInit {
       },
     ];
 
-    this.calenderList.getCalender().subscribe(
-      (result)=>{
-      
-      this.listCalender = result;
-    },
-      (error)=>{
-        console.log(error)
-      }
-    )
+    const storedEvents = JSON.parse(localStorage.getItem('storedEvents') || '[]');
+    this.calendarOptions.events = storedEvents.map((item) => ({
+    title: item.title,
+    start: item.start,
+    }));
 
     this.calendarOptions.initialEvents = INITIAL_EVENTS2;
-  }
 
- 
+    this.DSDKList$.subscribe(
+      (result) => {
+        this.listCalender = result;
+        console.log('list', result);
+        
+        // Gọi lại cấu hình initialEvents để hiển thị danh sách sự kiện
+        this.calendarOptions.initialEvents = this.listCalender.map(item => ({
+          id: createEventId(),
+          title: item.event,
+          start: item.time, // Đảm bảo item.time là kiểu Date
+        }));
+      },
+      (error) => {
+        console.log(error);
+      }
+  );
+}
 }

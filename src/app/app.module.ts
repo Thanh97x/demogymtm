@@ -1,3 +1,4 @@
+import { ChartModule } from 'primeng/chart';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,9 +15,6 @@ import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module
 import { SharedModule } from '@shared/shared.module';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-
-
-
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
 // tenants
@@ -131,7 +129,8 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
         SharedModule,
         NgxPaginationModule,
         FullCalendarModule,
-        MessagesModule
+        MessagesModule,
+        ChartModule
         
 
         // FlatpickrModule.forRoot(),

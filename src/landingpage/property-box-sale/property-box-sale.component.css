@@ -83,12 +83,16 @@ h3 {
     line-height: 1;
 }
 
+li {
+    line-height: 1.6;
+}
+
 .box-sale-content {
     width: 100%;
     /* display: flex; */
     align-items: stretch;
     justify-content: space-between;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     top: 50%;
     padding-top: 10px;
     position: relative;

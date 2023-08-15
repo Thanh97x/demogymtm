@@ -59,6 +59,7 @@
                                     <table class="table table-cart table-order" id="my-orders-table">
                                         <thead class="thead-default">
                                             <tr>
+                                                <th>UserID</th>
                                                 <th>Tên Gói Tập</th>
                                                 <th>Ngày Đặt</th>
                                                 <th>Ngày Kết Thúc</th>
@@ -66,7 +67,8 @@
                                             </tr>
                                         </thead>
                                         <tbody *ngIf="DSDKList$ | async as DSDKList" >
-                                            <tr *ngFor="let item of DSDKList;let i=index">
+                                            <tr *ngFor="let item of DSDKList.slice().reverse();let i=index">
+                                                <td>{{item.goiTapId}}</td>
                                                 <td>{{item.tenGoi}}</td>
                                                 <td>{{item.ngayDangKy | date:'dd/MM/yyyy HH:mm'}}</td>
                                                 <td>{{item.ngayHetHan | date:'dd/MM/yyyy HH:mm'}}</td>
