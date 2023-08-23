@@ -44,7 +44,6 @@ export class RegisterComponent extends AppComponentBase {
       )
       .subscribe
       ((result) => {
-
         // Autheticate
         this.saving = true;
         this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
@@ -55,14 +54,13 @@ export class RegisterComponent extends AppComponentBase {
         //   // debugger
         //   this._router.navigate(['/login']);
         //   return;
+        
         },(error) => {
           console.log(error)
         },() => {
-          this._router.navigate(['/landingpage/login']);
-          this.notify.success(this.l("SuccessfullyRegistered"));
+            this._router.navigate(['/landingpage/login']);
+            this.notify.success(this.l('SuccessfullyRegistered'));
         }
       );
   }
-
-
 }

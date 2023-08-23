@@ -1,6 +1,7 @@
 section.signup.page_customer_account.section {
     background: #F2F4F3;
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 section .container.card {
@@ -14,6 +15,7 @@ section .container.card {
 .card {
     border-radius: 0.25rem;
     padding: 15px;
+    margin-bottom: 0rem;
 }
 
 
@@ -95,9 +97,9 @@ section .container.card {
 }
 
 .col-lg-9 {
-    -ms-flex: 0 0 75%;
-    flex: 0 0 75%;
-    max-width: 75%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
 }
 
 .col-right-account {
@@ -184,4 +186,8 @@ h2 {
     height: 38px;
     width: 98px;
     border-radius: 8px;
+}
+
+.about-giaha-btn:hover {
+    background-color: #cccccc;
 }

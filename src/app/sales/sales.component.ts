@@ -41,7 +41,7 @@ protected deleteSale(id: number): void {
     this.saleservice.delete(id).subscribe((res) => {
       console.log(res);
       // Xóa thành công, thực hiện refresh lại trang
-      this.getDataPage(1);
+      this.getDataPage(this.currentPage);
     });
   }
 }
@@ -55,7 +55,7 @@ createSale(){
       console.log("thanh cong",res)
       this.newSale = new SaleDto(); 
       this.showCreateForm = false;
-      this.getDataPage(1);
+      this.getDataPage(this.currentPage);
     },
     (error) => {
       console.log("that bai",error)

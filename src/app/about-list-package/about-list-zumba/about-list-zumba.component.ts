@@ -3,6 +3,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DSDKServiceProxy } from '@shared/service-proxies/service-proxies';
 import {MessageService} from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
+import { AppSessionService } from '@shared/session/app-session.service';
 
 @Component({
   selector: 'app-about-list-zumba',
@@ -13,10 +15,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AboutListZumbaComponent {
   showConfirmationPopup = false;
   selectedPackage: any;
-    selectedPackageType: string;
+  selectedPackageType: string;
   newDSDK: DSDKDto = new  DSDKDto();
   showNotification = false;
   notificationMessage = '';
+  shownLoginName = '';
 
   ListZumbaYoga: any = [{
     goiTapId:1, tenGoi: "Gói Zumba và Yoga",soThang:'1 tháng' ,tongTien: 450000,service:'Yoga - Group Fitness và tư vấn dinh dưỡng không giới hạn',ca:"Mỗi ca 10 - 15 học viên"
@@ -36,42 +39,45 @@ export class AboutListZumbaComponent {
     private dsdk: DSDKServiceProxy, 
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private appSession: AppSessionService,
   ){}
   
   confirmSignUp(selectedPackage: any, selectedPackageType: string) {
     this.selectedPackage = selectedPackage;
     this.selectedPackageType = selectedPackageType;
     this.showConfirmationPopup = true;
-}
+  }
 
-cancelSignUp() {
+  cancelSignUp() {
     this.selectedPackage = null;
     this.selectedPackageType = '';
     this.showConfirmationPopup = false;
-}
+    
+  }
   //create
-  createDSDK(item){
-    this.newDSDK.soThang =  item.soThang;
-    this.newDSDK.goiTapId = item.goiTapId;
-    this.newDSDK.tenGoi = item.tenGoi;
-    this.newDSDK.tongTien = item.tongTien;
-    console.log('thanh cong')
+  createDSDK(selectedPackage: any) {
+    this.newDSDK.name = this.shownLoginName;
+    this.newDSDK.soThang = selectedPackage.soThang;
+    this.newDSDK.goiTapId = selectedPackage.goiTapId;
+    this.newDSDK.tenGoi = selectedPackage.tenGoi;
+    this.newDSDK.tongTien = selectedPackage.tongTien;
+    
     this.addSingle();
-    this.dsdk.addDSDK(item).subscribe((res)=> {
-      console.log(res)
-      this.newDSDK = new DSDKDto();
-      // Ẩn thông báo sau 3 giây
-      setTimeout(() => {
+
+    this.dsdk.addDSDK(this.newDSDK).subscribe((res) => {
+        console.log(res);
+        this.newDSDK = new DSDKDto();
+
+        // Navigate after a delay
         setTimeout(() => {
             this.router.navigate(['/app/about']);
-        }, );
-    }, 2000);
-      this.newDSDK = new DSDKDto();
-    })
-  }
+        }, 2000);
+    });
+}
 
-    addSingle() {
+
+  addSingle() {
       this.messageService.add({severity:'success', summary:'Thành Công!', detail:'Trải nghiêm ngay thôi nào'});
   }
   //getall
@@ -79,5 +85,8 @@ cancelSignUp() {
     this.dsdk.getDSDK().subscribe((result) => {
       this.newDSDK = new DSDKDto;
     });
+  }
+  ngOnInit() {
+    this.shownLoginName = this.appSession.getShownLoginName();
   }
 }

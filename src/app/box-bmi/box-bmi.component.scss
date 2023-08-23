@@ -1,0 +1,228 @@
+.box-bmi {
+    display: flex;
+    padding: 50px 0;
+    background: url('https://hdfitness.vn/wp-content/uploads/2022/02/phong-tap-gym-da-nang-15-min.jpg') no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    color: #fff;
+    width: 100%;
+    height: 670px;
+}
+
+.box-bmi {
+    position: absolute;
+    z-index: 1;
+}
+
+
+.box-bmi::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Điều chỉnh mức độ mờ ở đây, giá trị từ 0 (không mờ) đến 1 (hoàn toàn mờ) */
+}
+
+
+.container-fuild {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.box-bmi-title {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+}
+
+.box-bmi-content {
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.bmi-item {
+    width: calc(50% - 15px);
+    float: left;
+}
+
+.fa-solid, .fas {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.calc {
+    width: 100%;
+    float: left;
+    margin-bottom: 30px;
+    position: relative;
+    font-weight: 700;
+    color: #db0f0f;
+    padding-left: 50px;
+}
+
+.bmc-note {
+    width: 100%;
+    float: left;
+    margin-bottom: 30px;
+    text-align: justify;
+    color: #000000;
+}
+
+.box-range-bmi {
+    width: 100%;
+    float: left;
+    margin-bottom: 33px;
+}
+
+.item {
+    width: 100%;
+    float: left;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item span.txt {
+    width: 150px;
+    float: left;
+    color: #000000;
+}
+span.txt {
+    width: 150px;
+    float: left;
+    color: #000000;
+}
+
+.item-ct {
+    width: calc(100% - 150px);
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+input[type="range"] {
+    width: calc(100% - 60px);
+    height: 36px;
+    /* -webkit-appearance: none; */
+    -moz-appearance: none;
+    -ms-appearance: none;
+    /* background: none; */
+  
+    /* Customize the appearance of the range input */
+    background: linear-gradient(to right, #ccc, #ccc) no-repeat, #ddd;
+    background-size: calc(((100% - 60px) / 150) * var(--cus-weight)) 100%, 100%;
+    border-radius: 18px;
+    outline: none;
+    opacity: 1;
+    transition: background-size 0.2s ease-in-out;
+  
+    /* Style the thumb (slider handle) */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #007bff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  
+    &::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #007bff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  
+    &::-ms-thumb {
+      width: 20px;
+      height: 20px;
+      background: #007bff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  
+
+.box-range-bmi .item .item-ct .num-range {
+    width: 50px;
+    height: 50px;
+    float: right;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    background: #db0f0f;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.item:last-child {
+    margin-bottom: 0px;
+}
+
+.show-bmi-point {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #000000;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.point {
+    float: right;
+    padding: 0px 25px;
+    border-radius: 25px;
+    background: #ff3333;
+    line-height: 50px;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+//right
+.box-bmi .bmi-item {
+    width: calc(50% - 15px);
+    float: left;
+}
+
+.bmi-right table {
+    width: 100%;
+    float: left;
+    border-collapse: collapse;
+}
+
+.bmi-right table tr:nth-child(1) td {
+    background: #db0f0f;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.bmi-right table tr td {
+    padding: 17px 15px;
+    border: solid 1px #999999;
+    color: #000000;
+}
+
+.bmi-right table tr span {
+    font-weight: 700;
+    color: #ff3333;
+}
+

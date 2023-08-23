@@ -58,7 +58,9 @@ import { CreateSalesComponent } from './sales/create-sales/create-sales.componen
 import { EditSalesComponent } from './sales/edit-sales/edit-sales.component';
 import { SupportComponent } from './support/support.component';
 import { SupportAdminComponent } from './support-admin/support-admin.component';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog'; 
+import {ConfirmationService} from 'primeng/api';
+import { BoxBmiComponent } from './box-bmi/box-bmi.component';
 //calendar
 // import { FlatpickrModule } from 'angularx-flatpickr';
 // import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -113,6 +115,7 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
         EditSalesComponent,
         SupportComponent,
         SupportAdminComponent,
+        BoxBmiComponent,
     ],
     imports: [
         CommonModule,
@@ -130,7 +133,8 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
         NgxPaginationModule,
         FullCalendarModule,
         MessagesModule,
-        ChartModule
+        ChartModule,
+        
         
 
         // FlatpickrModule.forRoot(),

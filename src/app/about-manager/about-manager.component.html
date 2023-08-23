@@ -1,11 +1,8 @@
 <section class="signup page_customer_account section">
     <div class="container card p-3">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
+            <!-- <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
                 <div class="block-account">
-                    <!-- <p>Xin Chào :
-                        <span>{{ shownLoginName }}</span>
-                    </p> -->
                     <ul>
                         <li>
                             <a href="/app/about" class="title-info active infomation" disabled="disabled">
@@ -35,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-12 col-lg-9 col-right-ac">
                 <div class="title-header-manager">
                     <h2>Quản Lý Thẻ Tập</h2>
@@ -59,7 +56,7 @@
                                     <table class="table table-cart table-order" id="my-orders-table">
                                         <thead class="thead-default">
                                             <tr>
-                                                <th>UserID</th>
+                                                <th>Tên người đặt</th>
                                                 <th>Tên Gói Tập</th>
                                                 <th>Ngày Đặt</th>
                                                 <th>Ngày Kết Thúc</th>
@@ -68,7 +65,7 @@
                                         </thead>
                                         <tbody *ngIf="DSDKList$ | async as DSDKList" >
                                             <tr *ngFor="let item of DSDKList.slice().reverse();let i=index">
-                                                <td>{{item.goiTapId}}</td>
+                                                <td>{{item.name}}</td>
                                                 <td>{{item.tenGoi}}</td>
                                                 <td>{{item.ngayDangKy | date:'dd/MM/yyyy HH:mm'}}</td>
                                                 <td>{{item.ngayHetHan | date:'dd/MM/yyyy HH:mm'}}</td>

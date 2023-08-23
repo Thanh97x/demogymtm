@@ -1,3 +1,4 @@
+import { AppSessionService } from './../../../shared/session/app-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DSDKServiceProxy, DSDKDto } from './../../../shared/service-proxies/service-proxies';
 import { Component } from '@angular/core';
@@ -17,6 +18,7 @@ export class AboutListTtComponent {
     selectedPackageType: string;
   showNotification = false;
   notificationMessage = '';
+  shownLoginName = '';
 
   ListTT1: any = [{
     goiTapId:1, tenGoi: "Gói Tự Tập",soThang:'1 tháng' ,tongTien: 500000,service:'Tập luyện không giới hạn thời gian'
@@ -36,8 +38,8 @@ export class AboutListTtComponent {
     private dsdk: DSDKServiceProxy, 
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
-    
+    private route: ActivatedRoute,
+    private appSession: AppSessionService,
   ){}
 
   confirmSignUp(selectedPackage: any, selectedPackageType: string) {
@@ -55,14 +57,15 @@ export class AboutListTtComponent {
     this.messageService.add({severity:'success', summary:'Thành Công!', detail:'Trải nghiêm ngay thôi nào'});
   }
   //create
-  createDSDK(item){
-    this.newDSDK.soThang =  item.soThang;
-    this.newDSDK.goiTapId = item.goiTapId;
-    this.newDSDK.tenGoi = item.tenGoi;
-    this.newDSDK.tongTien = item.tongTien;
+  createDSDK(selectedPackage: any){
+    this.newDSDK.name = this.shownLoginName;
+    this.newDSDK.soThang =  selectedPackage.soThang;
+    this.newDSDK.goiTapId = selectedPackage.goiTapId;
+    this.newDSDK.tenGoi = selectedPackage.tenGoi;
+    this.newDSDK.tongTien = selectedPackage.tongTien;
     console.log(this.newDSDK)
     this.addSingle();
-    this.dsdk.addDSDK(item).subscribe((res)=> {
+    this.dsdk.addDSDK(this.newDSDK).subscribe((res)=> {
       console.log(res)
       setTimeout(() => {
         setTimeout(() => {
@@ -73,4 +76,8 @@ export class AboutListTtComponent {
       
     })
   }
+  ngOnInit() {
+    this.shownLoginName = this.appSession.getShownLoginName();
+  }
+  
 }

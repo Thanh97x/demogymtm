@@ -12,10 +12,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://localhost:4200/landingpage">HOME</a>
+                    <a class="nav-link active" aria-current="page" href="/landingpage" >HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="navigateIntroduce()">INTRODUCE
+                    <a class="nav-link" href="javascript:;" (click)="navigateIntroduce($event)">INTRODUCE
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
                 <li class="nav-item" *ngIf="!isLoggedin">
                     <a href="/landingpage/login" class="login navbar-login" (click)="navigateToLogin">
                         <i class="fa-regular fa-user"></i>
-                        Login
+                        LOGIN
                     </a>
                 </li>
             </ul>

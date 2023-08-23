@@ -3,6 +3,7 @@ import { DSDKServiceProxy, DSDKDto } from './../../../shared/service-proxies/ser
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
+import { AppSessionService } from '@shared/session/app-session.service';
 
 @Component({
   selector: 'app-about-list-dk',
@@ -17,6 +18,7 @@ export class AboutListDkComponent {
   selectedPackage: any;
   selectedPackageType: string;
   showNotification = false;
+  shownLoginName = '';
   notificationMessage = '';
 
   ListDK1: any = [{
@@ -35,8 +37,8 @@ export class AboutListDkComponent {
     private dsdk: DSDKServiceProxy, 
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
-    
+    private appSession: AppSessionService,
+    private route: ActivatedRoute,
   ){}
 
   confirmSignUp(selectedPackage: any, selectedPackageType: string) {
@@ -55,14 +57,15 @@ export class AboutListDkComponent {
   }
 
   //create
-  createDSDK(item){
-    this.newDSDK.soThang =  item.soThang;
-    this.newDSDK.goiTapId = item.goiTapId;
-    this.newDSDK.tenGoi = item.tenGoi;
-    this.newDSDK.tongTien = item.tongTien;
+  createDSDK(selectedPackage: any){
+    this.newDSDK.name = this.shownLoginName;
+    this.newDSDK.soThang =  selectedPackage.soThang;
+    this.newDSDK.goiTapId = selectedPackage.goiTapId;
+    this.newDSDK.tenGoi = selectedPackage.tenGoi;
+    this.newDSDK.tongTien = selectedPackage.tongTien;
     this.addSingle();
     console.log(this.newDSDK)
-    this.dsdk.addDSDK(item).subscribe((res)=> {
+    this.dsdk.addDSDK(this.newDSDK).subscribe((res)=> {
       console.log(res)
       setTimeout(() => {
         setTimeout(() => {
@@ -77,5 +80,8 @@ export class AboutListDkComponent {
       this.dsdk.getDSDK().subscribe((result) => {
         this.newDSDK = new DSDKDto;
       });
+    }
+    ngOnInit() {
+      this.shownLoginName = this.appSession.getShownLoginName();
     }
 }

@@ -44,13 +44,32 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     getMenuItems(): MenuItem[] {
         return [
             new MenuItem(this.l('Profile'), '/app/about', 'fas fa-info-circle'),
-            new MenuItem(this.l('Thống Kê'), '/app/home', 'fas fa-home'),
+            //funciton client
+            new MenuItem(
+                this.l('Quản lý thẻ tập'),
+                '/app/about/quan-ly-the-tap',
+                'fas fa-solid fa-bars-progress',
+            ),
+            new MenuItem(
+                this.l('Calendar'),
+                '/app/about/calendar',
+                'fas fa-solid fa-calendar-days',
+            ),
+            new MenuItem(
+                this.l('Chỉ Số Bmi'),
+                '/app/Bmi',
+                'fas fa-solid fa-dumbbell',
+            ),
+            
+            //
+            new MenuItem(this.l('Thống Kê'), '/app/home', 'fas fa-home','Pages.Roles'),
             new MenuItem(
                 this.l('Roles'),
                 '/app/roles',
                 'fas fa-theater-masks',
                 'Pages.Roles'
             ),
+            
             new MenuItem(
                 this.l('Tenants'),
                 '/app/tenants',

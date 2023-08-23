@@ -170,3 +170,7 @@ h3 {
     font-family: 'roboto-bold', sans-serif;
     cursor: pointer;
 }
+
+.color-address:hover {
+    background-color: #dfdede;
+}

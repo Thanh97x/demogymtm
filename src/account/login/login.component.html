@@ -51,7 +51,9 @@
               </div>
             </div>
             <div class="col-md-4">
-              <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.form.valid || submitting">
+              <button type="submit" class="btn btn-primary btn-block" 
+              
+              [disabled]="!loginForm.form.valid || submitting">
                 {{ "LogIn" | localize }}
               </button>
             </div>
@@ -72,7 +74,10 @@
               <div
                 class="wpb_single_image wpb_content_element vc_align_left  wpb_animate_when_almost_visible wpb_zoomIn zoomIn wpb_start_animation animated">
                 <figure class="wpb_wrapper vc_figure">
-                  <a href="" target="_self" class="vc_single_image-wrapper   vc_box_border_grey" src="https://connect.facebook.net/en_US/sdk.js">
+                  <a href="javascipt:;" target="_self" class="vc_single_image-wrapper  
+                   vc_box_border_grey"
+                   (click)="submitLogin()"
+                   src="https://connect.facebook.net/en_US/sdk.js">
                     <i class="icon-logo-fb vc_single_image-img attachment-full fa-brands fa-facebook"></i>
                   </a>
                 </figure>
@@ -86,7 +91,10 @@
               <div
                 class="wpb_single_image wpb_content_element vc_align_left  wpb_animate_when_almost_visible wpb_zoomIn zoomIn wpb_start_animation animated">
                 <figure class="wpb_wrapper vc_figure">
-                  <a href="" target="_self" class="vc_single_image-wrapper   vc_box_border_grey">
+                  <a href="javascipt:;" target="_self" 
+                  class="vc_single_image-wrapper   
+                  vc_box_border_grey" 
+                  (click)="signInGoogle()">
                     <!-- <i style="width: 60px;" class="vc_single_image-img attachment-full fa-brands fa-instagram ">
                     </i> -->
                     <i style="width: 60px;"

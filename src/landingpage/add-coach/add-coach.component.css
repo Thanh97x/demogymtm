@@ -73,6 +73,7 @@ img {
 
 .rating-score-wrap {
     padding-left: 10px;
+    flex: 66.66666%;
 }
 
 h2 {
@@ -81,14 +82,24 @@ h2 {
     margin-bottom: 5px;
     white-space: nowrap;
     margin-right: 5px;
+    display: flex;
+    flex: 33.33333%;
 }
 
-.star .fa-solid {
+.star {
     width: 14px;
     height: 14px;
     margin-right: 1px;
     background-size: 14px;
     color: gold;
+}
+
+.fa-solid {
+    width: 14px;
+    height: 14px;
+    margin-right: 1px;
+    background-size: 14px;
+    color: rgb(143, 62, 62);
 }
 
 .list-unstyled {

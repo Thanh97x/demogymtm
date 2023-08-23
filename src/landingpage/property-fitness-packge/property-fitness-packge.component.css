@@ -52,6 +52,7 @@
     width: 100%;
     display: block;
     transition: transform 0.3s;/* Thêm hiệu ứng transition để giảm dần khi hover */
+    height: 384px;
 }
 
 .member-img:hover {

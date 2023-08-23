@@ -499,3 +499,14 @@ img.img-qr {
     border-width: 0 0 0 6px;
     color: #2c1e30;
 }
+
+//hover img 
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out; /* Thời gian và hiệu ứng chuyển động */
+  }
+  
+  .img-wrapper:hover {
+    transform: translateY(-10px); /* Thay đổi khoảng cách nhích lên ở đây */
+  }

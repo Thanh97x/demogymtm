@@ -38,6 +38,8 @@ import { FitnessNewssKientriComponent } from './fitness-newss/fitness-newss-nhuc
 import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/fitness-newss-dep/fitness-newss-dep.component';
 import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component';
 import {RatingModule} from 'primeng/rating';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 @NgModule({
   imports: [
@@ -83,7 +85,8 @@ import {RatingModule} from 'primeng/rating';
     InforHlv2Component,
 
   ],
-  bootstrap: [InforHlvComponent]
+  bootstrap: [InforHlvComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
   
 })
 export class LandingpageModule { }

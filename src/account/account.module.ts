@@ -22,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TenantChangeComponent } from './tenant/tenant-change.component';
 import { TenantChangeDialogComponent } from './tenant/tenant-change-dialog.component';
 
-
+import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { OAuthModule } from 'angular-oauth2-oidc/public_api';
 // const appRoutes: Routes = [
 //     { path: 'add-coach', component: AddCoachComponent }
 // ]
@@ -39,7 +40,9 @@ import { TenantChangeDialogComponent } from './tenant/tenant-change-dialog.compo
         ModalModule.forChild(),
         BrowserModule,
         ReactiveFormsModule,
-        // SocialLoginModule,
+        SocialLoginModule,
+        HttpClientModule,
+        // OAuthModule.forRoot(),
     ],
     declarations: [
         AccountComponent,
@@ -51,7 +54,26 @@ import { TenantChangeDialogComponent } from './tenant/tenant-change-dialog.compo
         // tenant
         TenantChangeComponent,
         TenantChangeDialogComponent,
-    ]
+       
+    ],
+    providers: [
+        {
+          provide: 'SocialAuthServiceConfig',
+          useValue: {
+            autoLogin: false,
+            providers: [
+              {
+                id: FacebookLoginProvider.PROVIDER_ID,
+                provider: new FacebookLoginProvider('596194762585525')
+              }
+            ],
+            onError: (err) => {
+              console.error(err);
+            }
+          } as SocialAuthServiceConfig,
+        }
+      ],
+      bootstrap: [AccountComponent],
 })
 export class AccountModule {
 

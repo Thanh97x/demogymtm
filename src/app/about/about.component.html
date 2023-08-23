@@ -1,11 +1,8 @@
 ﻿<section class="signup page_customer_account section">
     <div class="container card p-3">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
+            <!-- <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
                 <div class="block-account">
-                    <!-- <p>Xin Chào : {{ shownLoginName }}
-                        <span></span>
-                    </p> -->
                     <ul>
                         <li>
                             <a href="/app/about" class="title-info active" disabled="disabled">
@@ -34,7 +31,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-12 col-lg-9 col-right-ac">
                 <div class="title-header-manager">
                     <h2>Thông Tin Tài Khoản</h2>
@@ -75,6 +72,7 @@
                                     <table class="table table-cart table-order" id="my-orders-table">
                                         <thead class="thead-default">
                                             <tr>
+                                                <th>Tên người đặt</th>
                                                 <th>Tên đơn hàng</th>
                                                 <th>Số Tháng</th>
                                                 <th>Giá</th>
@@ -87,6 +85,7 @@
                                         
                                         <tbody *ngIf="DSDKList$ | async as DSDKList" >
                                             <tr *ngFor="let item of DSDKList.slice().reverse();let i=index">
+                                                <td>{{item.name}}</td>
                                                 <td>{{item.tenGoi}}</td>
                                                 <td>{{item.soThang}}</td>
                                                 <td>{{item.tongTien}}</td>

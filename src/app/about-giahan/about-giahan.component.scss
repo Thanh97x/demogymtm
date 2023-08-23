@@ -63,6 +63,10 @@ table {
 }
 
 //btn gia han
+.btn-box-gym:hover {
+    background-color: #cccccc;
+}
+
 .btn-box-gym-gh-1 {
     text-align: center;
     // display: none;
@@ -91,9 +95,9 @@ button.btn-box-gym {
     background-color: #fff;
 }
 
-button.btn-box-gym:hover {
-    background-color: #e1f7f7;
-}
+// button.btn-box-gym:hover {
+//     background-color: #e1f7f7;
+// }
 
 .container-to-display {
     left: 5%;

@@ -20,7 +20,7 @@
                         <!-- goi 1 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width:33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate" *ngFor="let item of ListZumbaYoga">
-                                <div class="bn-wrapper" (click)="confirmSignUp(item, '1')">
+                                <div class="bn-wrapper img-wrapper" (click)="confirmSignUp(item, '1')">
                                     <div class="img">
                                         <img src="https://phongtap.thehinh.com/wp-content/uploads/2019/07/zumbapic-1.jpg"
                                             alt="">
@@ -59,7 +59,7 @@
                         <!-- goi 6 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate" *ngFor="let item of ListZumbaYoga6">
-                                <div class="bn-wrapper">
+                                <div class="bn-wrapper img-wrapper">
                                     <div class="img-6t" (click)="confirmSignUp(item, '6')">
                                         <img src="https://www.sporter.vn/wp-content/uploads/2017/08/zumba-4.jpg" alt="">
                                     </div>
@@ -96,7 +96,7 @@
                         <!-- goi 12 thang -->
                         <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
-                                <div class="bn-wrapper" *ngFor="let item of ListZumbaYoga12">
+                                <div class="bn-wrapper img-wrapper" *ngFor="let item of ListZumbaYoga12">
                                     <div class="img-12t" (click)="confirmSignUp(item, '12')">
                                         <img src="https://cdn3.dhht.vn/wp-content/uploads/2022/07/bia-gym-la-gi-10-loi-ich-9-luu-y-va-5-phong-tap-gym-uy-tin.jpg"
                                             alt="" >
@@ -136,6 +136,7 @@
                 </div>
                 <div class="popup-overlay" *ngIf="showConfirmationPopup && selectedPackage">
                 <p-messages class="notification" ></p-messages> 
+                
                     <div class="popup" >
                         <div class="popup-content">
                             <div class="box-content"> 
@@ -161,4 +162,5 @@
             </div>
         </div>
     </div> 
+    
 </div>

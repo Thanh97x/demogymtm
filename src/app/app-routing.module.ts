@@ -19,6 +19,7 @@ import { SalesComponent } from './sales/sales.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SupportComponent } from 'landingpage/support/support.component';
 import { SupportAdminComponent } from './support-admin/support-admin.component';
+import { BoxBmiComponent } from './box-bmi/box-bmi.component';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import { SupportAdminComponent } from './support-admin/support-admin.component';
                     { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'sales', component: SalesComponent, canActivate: [AppRouteGuard] },
+                    { path: 'Bmi', component: BoxBmiComponent, canActivate: [AppRouteGuard] },
                     { path: 'support', component: SupportAdminComponent, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },

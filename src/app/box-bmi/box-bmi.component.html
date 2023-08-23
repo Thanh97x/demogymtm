@@ -1,0 +1,69 @@
+<div class="box-bmi">
+    <div class="container-fuild">
+        <div class="box-bmi-title">ĐO CHỈ SỐ BMI CỦA BẠN</div>
+        <div class="box-bmi-content">
+            <div class="bmi-item bmi-left">
+                <div class="calc">
+                    <i class="fa-solid fa-bell"></i> - 
+                    Tính BMI</div>
+                <div class="bmc-note">Chỉ số BMI là thước đo lượng mỡ trong cơ thể dựa trên chiều cao và cân nặng. Kiểm tra chỉ số BMI của bạn:</div>
+                <div class="box-range-bmi">
+                    <div class="item">
+                        <span class="txt">Chiều Cao (Cm)</span>
+                        <div class="item-ct">
+                            <input type="range" id="cus-height" [(ngModel)]="height" 
+                            min="0" max="200" value="155" oninput="caculatorBmi()"
+                            class="ip-bmi"
+                            (ngModelChange)="calculatorBmi()">
+                            <span class="num-range" id="num-height">{{height}}</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <span class="txt">Cân Nặng (Kg)</span>
+                        <div class="item-ct">
+                            <input type="range" id="cus-weight" [(ngModel)]="weight" 
+                            min="0" max="150" value="52" oninput="caculatorBmi()" (ngModelChange)="calculatorBmi()">
+                            <span class="num-range" id="num-height">{{weight}}</span>
+                        </div>
+                    </div>
+                    <div class="show-bmi-point">
+                        <span class="txt">Chỉ số BMI</span>
+                        <span class="point" id="bmi-point">{{bmi}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bmi-item bmi-right">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>BMI</td>
+                            <td>Trạng Thái Cơ Thể</td>
+                        </tr>
+                        <tr>
+                            <td>Dưới 18.5</td>
+                            <td>Cân nặng thấp (Gầy)</td>
+                        </tr>
+                        <tr>
+                            <td>18.5 - 22.9</td>
+                            <td>Bình thường</td>
+                        </tr>
+                        <tr>
+                            <td>23 - 24.9</td>
+                            <td>Thừa cân </td>
+                        </tr>
+                        <tr>
+                            <td>Trên 25</td>
+                            <td>Béo Phì</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span class="red">BMI</span>
+                                Chỉ số khối cơ thể
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

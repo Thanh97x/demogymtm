@@ -3261,7 +3261,7 @@ export class SupportServiceProxy {
     /**
      * @return Success
      */
-    getSupport(): Observable<SupporDto[]> {
+    getSupport(): Observable<SupporInput[]> {
         let url_ = this.baseUrl + "/api/services/app/Support/GetSupport";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3280,14 +3280,14 @@ export class SupportServiceProxy {
                 try {
                     return this.processGetSupport(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<SupporDto[]>;
+                    return _observableThrow(e) as any as Observable<SupporInput[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<SupporDto[]>;
+                return _observableThrow(response_) as any as Observable<SupporInput[]>;
         }));
     }
 
-    protected processGetSupport(response: HttpResponseBase): Observable<SupporDto[]> {
+    protected processGetSupport(response: HttpResponseBase): Observable<SupporInput[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3301,7 +3301,7 @@ export class SupportServiceProxy {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200.push(SupporDto.fromJS(item));
+                    result200.push(SupporInput.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -5487,6 +5487,7 @@ export interface ICreateUserDto {
 }
 
 export class DSDKDto implements IDSDKDto {
+    name: string | undefined;
     tenGoi: string | undefined;
     goiTapId: number;
     soThang: string | undefined;
@@ -5506,6 +5507,7 @@ export class DSDKDto implements IDSDKDto {
 
     init(_data?: any) {
         if (_data) {
+            this.name = _data["name"];
             this.tenGoi = _data["tenGoi"];
             this.goiTapId = _data["goiTapId"];
             this.soThang = _data["soThang"];
@@ -5525,6 +5527,7 @@ export class DSDKDto implements IDSDKDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
         data["tenGoi"] = this.tenGoi;
         data["goiTapId"] = this.goiTapId;
         data["soThang"] = this.soThang;
@@ -5544,6 +5547,7 @@ export class DSDKDto implements IDSDKDto {
 }
 
 export interface IDSDKDto {
+    name: string | undefined;
     tenGoi: string | undefined;
     goiTapId: number;
     soThang: string | undefined;
@@ -5555,6 +5559,7 @@ export interface IDSDKDto {
 
 export class DSDKOuputDto implements IDSDKOuputDto {
     id: number;
+    name: string | undefined;
     goiTapId: number;
     tenGoi: string | undefined;
     soThang: string | undefined;
@@ -5575,6 +5580,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
+            this.name = _data["name"];
             this.goiTapId = _data["goiTapId"];
             this.tenGoi = _data["tenGoi"];
             this.soThang = _data["soThang"];
@@ -5595,6 +5601,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
+        data["name"] = this.name;
         data["goiTapId"] = this.goiTapId;
         data["tenGoi"] = this.tenGoi;
         data["soThang"] = this.soThang;
@@ -5615,6 +5622,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
 
 export interface IDSDKOuputDto {
     id: number;
+    name: string | undefined;
     goiTapId: number;
     tenGoi: string | undefined;
     soThang: string | undefined;
@@ -5634,6 +5642,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
+    name: string | undefined;
     goiTapId: number;
     soThang: string | undefined;
     tenGoi: string | undefined;
@@ -5662,6 +5671,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
             this.deleterUserId = _data["deleterUserId"];
             this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
             this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
             this.goiTapId = _data["goiTapId"];
             this.soThang = _data["soThang"];
             this.tenGoi = _data["tenGoi"];
@@ -5690,6 +5700,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
         data["deleterUserId"] = this.deleterUserId;
         data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
         data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
         data["goiTapId"] = this.goiTapId;
         data["soThang"] = this.soThang;
         data["tenGoi"] = this.tenGoi;
@@ -5718,6 +5729,7 @@ export interface IDanhSachDangKy {
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
+    name: string | undefined;
     goiTapId: number;
     soThang: string | undefined;
     tenGoi: string | undefined;
@@ -7579,6 +7591,69 @@ export class SupporDto implements ISupporDto {
 }
 
 export interface ISupporDto {
+    name: string | undefined;
+    phone: string | undefined;
+    email: string | undefined;
+    address: string | undefined;
+    comment: string | undefined;
+}
+
+export class SupporInput implements ISupporInput {
+    id: number;
+    name: string | undefined;
+    phone: string | undefined;
+    email: string | undefined;
+    address: string | undefined;
+    comment: string | undefined;
+
+    constructor(data?: ISupporInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.phone = _data["phone"];
+            this.email = _data["email"];
+            this.address = _data["address"];
+            this.comment = _data["comment"];
+        }
+    }
+
+    static fromJS(data: any): SupporInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new SupporInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["phone"] = this.phone;
+        data["email"] = this.email;
+        data["address"] = this.address;
+        data["comment"] = this.comment;
+        return data;
+    }
+
+    clone(): SupporInput {
+        const json = this.toJSON();
+        let result = new SupporInput();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISupporInput {
+    id: number;
     name: string | undefined;
     phone: string | undefined;
     email: string | undefined;
