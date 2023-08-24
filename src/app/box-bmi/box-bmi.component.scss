@@ -7,10 +7,7 @@
     color: #fff;
     width: 100%;
     height: 670px;
-}
-
-.box-bmi {
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 
@@ -22,8 +19,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Điều chỉnh mức độ mờ ở đây, giá trị từ 0 (không mờ) đến 1 (hoàn toàn mờ) */
-}
+    background-color: rgba(0, 0, 0, 0.7); /* Màu đen mờ với độ trong suốt 0.5 */
+    z-index: -1; /* Đặt lớp mờ ở phía sau */
+
+  }
 
 
 .container-fuild {
@@ -38,7 +37,7 @@
     font-size: 32px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #000000;
+    color: #ffffff;
 }
 
 .box-bmi-content {
@@ -47,6 +46,7 @@
     display: flex;
     align-items: stretch;
     justify-content: space-between;
+    margin: 4% 0;
 }
 
 .bmi-item {
@@ -74,13 +74,16 @@
     float: left;
     margin-bottom: 30px;
     text-align: justify;
-    color: #000000;
+    color: #ffffff;
 }
 
-.box-range-bmi {
+.box-range-bmi .item {
     width: 100%;
     float: left;
-    margin-bottom: 33px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .item {
@@ -95,12 +98,14 @@
 .item span.txt {
     width: 150px;
     float: left;
-    color: #000000;
+    color: #ffffff;
+    font-size: 15px;
 }
-span.txt {
+.show-bmi-point .txt {
     width: 150px;
     float: left;
-    color: #000000;
+    color: #db0f0f;
+    font-size: 20px;
 }
 
 .item-ct {
@@ -112,50 +117,35 @@ span.txt {
 }
 
 
-input[type="range"] {
+.box-range-bmi .item .item-ct input {
+    cursor: pointer;
     width: calc(100% - 60px);
-    height: 36px;
-    /* -webkit-appearance: none; */
+    height: 18px;
+    -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
-    /* background: none; */
-  
-    /* Customize the appearance of the range input */
-    background: linear-gradient(to right, #ccc, #ccc) no-repeat, #ddd;
-    background-size: calc(((100% - 60px) / 150) * var(--cus-weight)) 100%, 100%;
-    border-radius: 18px;
-    outline: none;
-    opacity: 1;
-    transition: background-size 0.2s ease-in-out;
-  
-    /* Style the thumb (slider handle) */
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      background: #007bff;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  
-    &::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background: #007bff;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  
-    &::-ms-thumb {
-      width: 20px;
-      height: 20px;
-      background: #007bff;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  }
-  
+    appearance: none;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc; /* Thêm viền cho thanh trượt */
+    border-radius: 40px; /* Bo góc cho viền */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng cho viền */
+}
+
+.box-range-bmi .item .item-ct input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background: #ff0101;
+    border: 1px solid #ccc; /* Thêm viền cho "thumb" */
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -7px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng cho "thumb" */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 .box-range-bmi .item .item-ct .num-range {
     width: 50px;
@@ -182,7 +172,7 @@ input[type="range"] {
     height: 50px;
     border-radius: 25px;
     overflow: hidden;
-    background: #000000;
+    background: #ffffff;
     font-weight: 700;
     color: #ffffff;
 }
@@ -218,7 +208,7 @@ input[type="range"] {
 .bmi-right table tr td {
     padding: 17px 15px;
     border: solid 1px #999999;
-    color: #000000;
+    color: #ffffff;
 }
 
 .bmi-right table tr span {

@@ -56,23 +56,7 @@ import { OAuthModule } from 'angular-oauth2-oidc/public_api';
         TenantChangeDialogComponent,
        
     ],
-    providers: [
-        {
-          provide: 'SocialAuthServiceConfig',
-          useValue: {
-            autoLogin: false,
-            providers: [
-              {
-                id: FacebookLoginProvider.PROVIDER_ID,
-                provider: new FacebookLoginProvider('596194762585525')
-              }
-            ],
-            onError: (err) => {
-              console.error(err);
-            }
-          } as SocialAuthServiceConfig,
-        }
-      ],
+    
       bootstrap: [AccountComponent],
 })
 export class AccountModule {

@@ -76,7 +76,7 @@
                 <figure class="wpb_wrapper vc_figure">
                   <a href="javascipt:;" target="_self" class="vc_single_image-wrapper  
                    vc_box_border_grey"
-                   (click)="submitLogin()"
+                   (click)="loginWithFacebook()"
                    src="https://connect.facebook.net/en_US/sdk.js">
                     <i class="icon-logo-fb vc_single_image-img attachment-full fa-brands fa-facebook"></i>
                   </a>
@@ -129,4 +129,23 @@
       </p>
     </div>
   </section>
+</div>
+<h2 class="text-center mb-4">Login with Facebook in Angular</h2>
+<div *ngIf="!isLoggedin">
+  <button type="button" (click)="loginWithFacebook()" class="btn btn-primary btn-block">Signin with Facebook</button>
+</div>
+<div *ngIf="isLoggedin === true">
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" [value]="socialUser.lastName" id="lastname" readonly>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
+  </div>
+  <button type="button" (click)="signOut()" class="btn btn-primary">Sign Out</button>
 </div>

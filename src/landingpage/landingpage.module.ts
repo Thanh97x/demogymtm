@@ -1,3 +1,4 @@
+import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { CarouselModule } from './carousel/carousel.module';
 import { RootModule } from './../root.module';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -15,7 +16,7 @@ import { PropertyBoxGymComponent } from './property-box-gym/property-box-gym.com
 import { PropertyBoxSaleComponent } from './property-box-sale/property-box-sale.component';
 import { PropertyBoxCovenientComponent } from './property-box-covenient/property-box-covenient.component';
 import { AddCoachComponent } from './add-coach/add-coach.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PropertyCardComponent } from './property-card/property-card.component';
 import { PropertyListComponent } from './property-list/property-list.component';
 import { PropertyFooterComponent } from './property-footer/property-footer.component';
@@ -52,7 +53,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ServiceProxyModule,
     ModalModule.forChild(),
     RatingModule,
-    CarouselModule
+    CarouselModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PropertyCardComponent,
@@ -84,6 +86,22 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     FitnessNewssDepComponent,
     InforHlv2Component,
 
+  ],
+  providers: [
+    SocialAuthService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('596194762585525')
+          },
+          // Other providers if needed
+        ]
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [InforHlvComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

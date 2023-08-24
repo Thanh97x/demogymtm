@@ -48,12 +48,6 @@ export class RegisterComponent extends AppComponentBase {
         this.saving = true;
         this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
         this.authService.authenticateModel.password = this.model.password;
-
-        // if (!result.canLogin) {
-        //   this.notify.success(this.l('SuccessfullyRegistered'));
-        //   // debugger
-        //   this._router.navigate(['/login']);
-        //   return;
         
         },(error) => {
           console.log(error)
