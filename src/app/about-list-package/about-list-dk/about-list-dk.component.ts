@@ -1,5 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { DSDKServiceProxy, DSDKDto } from './../../../shared/service-proxies/service-proxies';
+import { DSDKServiceProxy, DSDKDto, CTGoiTapServiceProxy, CTGoiTapDto } from './../../../shared/service-proxies/service-proxies';
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
@@ -14,6 +14,7 @@ import { AppSessionService } from '@shared/session/app-session.service';
 export class AboutListDkComponent {
 
   newDSDK: DSDKDto = new  DSDKDto();
+  newCTGoiTap: CTGoiTapDto = new CTGoiTapDto();
   showConfirmationPopup = false;
   selectedPackage: any;
   selectedPackageType: string;
@@ -38,6 +39,7 @@ export class AboutListDkComponent {
     private messageService: MessageService,
     private router: Router,
     private appSession: AppSessionService,
+    private ctgoitap: CTGoiTapServiceProxy,
     private route: ActivatedRoute,
   ){}
 

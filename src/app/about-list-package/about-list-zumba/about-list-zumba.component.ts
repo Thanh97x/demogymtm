@@ -1,8 +1,8 @@
-import { DSDKDto } from './../../../shared/service-proxies/service-proxies';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { CTGoiTapDto, CTGoiTapServiceProxy, DSDKDto, GoiTapDto, GoiTapServiceProxy } from './../../../shared/service-proxies/service-proxies';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DSDKServiceProxy } from '@shared/service-proxies/service-proxies';
 import {MessageService} from 'primeng/api';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Message } from 'primeng/api';
 import { AppSessionService } from '@shared/session/app-session.service';
 
@@ -12,7 +12,7 @@ import { AppSessionService } from '@shared/session/app-session.service';
   styleUrls: ['./about-list-zumba.component.scss'],
   providers: [MessageService],
 })
-export class AboutListZumbaComponent {
+export class AboutListZumbaComponent implements OnInit {
   showConfirmationPopup = false;
   selectedPackage: any;
   selectedPackageType: string;
@@ -20,20 +20,9 @@ export class AboutListZumbaComponent {
   showNotification = false;
   notificationMessage = '';
   shownLoginName = '';
-
-  ListZumbaYoga: any = [{
-    goiTapId:1, tenGoi: "Gói Zumba và Yoga",soThang:'1 tháng' ,tongTien: 450000,service:'Yoga - Group Fitness và tư vấn dinh dưỡng không giới hạn',ca:"Mỗi ca 10 - 15 học viên"
-  },]
-  ListZumbaYoga6: any = [
-    {
-    goiTapId:1, tenGoi: "Gói Zumba và Yoga",soThang:'6 tháng', tongTien: 2500000,service:'Yoga - Group Fitness và tư vấn dinh dưỡng không giới hạn',ca:"Mỗi ca 10 - 15 học viên"
-  },
-  ]
-  ListZumbaYoga12: any = [
- {
-    goiTapId:1, tenGoi: "Gói Zumba và Yoga",soThang:'12 tháng', tongTien:4500000,service:'Yoga - Group Fitness và tư vấn dinh dưỡng không giới hạn',ca:"Mỗi ca 10 - 15 học viên"
-  },
-  ]
+  idgoi:any
+  ListZumbaYoga: any ;
+  goiTapList: GoiTapDto[] = [];
  
   constructor(
     private dsdk: DSDKServiceProxy, 
@@ -41,6 +30,8 @@ export class AboutListZumbaComponent {
     private router: Router,
     private route: ActivatedRoute,
     private appSession: AppSessionService,
+    private ctGoiTap: CTGoiTapServiceProxy,
+    private goiTapService: GoiTapServiceProxy
   ){}
   
   confirmSignUp(selectedPackage: any, selectedPackageType: string) {
@@ -58,23 +49,33 @@ export class AboutListZumbaComponent {
   //create
   createDSDK(selectedPackage: any) {
     this.newDSDK.name = this.shownLoginName;
-    this.newDSDK.soThang = selectedPackage.soThang;
+    this.newDSDK.soThang = selectedPackage.goiThang;
     this.newDSDK.goiTapId = selectedPackage.goiTapId;
-    this.newDSDK.tenGoi = selectedPackage.tenGoi;
-    this.newDSDK.tongTien = selectedPackage.tongTien;
-    
-    this.addSingle();
-
-    this.dsdk.addDSDK(this.newDSDK).subscribe((res) => {
-        console.log(res);
-        this.newDSDK = new DSDKDto();
-
-        // Navigate after a delay
-        setTimeout(() => {
+    this.newDSDK.tongTien = selectedPackage.mucGia;
+  
+    // Gọi dịch vụ để lấy thông tin tenGoiTap
+    this.goiTapService.getGoiTapById(selectedPackage.goiTapId).subscribe((goiTapArray) => {
+      if (goiTapArray.length > 0){
+        const goiTap = goiTapArray[0];
+      
+      this.newDSDK.tenGoi = goiTap.tenGoiTap;
+      this.addSingle();
+      const selectedPackageFromList = this.ListZumbaYoga.find((item: CTGoiTapDto) => item.goiTapId === selectedPackage.goiTapId);
+      if (selectedPackageFromList) {
+        this.dsdk.addDSDK(this.newDSDK).subscribe((res) => {
+          console.log(res);
+          this.newDSDK = new DSDKDto();
+  
+          // Chuyển hướng sau một khoảng thời gian
+          setTimeout(() => {
             this.router.navigate(['/app/about']);
-        }, 2000);
+          }, 2000);
+        });
+      }
+      }
     });
-}
+  }
+  
 
 
   addSingle() {
@@ -87,6 +88,14 @@ export class AboutListZumbaComponent {
     });
   }
   ngOnInit() {
+    this.route.params.subscribe((param:Params)=>{
+      this.idgoi=+param["idgoi"];
+    })
     this.shownLoginName = this.appSession.getShownLoginName();
+    this.ctGoiTap.getCTGoiTapById(this.idgoi).subscribe((res)=>{
+      this.ListZumbaYoga = res;
+    })
+    
+
   }
 }

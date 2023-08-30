@@ -88,7 +88,7 @@ export class AppAuthService {
         authenticateResult: AuthenticateResultModel
     ) {
         this.authenticateResult = authenticateResult;
-
+        debugger;
         if (authenticateResult.accessToken) {
             // Successfully logged in
             this.login(
@@ -132,7 +132,7 @@ export class AppAuthService {
             initialUrl = AppConsts.appBaseUrl;
         }
         // debugger;
-        location.href = initialUrl + "/app/about";
+        location.href = AppConsts.appBaseUrl + "/app/about";//ERROR
     }
 
     private clear(): void {

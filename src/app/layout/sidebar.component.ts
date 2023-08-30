@@ -21,9 +21,11 @@ export class SidebarComponent implements OnInit {
     private _layoutStore: LayoutStoreService
   ) { }
 
+
+  //chỉnh sửa menu bên trái
   ngOnInit(): void {
     this._layoutStore.sidebarExpanded.subscribe((value) => {
-      this.sidebarExpanded = value;
+      this.sidebarExpanded = true;
       this.toggleSidebar();
     });
   }

@@ -18,23 +18,23 @@
                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 
                         <!-- goi 1 thang -->
-                        <div class="swiper-slide swiper-slide-active " style="width:33.3333%;">
-                            <div class="bm bm-1 aos-init aos-animate" *ngFor="let item of ListZumbaYoga">
-                                <div class="bn-wrapper img-wrapper" (click)="confirmSignUp(item, '1')">
+                        <div class="swiper-slide swiper-slide-active " style="width:33.3333%;" *ngFor=" let goiTap of ListZumbaYoga">
+                            <div class="bm bm-1 aos-init aos-animate" >
+                                <div class="bn-wrapper img-wrapper" (click)="confirmSignUp(goiTap, '1')">
                                     <div class="img">
-                                        <img src="https://phongtap.thehinh.com/wp-content/uploads/2019/07/zumbapic-1.jpg"
-                                            alt="">
+                                        <img [src]="'../../../assets/images/' + goiTap.imgGoiTap" alt="">
                                     </div>
-                                    <div class="info" *ngFor="let item of ListZumbaYoga">
-                                        <div class="top" (click)="confirmSignUp(item, '1')">
-                                            <div class="title" >Gói {{item.soThang}}</div>
-                                            <div class="price" >450.000 VNĐ
+                                    
+                                    <div class="info">
+                                        <div class="top" (click)="confirmSignUp(goiTap, '1')">
+                                            <div class="title" >Gói {{goiTap.goiThang}}</div>
+                                            <div class="price" >{{goiTap.mucGia}} VNĐ
                                             </div>
                                         </div>
                                         <div class="content">
                                             <div class="ctn">
-                                                <p> Giá hợp lý</p>
-                                                <p> Thanh toán hàng tháng</p>
+                                                <p> {{goiTap.thongTinMoTa3}}</p>
+                                                <p> {{goiTap.thongTinMoTa1}}</p>
                                                 <p> Tập luyện không giới hạn thời
                                                     gian
                                                 </p>
@@ -46,7 +46,7 @@
                                             <div class="button mt-35px">
                                                 <a href="javascipt:;" class="btn btn-40" has-popup-qr 
                                                 data-fancybox data-src="#popup-qr" 
-                                                (click)="confirmSignUp(item, '1')">
+                                                (click)="confirmSignUp(goiTap, '1')">
                                                   Đăng Ký
                                                 </a>
                                               </div>
@@ -57,7 +57,7 @@
                         </div>
 
                         <!-- goi 6 thang -->
-                        <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
+                        <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate" *ngFor="let item of ListZumbaYoga6">
                                 <div class="bn-wrapper img-wrapper">
                                     <div class="img-6t" (click)="confirmSignUp(item, '6')">
@@ -91,10 +91,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- goi 12 thang -->
-                        <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
+                        <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
                                 <div class="bn-wrapper img-wrapper" *ngFor="let item of ListZumbaYoga12">
                                     <div class="img-12t" (click)="confirmSignUp(item, '12')">
@@ -131,7 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="popup-overlay" *ngIf="showConfirmationPopup && selectedPackage">
@@ -162,5 +162,5 @@
             </div>
         </div>
     </div> 
-    
 </div>
+<div class="footer-line"></div>

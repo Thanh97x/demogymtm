@@ -72,7 +72,7 @@ img {
 }
 
 .rating-score-wrap {
-    padding-left: 10px;
+    padding-left: 125px;
     flex: 66.66666%;
 }
 
@@ -99,7 +99,7 @@ h2 {
     height: 14px;
     margin-right: 1px;
     background-size: 14px;
-    color: rgb(171, 76, 76);
+    color: rgb(0, 0, 0);
 }
 
 .list-unstyled {
@@ -160,7 +160,7 @@ img.member-img {
 }
 
 .widget-wrap {
-    padding: 30px;
+    padding: 20px 30px;
     background-color: #efefeb;
     height: 300px;
     width: 360px;
@@ -190,3 +190,67 @@ a.name-reg-lh {
     color: blue;
     font-size: 17px;
 }
+
+/* phone */
+.agen-phone {
+    margin-right: 15px;
+}
+
+/*  */
+.theiaStickySidebar-1 {
+    padding-top: 0px;
+    padding-bottom: 1px;
+    position: absolute;
+    /* transform: translateX(880px); */
+    width: 333px;
+    bottom: 0px;
+    margin: 20px 30px;
+}
+
+.img-fitness {
+    background: url('./img/review-top-9-phong-tap-gym-tot-nhat-tai-da-nang-4.jpg');
+    width: 100%;
+    height: 127px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.widege-title {
+    margin: 0px 0 16px;
+    font-size: 19px;
+    padding-bottom: 10px;
+    color: #383838;
+    font-weight: 500;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.widege-title:after {
+    content: "";
+    width: 30%;
+    border-top: 3px solid #fbae40;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+}
+
+.contact-1 {
+    list-style: none;
+}
+
+.contact-2{
+    list-style: none;
+}
+
+.phone-gym {
+    float: none;
+    color: #fbae40;
+    transition: transform 0.3s ease; /* Thêm hiệu ứng mượt khi hover */
+}
+
+.contact-2:hover {
+    transform: translateX(5px); /* Di chuyển sang phải 5px khi hover vào */
+}
+

@@ -23,11 +23,25 @@ resetImage(event: MouseEvent) {
 }
 
 
-  navigateToRegistration() {
-    const propertyBoxSaleElement = document.getElementById("BoxSale");
-    // debugger
-    // console.log(propertyBoxSaleElement)
-    propertyBoxSaleElement.scrollIntoView({ behavior: 'smooth' });
+navigateToRegistration() {
+  // const propertyBoxSaleElement = document.getElementById("BoxSale");
+  // propertyBoxSaleElement.scrollIntoView({ behavior: 'smooth' });
+    const boxSaleElement = document.getElementById('BoxSale');
+    
+    if (boxSaleElement) {
+      const marginToApply = 32; // Độ dời margin-top mong muốn (đơn vị pixel)
+      const boxSaleRect = boxSaleElement.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const scrollOffset = window.scrollY || window.pageYOffset;
+      
+      // Tính toán vị trí cuối cùng cần cuộn đến
+      const destination = boxSaleRect.top + scrollOffset + (boxSaleRect.height - windowHeight) / 2 - marginToApply;
+      
+      window.scrollTo({
+        top: destination,
+        behavior: 'smooth'
+      });
+    }
   }
 
 }

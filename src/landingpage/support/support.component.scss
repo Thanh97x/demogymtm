@@ -401,3 +401,19 @@ span.hs-form-required {
 .alert-alert-success {
     color: #689F38;
 }
+
+//footer-line 
+.footer-line {
+    display: flex;
+    width: 50%;
+    height: 2px;
+    background: #fecc09;
+    margin: 40px 25%;
+    
+}
+
+.hs-button:hover {
+    color: #ffebeb !important;
+    box-shadow: 0 4px 6px rgba(24, 22, 9, 0.1);
+
+}

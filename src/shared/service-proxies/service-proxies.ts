@@ -1309,6 +1309,69 @@ export class CTGoiTapServiceProxy {
     }
 
     /**
+     * @param goiTapId (optional) 
+     * @return Success
+     */
+    getCTGoiTapById(goiTapId: number | undefined): Observable<CTGoiTapDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/CTGoiTap/GetCTGoiTapById?";
+        if (goiTapId === null)
+            throw new Error("The parameter 'goiTapId' cannot be null.");
+        else if (goiTapId !== undefined)
+            url_ += "goiTapId=" + encodeURIComponent("" + goiTapId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCTGoiTapById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCTGoiTapById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CTGoiTapDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CTGoiTapDto[]>;
+        }));
+    }
+
+    protected processGetCTGoiTapById(response: HttpResponseBase): Observable<CTGoiTapDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CTGoiTapDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @return Success
      */
     getCTGoiTap(): Observable<CTGoiTapDto[]> {
@@ -1780,6 +1843,69 @@ export class GoiTapServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
     
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    getGoiTapById(id: number | undefined): Observable<GoiTapDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/GoiTap/getGoiTapById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetGoiTapById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetGoiTapById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GoiTapDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GoiTapDto[]>;
+        }));
+    }
+
+    protected processGetGoiTapById(response: HttpResponseBase): Observable<GoiTapDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(GoiTapDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -4902,10 +5028,14 @@ export interface IAuthenticateResultModel {
 }
 
 export class CTGoiTapDto implements ICTGoiTapDto {
+    id: number;
     goiTapId: number;
     goiThang: string | undefined;
-    mucGia: number;
-    thongTinMoTa: string | undefined;
+    mucGia: string | undefined;
+    imgGoiTap: string | undefined;
+    thongTinMoTa1: string | undefined;
+    thongTinMoTa2: string | undefined;
+    thongTinMoTa3: string | undefined;
 
     constructor(data?: ICTGoiTapDto) {
         if (data) {
@@ -4918,10 +5048,14 @@ export class CTGoiTapDto implements ICTGoiTapDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.goiTapId = _data["goiTapId"];
             this.goiThang = _data["goiThang"];
             this.mucGia = _data["mucGia"];
-            this.thongTinMoTa = _data["thongTinMoTa"];
+            this.imgGoiTap = _data["imgGoiTap"];
+            this.thongTinMoTa1 = _data["thongTinMoTa1"];
+            this.thongTinMoTa2 = _data["thongTinMoTa2"];
+            this.thongTinMoTa3 = _data["thongTinMoTa3"];
         }
     }
 
@@ -4934,10 +5068,14 @@ export class CTGoiTapDto implements ICTGoiTapDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["goiTapId"] = this.goiTapId;
         data["goiThang"] = this.goiThang;
         data["mucGia"] = this.mucGia;
-        data["thongTinMoTa"] = this.thongTinMoTa;
+        data["imgGoiTap"] = this.imgGoiTap;
+        data["thongTinMoTa1"] = this.thongTinMoTa1;
+        data["thongTinMoTa2"] = this.thongTinMoTa2;
+        data["thongTinMoTa3"] = this.thongTinMoTa3;
         return data;
     }
 
@@ -4950,10 +5088,14 @@ export class CTGoiTapDto implements ICTGoiTapDto {
 }
 
 export interface ICTGoiTapDto {
+    id: number;
     goiTapId: number;
     goiThang: string | undefined;
-    mucGia: number;
-    thongTinMoTa: string | undefined;
+    mucGia: string | undefined;
+    imgGoiTap: string | undefined;
+    thongTinMoTa1: string | undefined;
+    thongTinMoTa2: string | undefined;
+    thongTinMoTa3: string | undefined;
 }
 
 export class CalenderDto implements ICalenderDto {
@@ -5494,7 +5636,7 @@ export class DSDKDto implements IDSDKDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 
     constructor(data?: IDSDKDto) {
         if (data) {
@@ -5554,7 +5696,7 @@ export interface IDSDKDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 }
 
 export class DSDKOuputDto implements IDSDKOuputDto {
@@ -5566,7 +5708,7 @@ export class DSDKOuputDto implements IDSDKOuputDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 
     constructor(data?: IDSDKOuputDto) {
         if (data) {
@@ -5629,7 +5771,7 @@ export interface IDSDKOuputDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 }
 
 export class DanhSachDangKy implements IDanhSachDangKy {
@@ -5649,7 +5791,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 
     constructor(data?: IDanhSachDangKy) {
         if (data) {
@@ -5736,7 +5878,7 @@ export interface IDanhSachDangKy {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
-    tongTien: number;
+    tongTien: string | undefined;
 }
 
 export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
@@ -6220,8 +6362,13 @@ export class GoiTap implements IGoiTap {
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
-    tenGoi: string | undefined;
+    tenGoiTap: string | undefined;
     mota: string | undefined;
+    thongtingoi1: string | undefined;
+    thongtingoi2: string | undefined;
+    thongtingoi3: string | undefined;
+    thongtingoi4: string | undefined;
+    thongtingoi5: string | undefined;
     danhSachDangKies: DanhSachDangKy[] | undefined;
 
     constructor(data?: IGoiTap) {
@@ -6244,8 +6391,13 @@ export class GoiTap implements IGoiTap {
             this.deleterUserId = _data["deleterUserId"];
             this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
             this.tenantId = _data["tenantId"];
-            this.tenGoi = _data["tenGoi"];
+            this.tenGoiTap = _data["tenGoiTap"];
             this.mota = _data["mota"];
+            this.thongtingoi1 = _data["thongtingoi1"];
+            this.thongtingoi2 = _data["thongtingoi2"];
+            this.thongtingoi3 = _data["thongtingoi3"];
+            this.thongtingoi4 = _data["thongtingoi4"];
+            this.thongtingoi5 = _data["thongtingoi5"];
             if (Array.isArray(_data["danhSachDangKies"])) {
                 this.danhSachDangKies = [] as any;
                 for (let item of _data["danhSachDangKies"])
@@ -6272,8 +6424,13 @@ export class GoiTap implements IGoiTap {
         data["deleterUserId"] = this.deleterUserId;
         data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
         data["tenantId"] = this.tenantId;
-        data["tenGoi"] = this.tenGoi;
+        data["tenGoiTap"] = this.tenGoiTap;
         data["mota"] = this.mota;
+        data["thongtingoi1"] = this.thongtingoi1;
+        data["thongtingoi2"] = this.thongtingoi2;
+        data["thongtingoi3"] = this.thongtingoi3;
+        data["thongtingoi4"] = this.thongtingoi4;
+        data["thongtingoi5"] = this.thongtingoi5;
         if (Array.isArray(this.danhSachDangKies)) {
             data["danhSachDangKies"] = [];
             for (let item of this.danhSachDangKies)
@@ -6300,14 +6457,24 @@ export interface IGoiTap {
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
-    tenGoi: string | undefined;
+    tenGoiTap: string | undefined;
     mota: string | undefined;
+    thongtingoi1: string | undefined;
+    thongtingoi2: string | undefined;
+    thongtingoi3: string | undefined;
+    thongtingoi4: string | undefined;
+    thongtingoi5: string | undefined;
     danhSachDangKies: DanhSachDangKy[] | undefined;
 }
 
 export class GoiTapDto implements IGoiTapDto {
-    tenGoi: string | undefined;
+    tenGoiTap: string | undefined;
     mota: string | undefined;
+    thongtingoi1: string | undefined;
+    thongtingoi2: string | undefined;
+    thongtingoi3: string | undefined;
+    thongtingoi4: string | undefined;
+    thongtingoi5: string | undefined;
 
     constructor(data?: IGoiTapDto) {
         if (data) {
@@ -6320,8 +6487,13 @@ export class GoiTapDto implements IGoiTapDto {
 
     init(_data?: any) {
         if (_data) {
-            this.tenGoi = _data["tenGoi"];
+            this.tenGoiTap = _data["tenGoiTap"];
             this.mota = _data["mota"];
+            this.thongtingoi1 = _data["thongtingoi1"];
+            this.thongtingoi2 = _data["thongtingoi2"];
+            this.thongtingoi3 = _data["thongtingoi3"];
+            this.thongtingoi4 = _data["thongtingoi4"];
+            this.thongtingoi5 = _data["thongtingoi5"];
         }
     }
 
@@ -6334,8 +6506,13 @@ export class GoiTapDto implements IGoiTapDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["tenGoi"] = this.tenGoi;
+        data["tenGoiTap"] = this.tenGoiTap;
         data["mota"] = this.mota;
+        data["thongtingoi1"] = this.thongtingoi1;
+        data["thongtingoi2"] = this.thongtingoi2;
+        data["thongtingoi3"] = this.thongtingoi3;
+        data["thongtingoi4"] = this.thongtingoi4;
+        data["thongtingoi5"] = this.thongtingoi5;
         return data;
     }
 
@@ -6348,8 +6525,13 @@ export class GoiTapDto implements IGoiTapDto {
 }
 
 export interface IGoiTapDto {
-    tenGoi: string | undefined;
+    tenGoiTap: string | undefined;
     mota: string | undefined;
+    thongtingoi1: string | undefined;
+    thongtingoi2: string | undefined;
+    thongtingoi3: string | undefined;
+    thongtingoi4: string | undefined;
+    thongtingoi5: string | undefined;
 }
 
 export class Int64EntityDto implements IInt64EntityDto {

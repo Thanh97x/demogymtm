@@ -1,5 +1,6 @@
 section.signup.page_customer_account.section {
-    background: #F2F4F3;
+    // background: #F2F4F3;
+    background: url('./img/pngtree-large-room-full-of-equipment-in-a-gym-picture-image_2611111.png')  top center / cover no-repeat ;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -27,7 +28,7 @@ section .container.card {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    // background-color: rgba(255, 255, 255, 0.4);
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.5rem;
@@ -48,11 +49,11 @@ section .container.card {
     position: -webkit-sticky;
     position: sticky;
     top: 56px;
-    border-right: 2px solid #f4f4f4;
+    // border-right: 2px solid #f4f4f4;
     padding: 15px;
     margin-bottom: 25px;
     border-radius: 10px;
-    background: #fff;
+    // background: rgba(255, 255, 255, 0.4);
 }
 
 .col-left-ac .block-account p {
@@ -84,11 +85,11 @@ section .container.card {
 
 //right 
 .col-right-ac {
-    border-right: 2px solid #f4f4f4;
+    // border-right: 2px solid #f4f4f4;
     padding: 15px;
     // margin-bottom: 25px;
     border-radius: 10px;
-    background: #fff;
+    // background-color: rgba(255, 255, 255, 0.4);
 }
 
 .col-lg-9 {
@@ -113,10 +114,13 @@ strong {
     font-weight: bolder;
 }
 
-
 //table
 .table-scroll {
-    max-height: 350px;
+    max-height: 377px;
+    // overflow-y: hidden;
+}
+
+.table-scroll:hover {
     overflow-y: auto;
 }
 
@@ -143,19 +147,22 @@ strong {
     margin-bottom: 1rem;
     color: #212529;
     border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 thead.thead-default {
-    background: #f2f2f2;
+    background: rgba(255, 255, 255, 0.4);
 }
 
 table#my-orders-table th,
 table#my-orders-table td {
     padding: 5px 10px;
-    border: 1px solid #C1C1C1;
+    border: 1px solid #000000;
     vertical-align: middle;
     overflow: visible;
     white-space: nowrap !important;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
 }
 
 //h2
@@ -178,9 +185,12 @@ h2 {
 }
 
 .about-giaha-btn {
-    height: 38px;
-    width: 98px;
-    border-radius: 8px;
+    padding: 0.5208333333rem 1.0416666667rem;
+    font-size: 1.25rem;
+    line-height: 1.66667rem;
+    background-color: #f36f2c;
+    color: #ffff;
+    border-color: transparent;
 }
 
 .recen-orders.ng-tns-c81-1 {
@@ -188,5 +198,56 @@ h2 {
 }
 
 .about-giaha-btn:hover {
-    background-color: #cccccc;
+    --tw-border-opacity: 1;
+    --tw-text-opacity: 1;
+    background-color: transparent;
+    border-color: rgb(243 111 44/var(--tw-border-opacity));
+    color: rgb(243 111 44/var(--tw-text-opacity));
+}
+
+.text-glow {
+    color: #fff; /* Màu chữ */
+}
+
+.btn-gh {
+    padding: 0.25rem 0.5rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    background: #f36f2c;
+    // color: #fff;
+}
+
+.btn-gh-1 {
+    // padding: 0.25rem 0.5rem;
+    // line-height: 1.5;
+    // border-radius: 0.2rem;
+    // background: #f36f2c;
+    color: #fff;
+}
+
+.btn-gh:hover {
+    --tw-border-opacity: 1;
+    --tw-text-opacity: 1;
+    background-color: transparent;
+    border-color: rgb(243 111 44/var(--tw-border-opacity));
+    color: rgb(243 111 44/var(--tw-text-opacity));
+}
+
+//thanh cuộn 
+.table-scroll::-webkit-scrollbar {
+    width: 8px; /* Chiều rộng của thanh cuộn */
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Màu nền thanh cuộn */
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* Màu của thanh cuộn */
+    border-radius: 10px; /* Bo tròn viền của thanh cuộn */
+}
+
+/* Ẩn thanh cuộn khi không hoạt động */
+.table-scroll:hover::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }

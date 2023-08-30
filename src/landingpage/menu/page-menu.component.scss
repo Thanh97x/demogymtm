@@ -14,6 +14,7 @@
 
 .nav-link a {
     padding: 0 24px;
+    transition: box-shadow 0.3s ease;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -23,10 +24,14 @@
     font-weight: bold;
     cursor: pointer;
     color: #fff;
+    font-size: 15px;
 }
 
-a.navbar-brand {
-    margin: 0 30px;
+.navbar-brand {
+    margin: 0 20px;
+    // background: url('./logo-menu-img/360090502_3283215168491705_7801321260646373346_n.jpg') top center / cover no-repeat;
+    // height: 100%;
+    // width: 8%;
 }
 
 .bg-secondary {
@@ -61,3 +66,7 @@ img {
     font-weight: 600;
 }
 
+.nav-link:hover {
+    color: rgb(139, 139, 139) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

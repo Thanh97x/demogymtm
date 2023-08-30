@@ -47,22 +47,23 @@
                         </tr> -->
                         <!-- kết thúc  -->
                         <!-- goi ZUmba -->
-                        <tr>
-                            <td class="table-name">Gói Zumba and YoGa</td>
+                        <tr *ngFor="let goitap of ListGoiTap ">
+                            <td class="table-name" >{{goitap.tenGoiTap}}</td>
                             <td>
                                 <ul>
                                     <li>
-                                        - Giá gói : <b>450.000VND/tháng</b>
+                                        - Giá gói : <b>{{goitap.mota}}</b>
                                     </li>
                                     <li>
-                                        - <b>Yoga - Group Fitness và tư vấn dinh dưỡng</b> không giới hạn
+                                        - <b>{{goitap.thongtingoi1}}</b>
                                     </li>
-                                    <li>- Mỗi ca 10 - 15 học viên </li>
-                                    <li>- Ca tập linh hoạt - <b>1h/1ca</b></li>
-                                    <li>- Các lớp chuyên sâu giãn cơ</li>
+                                    <li>- {{goitap.thongtingoi2}}</li>
+                                    <li>- {{goitap.thongtingoi3}}</li>
+                                    <li>- {{goitap.thongtingoi4}}</li>
+                                    <li>- {{goitap.thongtingoi5}}</li>
                                 </ul>
                             </td>
-                            <td class="">
+                            <!-- <td class="">
                                 <div class="a1 ">
                                     <div class="btn-box-gym-gh-1 button-wrapper">
                                         <a href="/app/about/gia-han/goi-zumba-yoga">
@@ -74,14 +75,28 @@
 
                                     </div>
                                 </div>
-                            </td>
+                            </td> -->
+                            <td class="">
+                                <div class="btn-box-gym-gh ">
+                                    <div class="btn-box-gym-gh-1 button-wrapper">
+                                        <!-- <a href="/app/about/gia-han/goi-doan-ket">
+                                            <button class="btn-box-gym">
+                                                Gia Hạn
+                                            </button>
+                                        </a> -->
+                                        <button class="btn-box-gym" [routerLink]="['/app/about/gia-han/',goitap.id]">
+                                            Gia Hạn
+                                        </button>
 
+                                    </div>
+                                </div>
+                            </td>
                         </tr> 
                         <!-- goi ZUmba -->
 
 
                         <!-- Gói Tự Tập  -->
-                        <tr>
+                        <!-- <tr>
                             <td class="table-name">Gói Tự Tập</td>
                             <td>
                                 <ul>
@@ -112,13 +127,13 @@
                                 </div>
                             </td>
 
-                        </tr> 
+                        </tr>  -->
 
                         <!-- kết thúc -->
 
                         <!-- Gói Đoàn Kết -->
                         <tr>
-                            <td class="table-name">Gói Đoàn Kết</td>
+                            <!-- <td class="table-name">Gói Đoàn Kết</td>
                             <td>
                                 <ul>
                                     <li>
@@ -139,8 +154,8 @@
                                     <li>- Được tư vấn dinh dưỡng</li>
 
                                 </ul>
-                            </td>
-                            <td class="">
+                            </td> -->
+                            <!-- <td class="">
                                 <div class="btn-box-gym-gh ">
                                     <div class="btn-box-gym-gh-1 button-wrapper">
                                         <a href="/app/about/gia-han/goi-doan-ket">
@@ -152,12 +167,12 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <!-- kết thúc  -->
 
                         <!-- GÓi  PT 1 kèm 1-->
-                        <tr>
+                        <!-- <tr>
                             <td class="table-name">PT 1 kèm 1</td>
                             <td>
                                 <ul>
@@ -196,7 +211,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         <!-- kết thúc -->
                     </tbody>
                 </table>

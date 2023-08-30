@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRouteGuard } from '@shared/auth/auth-route-guard';
@@ -38,7 +38,8 @@ import { BoxBmiComponent } from './box-bmi/box-bmi.component';
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
                     { path: 'about/quan-ly-the-tap', component: AboutManagerComponent, canActivate: [AppRouteGuard] },
-                    { path: 'about/gia-han', component: AboutGiahanComponent, canActivate: [AppRouteGuard] },
+                    { path: 'about/gia-han', component: AboutGiahanComponent, canActivate: [AppRouteGuard],},
+                    { path: 'about/gia-han/:idgoi', component: AboutListZumbaComponent, canActivate: [AppRouteGuard],                    },
                     { path: 'about/calendar', component: FullcalendartestComponent, canActivate: [AppRouteGuard] },
                     { path: 'about/gia-han/goi-zumba-yoga', component: AboutListZumbaComponent, canActivate: [AppRouteGuard] },
                     { path: 'about/gia-han/goi-tu-tap', component: AboutListTtComponent, canActivate: [AppRouteGuard] },

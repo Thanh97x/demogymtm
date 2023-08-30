@@ -43,15 +43,15 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [
-            new MenuItem(this.l('Profile'), '/app/about', 'fas fa-info-circle'),
+            new MenuItem(this.l('Thông Tin Tài Khoản'), '/app/about', 'fas fa-info-circle'),
             //funciton client
+            // new MenuItem(
+            //     this.l('Quản lý thẻ tập'),
+            //     '/app/about/quan-ly-the-tap',
+            //     'fas fa-solid fa-bars-progress',
+            // ),
             new MenuItem(
-                this.l('Quản lý thẻ tập'),
-                '/app/about/quan-ly-the-tap',
-                'fas fa-solid fa-bars-progress',
-            ),
-            new MenuItem(
-                this.l('Calendar'),
+                this.l('Lịch Tập'),
                 '/app/about/calendar',
                 'fas fa-solid fa-calendar-days',
             ),
@@ -64,7 +64,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             //
             new MenuItem(this.l('Thống Kê'), '/app/home', 'fas fa-home','Pages.Roles'),
             new MenuItem(
-                this.l('Roles'),
+                this.l('Vai Trò'),
                 '/app/roles',
                 'fas fa-theater-masks',
                 'Pages.Roles'
@@ -76,18 +76,18 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fas fa-building',
                 'Pages.Tenants'
             ),  
-            new MenuItem(this.l('Sales'),
+            new MenuItem(this.l('Khuyến Mãi'),
                 '/app/sales',
                 'fa-solid fa-gift',
                 'Pages.Roles'
             ),
-            new MenuItem(this.l('Support'),
+            new MenuItem(this.l('Hỗ Trợ'),
                  '/app/support', 
                  'fa-solid fa-headset',
                  'Pages.Roles'
             ),
             new MenuItem(
-                this.l('Users'),
+                this.l('Tài Khoản'),
                 '/app/users',
                 'fas fa-users',
                 'Pages.Users'

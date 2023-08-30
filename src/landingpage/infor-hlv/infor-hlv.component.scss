@@ -31,10 +31,14 @@ main#main-wrap {
 }
 
 .profile-hlv {
+    
     -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
+   
+    
 }
+
 
 .col-lg-4 .col-md-4 .col-sm-12 {
     -ms-flex: 0 0 33.333333%;
@@ -46,6 +50,10 @@ main#main-wrap {
     text-align: center;
     max-width: 90%;
     height: 400px;
+    background: url('./img-damvinh/368047017_965428511402508_593148837887373924_n.jpg') top center / cover no-repeat;
+    height: 350px;
+    max-width: 90%;
+    background-position: bottom;
 }
 
 .col-lg-8 .col-md-8 .col-sm-12 {
@@ -139,7 +147,7 @@ p.img-hlv-1 {
     border-top: 5px solid #fff;
 }
 
-.cb-skin-base .cb-review-block {
+.cb-skin-base .cb-review-block  {
     color: #181818;
 }
 
@@ -315,3 +323,6 @@ span.cb-criteria-score {
     text-transform: uppercase;
 }
 
+.color-title {
+    color: #181818;
+}

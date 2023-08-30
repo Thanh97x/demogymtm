@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
 
-  targetDate: Date = new Date('2023-8-25'); // Set your target date here
+  targetDate: Date = new Date('2023-8-30'); // Set your target date here
   remainingTime: any;
   countdownInterval: any;
 

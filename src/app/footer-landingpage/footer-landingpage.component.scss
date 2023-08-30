@@ -1,7 +1,9 @@
 .footer {
-    background: url('https://kickfit-sports.com/wp-content/themes/black_theme/landingpage-gym/images/footer/tap-gym-the-hinh-tai-kickfit-sports.jpg') top center / cover no-repeat;
+    background: url('./img/tap-gym-the-hinh-tai-kickfit-sports.jpg') top center / cover no-repeat;
     padding-top: 35%;
     padding: 50px 0 300px;
+    width: 100%;
+    height: auto;
     /* box-sizing: border-box; */
 }
 
@@ -28,8 +30,8 @@
 
 /* footer-left */
 .footer-left {
-    max-width: 33.333%;
-    flex: 0 0 33.333333%;
+    max-width: 25%;
+    flex: 0 0 25%;
     padding-left: 25px;
 }
 
@@ -44,12 +46,13 @@
     color: rgb(0, 0, 0);
     font-size: 17px;
     line-height: 1.6;
-
+    font-weight: 400;
     /* line-height: 4px; */
 }
 
 .footer-email {
     color: rgb(0, 0, 0);
+    font-weight: 400;
     font-size: 17px;
     /* line-height: 1.6; */
 }
@@ -108,18 +111,18 @@ ul li {
 }
 
 .footer-icon {
-    padding: 35px 10px 30px 10px;
+    padding: 35px 0px 30px 0px;
     float: left;
     width: 100%;
     box-sizing: border-box;
     display: flex;
-    margin: 0 15px;
+    margin: 0 35px;
 }
 
 /*footer-time-left */
 .footer-time-left {
-    max-width: 33.333%;
-    flex: 0 0 33.333333%;
+    max-width: 25%;
+    flex: 0 0 25%;
 }
 
 p {
@@ -131,20 +134,20 @@ p {
 
 td {
     border: none;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 /* footer-address-mid */
 .footer-address-mid {
-    max-width: 33.333%;
-    flex: 0 0 33.333333%;
+    max-width: 25%;
+    flex: 0 0 25%;
     margin-left: 15px;
 }
 
 
 
 .address-gym {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 42px 77%;
     grid-column-gap: 10px;
     line-height: 23px;
@@ -154,18 +157,28 @@ td {
 }
 
 .time-IO {
-    margin: 10px 0;
+    font-weight: 400;
+    margin: 3px 10px;
 }
 
-.address-gym-phone {}
+.address-gym-title {
+    font-weight: 400;
+    text-transform: uppercase;
+}
 
 /*footer-mxh-right */
 .footer-mxh-right {
-    max-width: 33.333%;
-    flex: 0 0 33.333333%;
+    max-width: 25%;
+    flex: 0 0 25%;
 }
 
 a.iconmxh {
     font-size: 30px;
     margin: 0 10px;
+}
+
+.filter-bo {
+    border: 1px solid #000;
+    margin-right: 40%;
+    margin-bottom: 15px;
 }

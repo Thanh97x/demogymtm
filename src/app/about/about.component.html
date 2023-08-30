@@ -1,44 +1,14 @@
 ﻿<section class="signup page_customer_account section">
     <div class="container card p-3">
         <div class="row">
-            <!-- <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
-                <div class="block-account">
-                    <ul>
-                        <li>
-                            <a href="/app/about" class="title-info active" disabled="disabled">
-                                <i class="far fa-id-card"> </i>
-                                Thông tin tài khoản
-                                <strong></strong>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/app/about/quan-ly-the-tap" class="title-info active" disabled="disabled">
-                                <i class="fa-solid fa-bars-progress"></i>
-                                Quản lý thẻ tập
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/app/about/calendar" class="title-info active" disabled="disabled">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                Calendar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" class="title-info active" disabled="disabled" (click)="logout()">
-                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                Đăng Xuất
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
+            
             <div class="col-xs-12 col-sm-12 col-lg-9 col-right-ac">
-                <div class="title-header-manager">
+                <div class="title-header-manager text-glow">
                     <h2>Thông Tin Tài Khoản</h2>
                 </div>
                 <div id="b" class=" col-right-account border-0 margin-top-20">
                     <div class="block-account">
-                        <div class="block-content form-signup">
+                        <div class="block-content form-signup text-glow">
                             <p>
                                 <b>
                                     Tên tài khoản :
@@ -47,14 +17,14 @@
                                 <strong>{{ shownLoginName }}</strong>
                             </p>
                             <p>
-                                <span>
+                                <span class="text-glow">
                                     <b>Điện thoại : 
                                         <strong>{{ShownLoginPhone}}</strong>
                                     </b>
                                 </span>
                             </p>
                             <p>
-                                <span>
+                                <span class="text-glow">
                                     <b>Gmail : </b>
                                     <strong>{{ShownLoginEmail}}</strong>
                                 </span>
@@ -69,8 +39,8 @@
                             <div class="recen-orders">
                                 <div class="table-responsive-block tab-all table-scroll" style="overflow-x:auto;">
                                     
-                                    <table class="table table-cart table-order" id="my-orders-table">
-                                        <thead class="thead-default">
+                                    <table class="table table-cart table-order text-glow" id="my-orders-table">
+                                        <thead class="thead-default ">
                                             <tr>
                                                 <th>Tên người đặt</th>
                                                 <th>Tên đơn hàng</th>
@@ -78,7 +48,8 @@
                                                 <th>Giá</th>
                                                 <th>Ngày đặt</th>
                                                 <th>Ngày hết hạn</th>
-
+                                                <th>Trạng thái</th>
+                                                <th>Tiện ích</th>
                                             </tr>
                                         </thead>
                                       
@@ -89,8 +60,18 @@
                                                 <td>{{item.tenGoi}}</td>
                                                 <td>{{item.soThang}}</td>
                                                 <td>{{item.tongTien}}</td>
-                                                <td>{{item.ngayDangKy | date:'dd/MM/yyyy HH:mm'}}</td>
-                                                <td>{{item.ngayHetHan | date:'dd/MM/yyyy HH:mm'}}</td>
+                                                <td>{{item.ngayDangKy | date:'dd/MM/yyyy '}}</td>
+                                                <td>{{item.ngayHetHan | date:'dd/MM/yyyy '}}</td>
+                                                <td>{{item.trangThai}}</td>
+                                                <td>
+                                                    <button class="btn-gh">
+                                                        <a href="/app/about/gia-han" class="btn-gh-1">
+                                                            <i class="fa-solid fa-rotate"></i>
+                                                            Gia Hạn
+                                                        </a>
+                                                    </button>
+                                                </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -99,11 +80,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-giaha">
+                <!-- <div class="about-giaha">
                     <a href="/app/about/gia-han">
-                        <button class="about-giaha-btn">Gia Hạn</button>
+                        <button class="about-giaha-btn">Gia Hạn Gói Tập</button>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
