@@ -2,20 +2,15 @@
     <div class="content-section">
         <h2 class="section-heading">GIỚI THIỆU</h2>
         <p class="section-sub-heading">TỔNG QUAN PHÒNG TẬP</p>
-        <p class="about-content">
-            Không chỉ là 1 phòng tập gym - thể hình đơn lẻ, Gym TM là một trung tâm thể dụng thể thao với quy mô
-            lớn và hiện đại hàng đầu Từ Sơn. Các trang thiết bị luyện tập đều được nhập khẩu từ các thương hiệu lớn tại
-            Châu Âu và Mỹ đem đến trải nghiệm tập luyện tốt nhất. Phòng tập được tích hợp đầy đủ bể bơi 4 mùa, phòng
-            xông hơi, spa, sân tập ngoài trời và trên cao thoáng mát, tủ đồ, khu vực nghỉ ngơi... Ngoài tập gym bạn còn
-            có thể trải nghiệm nhiều loại hình thể thao khác như: Boxing, Muay Thái, Kickboxing, Bơi, Yoga, Zumba,
-            ...
+        <p class="about-content" *ngFor="let imgLan of ListImg ">
+            {{imgLan.contentIntro}}
         </p>
-        <div class="content-img-list">
-            <div class="content-img-item">
-                <img src="https://kickfit-sports.com/wp-content/themes/kickfit-sports/landingpage/landingpage-gym/images/hinh-anh-co-so-vat-chat/phong-tap-gym-the-duc-the-the-hinh-cua-kickfit-sports-ha-noi-5.jpg"
+        <div class="content-img-list" *ngFor="let imgLan of ListImg ">
+            <div class="content-img-item" >
+                <img [src]="'../../assets/img-landingpage/intro/' + imgLan.imgIntro"
                     alt="" class="member-img">
             </div>
-            <div class="content-img-item">
+            <!-- <div class="content-img-item">
                 <img src="https://kickfit-sports.com/wp-content/themes/kickfit-sports/landingpage/landingpage-gym/images/hinh-anh-co-so-vat-chat/phong-tap-gym-the-duc-the-the-hinh-cua-kickfit-sports-ha-noi-6.jpg"
                     alt="" class="member-img">
             </div>
@@ -26,10 +21,10 @@
             <div class="content-img-item">
                 <img src="https://kickfit-sports.com/wp-content/themes/kickfit-sports/landingpage/landingpage-gym/images/hinh-anh-co-so-vat-chat/phong-tap-gym-the-duc-the-the-hinh-cua-kickfit-sports-ha-noi-7.jpg"
                     alt="" class="member-img">
-            </div>
+            </div> -->
         </div>
-        <div class="content-img-list">
-            <div class="content-img-item">
+        <!-- <div class="content-img-list"> -->
+            <!-- <div class="content-img-item">
                 <img src="https://kickfit-sports.com/wp-content/themes/kickfit-sports/landingpage/landingpage-gym/images/hinh-anh-co-so-vat-chat/phong-tap-gym-the-duc-the-the-hinh-cua-kickfit-sports-ha-noi-1.jpg"
                     alt="" class="member-img">
             </div>
@@ -44,8 +39,8 @@
             <div class="content-img-item">
                 <img src="https://kickfit-sports.com/wp-content/themes/kickfit-sports/landingpage/landingpage-gym/images/hinh-anh-co-so-vat-chat/phong-tap-gym-the-duc-the-the-hinh-cua-kickfit-sports-ha-noi-8.jpg"
                     alt="" class="member-img">
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
         <div class="clear"></div>
 
     </div>

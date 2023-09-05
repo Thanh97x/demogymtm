@@ -1,14 +1,18 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { LoiichServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   selector: 'app-property-box-covenient',
   templateUrl: './property-box-covenient.component.html',
   styleUrls: ['./property-box-covenient.component.css']
 })
-export class PropertyBoxCovenientComponent {
+export class PropertyBoxCovenientComponent implements OnInit {
+  ListLoiIch: any
+
   constructor(
     private elementRef: ElementRef,
-    private el: ElementRef
+    private el: ElementRef,
+    private loiIch: LoiichServiceProxy
     ) { }
 
     zoomImage(event: MouseEvent) {
@@ -41,5 +45,11 @@ export class PropertyBoxCovenientComponent {
           behavior: 'smooth'
         });
       }
+    }
+
+    ngOnInit(): void {
+      this.loiIch.getLoiich().subscribe((res)=> {
+        this.ListLoiIch = res;
+      })
     }
 }

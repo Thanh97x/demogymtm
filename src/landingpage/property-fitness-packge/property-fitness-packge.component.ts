@@ -1,14 +1,17 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { AiCanTapServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   selector: 'app-property-fitness-packge',
   templateUrl: './property-fitness-packge.component.html',
   styleUrls: ['./property-fitness-packge.component.css']
 })
-export class PropertyFitnessPackgeComponent {
+export class PropertyFitnessPackgeComponent implements OnInit {
+  ListAiCanTap: any
   constructor(
     private elementRef: ElementRef,
-    private el: ElementRef
+    private el: ElementRef,
+    private aiCantap: AiCanTapServiceProxy,
     ) { }
  // Hàm này sẽ thực hiện việc zoom khi hover
  zoomImage(event: MouseEvent) {
@@ -42,5 +45,11 @@ navigateToRegistration() {
         behavior: 'smooth'
       });
     }
+  }
+
+  ngOnInit(): void {
+    this.aiCantap.getAiCanTap().subscribe((res)=> {
+      this.ListAiCanTap = res
+    })
   }
 }

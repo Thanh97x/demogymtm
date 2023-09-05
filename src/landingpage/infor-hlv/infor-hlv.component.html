@@ -5,15 +5,16 @@
 
     <div class="content-wrap">
         <div class="container">
-            <div class="agent-profile-wrap">
-                <div class="row">
+            <div class="agent-profile-wrap" *ngFor=" let introgym of ListPtGym">
+                <div class="row" >
                     <div class="profile-hlv col-lg-4 col-md-4 col-sm-12">
-                       <div class="img-hlv"></div>
+                        <img [src]="'../../assets/img-landingpage/imgAvataPt/avta/' + introgym.imgPtAva"
+                        alt="" class="img-hlv">
                     </div>
-                    <div class="profile-hlv-content col-lg-8 col-md-8 col-sm-12">
-                        <div class="agent-profile-top-wrap">
+                    <div class="profile-hlv-content col-lg-8 col-md-8 col-sm-12" >
+                        <div class="agent-profile-top-wrap" >
                             <div class="agent-profile-header">
-                                <h1>Đàm Vinh</h1>
+                                <h1>{{introgym.nameIntroPt}}</h1>
                                 <div class="stars">
                                     <igc-rating class="star" value="ratingVal" min="1" max="5" (igcChange)="ratingChanged($event);"></igc-rating>
                                 </div>
@@ -37,20 +38,20 @@
                                         <i class="fa-solid fa-phone"></i>
                                         <a href="tel:0123456798" class="color-title"> :
                                             <span class="agent-phone">
-                                                0123465789
+                                                {{introgym.introPhone}}
                                             </span>
                                         </a>
                                     </li>
                                     <li>
                                         <i class="fa-solid fa-envelope"></i>
                                         <a class="color-title" href="https://accounts.google.com/AccountChooser/identifier?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser"> :
-                                            abc@gmail.com
+                                            {{introgym.introGamil}}
                                         </a>
                                     </li>
                                     <li>
                                         <i class="fa-brands fa-facebook"></i>
                                         <a href="https://www.facebook.com/vinhdamthan" class="color-title"> :
-                                            DamVinh.fb.com
+                                            {{introgym.introMxh}}
                                         </a>
                                     </li>
                                 </span>
@@ -60,30 +61,21 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-12 bt-content-wrap">
                             <div class="agent-bio-wrap">
-                                <h2>About Đàm Vinh</h2>
+                                <h2>About {{introgym.nameIntroPt}}</h2>
                                 <p>
-                                    Chào mọi người mình là Đàm Vinh, là một gymer đã có 8 năm kinh nghiệm trong nghề
-                                    mình sẽ giúp bạn có được một cơ thể mà bạn từng mong muốn.
+                                    {{introgym.thongTin1}}
                                 </p>
                                 <h3>Giới Thiệu Bản Thân</h3>
-                                <p>Khởi đầu từ một sinh viên gầy 47kg. Sau đó ăn chay trường 2 năm để lên chế độ dinh
-                                    dưỡng và luyện tập đối với những khách hàng ăn chay (thường là những người lớn
-                                    tuổi). Sau 3 năm làm PT trong các trung tâm tầm trung, năm 2014 ứng tuyển vào
-                                    Gym TM & Yoga để học tập và làm việc, được các chuyên gia và VĐV nước
-                                    ngoài hệ thống lại kiến thức. Sau hơn 1 năm làm việc, hiện đang làm PT cho trung tâm
-                                    4 sao Win Fitness Center (do 2 người đồng nghiệp ở Cali đầu tư) và ngoài ca làm
-                                    việc, hiện mình còn đang nhận thêm khách hàng để PT tự do.</p>
+                                <p>{{introgym.thongTin2}}</p>
                                 <p class="img-hlv-1">
-                                    <img src="https://scontent.fhan2-5.fna.fbcdn.net/v/t1.6435-9/175026547_460867091858655_7564186704881755722_n.jpg?_nc_cat=106&cb=99be929b-59f725be&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=aV2e17Mw7dUAX_tEkOp&_nc_ht=scontent.fhan2-5.fna&oh=00_AfA1cXmr4ZuKp-FuhEx52LjL-DM-njQrqMPdBCmpkpPAvg&oe=64F82C49"
+                                    <img [src]="'../../assets/img-landingpage/imgAvataPt/imgpt1/' + introgym.imgPt1"
                                         alt="">
                                 </p>
                                 <p>
-                                    Ngoài tập gym, mình cũng có kinh nghiệm trong việc tập luyện Kich Boxing, do đó nếu
-                                    bạn muốn tìm hiểu về Kick Boxing mình cũng có thể hướng dẫn cho bạn tập luyện, tất
-                                    nhiên là mình đã được cấp chứng chỉ Kick Boxing rồi
+                                    {{introgym.thongTin3}}
                                 </p>
                                 <h2>
-                                    <strong>Tại Sao Bạn Nên Chọn Đàm Vinh ?</strong>
+                                    <strong>Tại Sao Bạn Nên Chọn {{introgym.nameIntroPt}} ?</strong>
                                 </h2>
                                 <ul>
                                     <li>Với 8 năm kinh nghiệm, mình đảm bảo về kiến thức để giúp bạn tập 1 cách tốt
@@ -99,9 +91,9 @@
                                     <li>Cam kết sau 1 tháng sẽ có kết quả nếu theo PP của huấn luyện viên thể hình</li>
                                 </ul>
                                 <p class="img-hlv-1">
-                                    <img src="https://scontent.fhan14-4.fna.fbcdn.net/v/t1.6435-9/117180904_302098151068884_8452939164342584433_n.jpg?_nc_cat=102&cb=99be929b-59f725be&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=MkAfI3b0BL0AX8zaBCT&_nc_ht=scontent.fhan14-4.fna&oh=00_AfAuMfsNTvRcdO1ql-jfRL1_EEuOthai7BDSkMpJUo113Q&oe=650147FB"
+                                    <img [src]="'../../assets/img-landingpage/imgAvataPt/imgpt2/' + introgym.imgPt2"
                                         alt="">
-                                    <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t1.6435-9/85247986_184081779537189_8405433431302864896_n.jpg?_nc_cat=111&cb=99be929b-59f725be&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=Enttt1VqscUAX9zczHe&_nc_ht=scontent.fhan14-3.fna&oh=00_AfATzy1PnT2kBF7anPPL2MqDRhnxLdV46UbV1OopOA-_6A&oe=65012E00"
+                                    <img [src]="'../../assets/img-landingpage/imgAvataPt/imgpt2/' + introgym.imgPt3"
                                         alt="">
                                 </p>
                                 <div
@@ -116,9 +108,7 @@
                                                 Đánh Giá Chung
                                             </div>
                                             <div class="cb-review-conclusion cb-clearfix">
-                                                Với 8 năm kinh nghiệm của Quyết kèm với kinh nghiệm về võ thuật và sơ
-                                                cứu, hỗ trợ khách hàng tốt, chi phí tập vừa phải phù hợp với những bạn
-                                                muốn đạt hiệu quả cao trong thời gian ngắn.
+                                                {{introgym.thongTin4}}
                                             </div>
                                         </div>
                                         <div class="cb-review-block cb-criteria-block cb-review-pad cb-clearfix">

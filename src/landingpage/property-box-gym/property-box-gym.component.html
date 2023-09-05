@@ -11,28 +11,26 @@
                             <th>Gói Tập Gym</th>
                             <th>Tiện ích</th>
                         </tr>
-                        <tr>
-                            <td class="table-name">Gói Zumba và Yoga</td>
+                        <tr *ngFor="let goitap of ListGoiTap">
+                            <td class="table-name">{{goitap.tenGoiTap}}</td>
                             <td class="table-contetn">
                                 <ul>
                                     <li>
                                         - Giá gói :
-                                        <b>450.000 VND/tháng</b>
+                                        <b>{{goitap.mota}}</b>
                                     </li>
                                     <li>
-                                        -
-                                        <b>Yoga - Group Fitness</b> và <b>tư vấn dinh dưỡng</b>
-                                        không giới hạn
+                                        - <b>{{goitap.thongtingoi1}}</b>
                                     </li>
-                                    <li>- Mỗi ca <b>10 - 15</b> học viên</li>
-                                    <li>- Tập cùng <b>HLV nước ngoài</b></li>
-                                    <li>- Ca tập linh hoạt - <b>1h/1ca</b></li>
-                                    <li>- Các lớp chuyên sâu giãn cơ</li>
+                                    <li>- {{goitap.thongtingoi2}}</li>
+                                    <li>- {{goitap.thongtingoi3}}</li>
+                                    <li>- {{goitap.thongtingoi4}}</li>
+                                    <li>- {{goitap.thongtingoi5}}</li>
                                 </ul>
                             </td>
 
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="table-name">Gói Tự Tập</td>
                             <td>
                                 <ul>
@@ -101,7 +99,7 @@
                                     </li>
                                 </ul>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

@@ -18,6 +18,7 @@ import { FitnessNewssDepComponent } from './fitness-newss/fitness-newss-nhucau/f
 import { LoginComponent } from '../account/login/login.component'
 import { InforHlv2Component } from './infor-hlv2/infor-hlv2.component'
 import { RegisterComponent } from '../account/register/register.component'
+import { AppRouteGuard } from '@shared/auth/auth-route-guard';
 
 const routes: Routes = [];
 
@@ -29,10 +30,10 @@ const routes: Routes = [];
         component: LandingpageComponent,
         children: [
           { path: '', component: HomepageComponent },
-          { path: 'coach', component: AddCoachComponent },
           { path: 'fitness', component: FitnessComponent },
           { path: 'support', component: SupportComponent },
-          { path: 'coach/hlv', component: InforHlvComponent },
+          { path: 'coach', component: AddCoachComponent },
+          { path: 'coach/:namePt', component: InforHlvComponent, canActivate: [AppRouteGuard] },
           { path: 'coach/hlv/sang-nguyen', component: InforHlv2Component },
           { path: 'fitness/cach-hit-tho-cho-nguoi-moi-tap', component: FitnessNewssHitthoComponent },
           { path: 'fitness/bai-tap-co-ban-cho-nu-moi-bat-dau', component: FitnessNewssCobanchonuComponent },

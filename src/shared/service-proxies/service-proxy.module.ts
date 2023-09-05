@@ -20,6 +20,11 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.CTGoiTapServiceProxy,
         ApiServiceProxies.GoiTapServiceProxy,
         ApiServiceProxies.CalenderServiceProxy,
+        ApiServiceProxies.LandingpageIntroServiceProxy,
+        ApiServiceProxies.LoiichServiceProxy,
+        ApiServiceProxies.AiCanTapServiceProxy,
+        ApiServiceProxies.PtGymServiceProxy,
+        ApiServiceProxies.IntroPtServiceProxy,
         
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]

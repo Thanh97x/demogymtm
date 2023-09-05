@@ -1,14 +1,19 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { LandingpageIntroServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   selector: 'app-property-list',
   templateUrl: './property-list.component.html',
   styleUrls: ['./property-list.component.css']
 })
-export class PropertyListComponent {
+export class PropertyListComponent implements OnInit {
+  ListImg: any;
+  idImg: any
+
   constructor(
     private elementRef: ElementRef,
-    private el: ElementRef
+    private el: ElementRef,
+    private landing: LandingpageIntroServiceProxy,
     ) { }
  // Hàm này sẽ thực hiện việc zoom khi hover
  zoomImage(event: MouseEvent) {
@@ -42,6 +47,12 @@ navigateToRegistration() {
         behavior: 'smooth'
       });
     }
+  }
+
+  ngOnInit(): void {
+    this.landing.getLan().subscribe((res)=> {
+      this.ListImg = res;
+    })
   }
 
 }

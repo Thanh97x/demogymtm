@@ -92,10 +92,10 @@ export class AboutListZumbaComponent implements OnInit {
       this.idgoi=+param["idgoi"];
     })
     this.shownLoginName = this.appSession.getShownLoginName();
-    this.ctGoiTap.getCTGoiTapById(this.idgoi).subscribe((res)=>{
+    this.ctGoiTap.getCTGoiTapById(this.idgoi)
+    .subscribe
+    ((res)=>{
       this.ListZumbaYoga = res;
     })
-    
-
   }
 }
