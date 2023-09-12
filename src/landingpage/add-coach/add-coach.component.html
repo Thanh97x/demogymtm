@@ -1,180 +1,168 @@
-<div class="add-coach" style="transform: none;">
-    <div class="header-coach">
-        <h1 class="header-coach-title">DANH MỤC PT PHÒNG GYM</h1>
-    </div>
-    <div class="container" style="transform: none;">
-        <div class="row" style="transform: none;">
-            <div class="coach-content bt-content-wrap right-bt-content-wrap">
-                <div class="coach-list-view agents-list-view">
-                    <div class="coach-list-wrap agent-list-wrap" *ngFor="let ptGym of ListPt">
-                        <div class="d-flex">
-                            <div class="coach-img agent-list-image">
-                                <a href="javascript:;" [routerLink]="['/landingpage/coach/',ptGym.id]">
-                                    <img [src]="'../../assets/img-landingpage/imgGym/' + ptGym.imgPt"
-                                        alt="">
-                                </a>
-                            </div>
-                            <div class="coach-content-list flex-grow-1">
-                                <div class="d-flex">
-                                    <h2>
-                                        <a href="/landingpage/coach/hlv">{{ptGym.namePt}}</a>
-                                    </h2>
-                                    <div class="rating-score-wrap flex-grow-1">
-                                        <div class="d-flex">
-                                            <div class="stars">
-                                                <igc-rating class="star" value="ratingVal" min="1" max="5" (igcChange)="ratingChanged($event);"></igc-rating>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="agent-list-contact list-unstyled">
-                                    <li>
-                                        <strong>Số điện thoại đi động</strong>
-                                        <a href="0123456789">
-                                            <div class="agen-phone">{{ptGym.numberPhone}}</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="d-flex">
-                                    <div class="agent-social-media flex-grow-1">
-                                        <span>
-                                            <a href="https://youtube.com/" class="btn-facebook"
-                                                target="_blank">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </a>
-                                            <a href="https://www.instagram.com" class="btn-facebook"
-                                                target="_blank">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                            
-                                            <a href="https://www.facebook.com/vinhdamthan" class="btn-facebook"
-                                                target="_blank">
-                                                <i class="fa-brands fa-square-facebook"></i>
-                                            </a>
-                                            <a href="http://localhost:4200/landingpage/coach/hlv" class="coach-viewhlv">
-                                                <strong>View Listings</strong>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="add-coach" style="transform: none">
+  <div class="header-coach">
+    <h1 class="header-coach-title">DANH MỤC PT PHÒNG GYM</h1>
+  </div>
+  <div class="container" style="transform: none">
+    <div class="row" style="transform: none">
+      <div class="coach-content bt-content-wrap right-bt-content-wrap">
+        <div class="coach-list-view agents-list-view">
+          <div
+            class="coach-list-wrap agent-list-wrap"
+            *ngFor="let ptGym of ListPt"
+          >
+            <div class="d-flex">
+              <div class="coach-img agent-list-image">
+                <a href="javascript:;" (click)="navigateToPtGym(ptGym.id)">
+                  <img
+                    [src]="'../../assets/img-landingpage/imgGym/' + ptGym.imgPt"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div class="coach-content-list flex-grow-1">
+                <div class="d-flex">
+                  <h2>
+                    <a href="/landingpage/coach/hlv">{{ ptGym.namePt }}</a>
+                  </h2>
+                  <div class="rating-score-wrap flex-grow-1">
+                    <div class="d-flex">
+                      <div class="stars">
+                        <igc-rating
+                          class="star"
+                          value="ratingVal"
+                          min="1"
+                          max="5"
+                          (igcChange)="ratingChanged($event)"
+                        ></igc-rating>
+                      </div>
                     </div>
-                    <!-- <div class="coach-list-wrap agent-list-wrap">
-                        <div class="d-flex">
-                            <div class="coach-img agent-list-image">
-                                <a href="/landingpage/coach/hlv/sang-nguyen">
-                                    <img src="https://phongtap.thehinh.com/wp-content/uploads/2017/04/cao-minh-tu-huan-luyen-vien-ca-nhan-1.jpg"
-                                        alt="" class="member-img">
-                                </a>
-                            </div>
-                            <div class="coach-content-list flex-grow-1">
-                                <div class="d-flex">
-                                    <h2>
-                                        <a href="/landingpage/coach/hlv/sang-nguyen">Cao Minh Tú</a>
-                                    </h2>
-                                    <div class="rating-score-wrap flex-grow-1">
-                                        <div class="d-flex">
-                                            <div class="stars">
-                                                <igc-rating class="star" value="ratingVal" min="1" max="5" (igcChange)="ratingChanged($event);"></igc-rating>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="agent-list-contact list-unstyled">
-                                    <li>
-                                        <strong>Số điện thoại đi động</strong>
-                                        <a href="0123456789">
-                                            <div class="agen-phone">0123456789</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="d-flex">
-                                    <div class="agent-social-media flex-grow-1">
-                                        <span>
-                                            
-                                            <a href="https://youtube.com/"
-                                                class="btn-facebook" target="_blank">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </a>
-                                            
-                                            <a href="https://www.instagram.com/"
-                                                class="btn-facebook" target="_blank">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                            <a href="https://www.facebook.com/"
-                                                class="btn-facebook" target="_blank">
-                                                <i class="fa-brands fa-square-facebook"></i>
-                                                
-                                            </a>
-                                            <a href="http://localhost:4200/landingpage/coach/hlv/sang-nguyen" class="coach-viewhlv">
-                                                <strong>View Listings</strong>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                  </div>
                 </div>
+                <ul class="agent-list-contact list-unstyled">
+                  <li>
+                    <strong>Số điện thoại đi động</strong>
+                    <a href="0123456789">
+                      <div class="agen-phone">{{ ptGym.numberPhone }}</div>
+                    </a>
+                  </li>
+                </ul>
+                <div class="d-flex">
+                  <div class="agent-social-media flex-grow-1">
+                    <span>
+                      <a
+                        href="https://youtube.com/"
+                        class="btn-facebook"
+                        target="_blank"
+                      >
+                        <i class="fa-brands fa-youtube"></i>
+                      </a>
+                      <a
+                        href="https://www.instagram.com"
+                        class="btn-facebook"
+                        target="_blank"
+                      >
+                        <i class="fa-brands fa-instagram"></i>
+                      </a>
+
+                      <a
+                        href="https://www.facebook.com/vinhdamthan"
+                        class="btn-facebook"
+                        target="_blank"
+                      >
+                        <i class="fa-brands fa-square-facebook"></i>
+                      </a>
+                      <a
+                        href="http://localhost:4200/landingpage/coach/hlv"
+                        class="coach-viewhlv"
+                      >
+                        <strong>View Listings</strong>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-12 coach-content bt-sidebar-wrap left-bt-sidebar-wrap houzez_sticky"
-                style="position: relative;overflow: visible;box-sizing: border-box;min-height: 1px;">
-                <div class="theiaStickySidebar">
-                    <aside id="sidebar" class="sidebar-wrap">
-                        <div id="houzez_contact-3" class="widget widget-wrap widget-contact-us">
-                            <div class="widget-header">
-                                <h3 class="widege-title">Đăng Ký</h3>
-                            </div>
-                            <div class="widege-body">
-                                <div class="widege-body-content">
-                                    <p>Bạn muốn đăng ký thông tin của bạn lên Website của chúng tôi, hãy liên hệ ngay
-                                        theo thông tin bên dưới</p>
-                                    <ul class="list-unstyled contact-list">
-                                        <li>
-                                            <i class="fa-solid fa-location-dot"></i> :
-                                            Hương Mạc Từ Sơn
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-envelope"></i>  :
-                                            <a href="https://myaccount.google.com/u/1/"
-                                                class="name-gmail-gym">phonggymtm@gmail.com</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="widget-read-more">
-                                    <a href="http://localhost:4200/landingpage/support" class="name-reg-lh">Liên hệ
-                                        chúng tôi</a>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-
-                <div class="theiaStickySidebar-1">
-                    <aside id="sidebar" class="sidebar-wrap">
-                        <div id="houzez_contact-3" class="widget widget-wrap widget-contact-us">
-                            <div class="widget-header">
-                                <h3 class="widege-title">GYM TM - Từ Sơn</h3>    
-                            </div>
-                            <div class="img-fitness"></div>
-                            <div class="widege-body">
-                                <li class="contact-1">
-                                    <i class="fa-solid fa-house"> </i>  :
-                                    48 xóm Tân Hậu - Kim Thiều - Hương Mạc - Từ Sơn - Bắc Ninh
-                                </li>
-                                <li class="contact-2">
-                                    <i class="fa-solid fa-phone"></i>  :
-                                    <a class="phone-gym" href="tel:0346217095">0346217095</a>
-                                </li>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-
-            </div>
-            
-
+          </div>
         </div>
+      </div>
+      <div
+        class="col-lg-4 col-md-12 coach-content bt-sidebar-wrap left-bt-sidebar-wrap houzez_sticky"
+        style="
+          position: relative;
+          overflow: visible;
+          box-sizing: border-box;
+          min-height: 1px;
+        "
+      >
+        <div class="theiaStickySidebar">
+          <aside id="sidebar" class="sidebar-wrap">
+            <div
+              id="houzez_contact-3"
+              class="widget widget-wrap widget-contact-us"
+            >
+              <div class="widget-header">
+                <h3 class="widege-title">Đăng Ký</h3>
+              </div>
+              <div class="widege-body">
+                <div class="widege-body-content">
+                  <p>
+                    Bạn muốn đăng ký thông tin của bạn lên Website của chúng
+                    tôi, hãy liên hệ ngay theo thông tin bên dưới
+                  </p>
+                  <ul class="list-unstyled contact-list">
+                    <li>
+                      <i class="fa-solid fa-envelope"></i> :
+                      <a
+                        href="https://myaccount.google.com/u/1/"
+                        class="name-gmail-gym"
+                        >phonggymtm@gmail.com</a
+                      >
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-address-card"></i> :
+                      <a href="/landingpage/support" class="name-gmail-gym">
+                        Liên Hệ Chúng Tôi
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="widget-read-more">
+                  <a
+                    href="http://localhost:4200/landingpage/support"
+                    class="name-reg-lh"
+                  >
+                    Liên hệ chúng tôi</a
+                  >
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="theiaStickySidebar-1">
+          <aside id="sidebar" class="sidebar-wrap">
+            <div
+              id="houzez_contact-3"
+              class="widget widget-wrap widget-contact-us"
+            >
+              <div class="widget-header">
+                <h3 class="widege-title">GYM TM - Từ Sơn</h3>
+              </div>
+              <div class="img-fitness"></div>
+              <div class="widege-body">
+                <li class="contact-1">
+                  <i class="fa-solid fa-house"> </i> : 48 xóm Tân Hậu - Kim
+                  Thiều - Hương Mạc - Từ Sơn - Bắc Ninh
+                </li>
+                <li class="contact-2">
+                  <i class="fa-solid fa-phone"></i> :
+                  <a class="phone-gym" href="tel:0346217095">0346217095</a>
+                </li>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

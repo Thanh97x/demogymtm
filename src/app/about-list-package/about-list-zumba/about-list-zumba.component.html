@@ -1,63 +1,81 @@
 <!-- Gói Zumba và Yoga -->
 
 <div class="home-3 section">
-    <div class="header-home-3">
-        <div class="header-icon">
-            <span class="x-gh">
-                <a href="/app/about/gia-han">
-                    <i class="fa-solid fa-xmark"></i>
-                </a>
-            </span>
-        </div>
-        <div class="title-header-gh">
-            <h2 >CHỌN GIA HẠN GÓI ZUMBA VÀ YOGA</h2>
-        </div>
-        <div class="wrapper">
-            <div class="home-3-slide relative">
-                <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+  <div class="header-home-3">
+    <div class="header-icon">
+      <span class="x-gh">
+        <a href="/app/about/gia-han">
+          <i class="fa-solid fa-xmark"></i>
+        </a>
+      </span>
+    </div>
+    <div class="title-header-gh" *ngFor="let goitap1 of ListGoiTap">
+      <h2>{{ goitap1.tenGoiTap }}</h2>
+    </div>
+    <div class="wrapper">
+      <div class="home-3-slide relative">
+        <div
+          class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"
+        >
+          <div
+            class="swiper-wrapper"
+            style="transform: translate3d(0px, 0px, 0px)"
+          >
+            <!-- goi 1 thang -->
+            <div
+              class="swiper-slide swiper-slide-active"
+              style="width: 33.3333%"
+              *ngFor="let goiTap of ListZumbaYoga"
+            >
+              <div class="bm bm-1 aos-init aos-animate">
+                <div
+                  class="bn-wrapper img-wrapper"
+                  (click)="confirmSignUp(goiTap, '1')"
+                >
+                  <div class="img">
+                    <img
+                      [src]="'../../../assets/images/' + goiTap.imgGoiTap"
+                      alt=""
+                    />
+                  </div>
 
-                        <!-- goi 1 thang -->
-                        <div class="swiper-slide swiper-slide-active " style="width:33.3333%;" *ngFor=" let goiTap of ListZumbaYoga">
-                            <div class="bm bm-1 aos-init aos-animate" >
-                                <div class="bn-wrapper img-wrapper" (click)="confirmSignUp(goiTap, '1')">
-                                    <div class="img">
-                                        <img [src]="'../../../assets/images/' + goiTap.imgGoiTap" alt="">
-                                    </div>
-                                    
-                                    <div class="info">
-                                        <div class="top" (click)="confirmSignUp(goiTap, '1')">
-                                            <div class="title" >Gói {{goiTap.goiThang}}</div>
-                                            <div class="price" >{{goiTap.mucGia}} VNĐ
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="ctn">
-                                                <p> {{goiTap.thongTinMoTa3}}</p>
-                                                <p> {{goiTap.thongTinMoTa1}}</p>
-                                                <p> Tập luyện không giới hạn thời
-                                                    gian
-                                                </p>
-                                                <p> Gửi xe miễn phí </p>
-                                                <p> Lớp học miễn phí</p>
-                                                <p> Nước uống miễn phí</p>
-                                                <p> Buổi tập PT miễn phí</p>
-                                            </div>
-                                            <div class="button mt-35px">
-                                                <a href="javascipt:;" class="btn btn-40" has-popup-qr 
-                                                data-fancybox data-src="#popup-qr" 
-                                                (click)="confirmSignUp(goiTap, '1')">
-                                                  Đăng Ký
-                                                </a>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="info">
+                    <div class="top" (click)="confirmSignUp(goiTap, '1')">
+                      <div class="title">Gói {{ goiTap.goiThang }}</div>
+                      <div class="price">{{ goiTap.mucGia }} VNĐ</div>
+                    </div>
+                    <div class="content">
+                      <div class="ctn">
+                        <p>{{ goiTap.thongTinMoTa3 }}</p>
+                        <p>{{ goiTap.thongTinMoTa1 }}</p>
+                        <p
+                          *ngFor="
+                            let thongtin2 of goiTap.thongTinMoTa2.split('/')
+                          "
+                        >
+                          {{ thongtin2 }}
+                        </p>
+                      </div>
+                      <div class="button mt-35px">
+                        <a
+                          href="javascipt:;"
+                          class="btn btn-40"
+                          has-popup-qr
+                          data-fancybox
+                          data-src="#popup-qr"
+                          (click)="confirmSignUp(goiTap, '1')"
+                        >
+                          Đăng Ký
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                        <!-- goi 6 thang -->
-                        <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
+            <!-- goi 6 thang -->
+            <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate" *ngFor="let item of ListZumbaYoga6">
                                 <div class="bn-wrapper img-wrapper">
                                     <div class="img-6t" (click)="confirmSignUp(item, '6')">
@@ -93,8 +111,8 @@
                             </div>
                         </div> -->
 
-                        <!-- goi 12 thang -->
-                        <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
+            <!-- goi 12 thang -->
+            <!-- <div class="swiper-slide swiper-slide-active " style="width: 33.3333%;">
                             <div class="bm bm-1 aos-init aos-animate">
                                 <div class="bn-wrapper img-wrapper" *ngFor="let item of ListZumbaYoga12">
                                     <div class="img-12t" (click)="confirmSignUp(item, '12')">
@@ -132,35 +150,47 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                </div>
-                <div class="popup-overlay" *ngIf="showConfirmationPopup && selectedPackage">
-                <p-messages class="notification" ></p-messages> 
-                
-                    <div class="popup" >
-                        <div class="popup-content">
-                            <div class="box-content"> 
-                                <b>Xác nhận đăng ký {{selectedPackage.tenGoi}} - Gói {{selectedPackage.soThang}}</b>
-                                <p class="box-title">Kiểm tra: Profile -> Thông tin tài khoản xem chi tiết</p>
-                            </div>
-                            <div class="popup-div">
-                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/d91264e165ed6facc6178994d5afae79.png" 
-                                class="img-qr"
-                                alt="mã QR">
-                            </div>
-                            <div class="popup-btn">
-                                <button (click)="createDSDK(selectedPackage)" class="popup-btn-left" 
-                                pButton pRipple label="Single"
-                                >
-                                    Xác nhận
-                                </button>
-                                <button (click)="cancelSignUp()" class="popup-btn-right">Hủy</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </div> 
+        <div
+          class="popup-overlay"
+          *ngIf="showConfirmationPopup && selectedPackage"
+        >
+          <p-messages class="notification"></p-messages>
+
+          <div class="popup" *ngFor="let goitap1 of ListGoiTap">
+            <div class="popup-content">
+              <div class="box-content">
+                <b
+                  >Xác nhận đăng ký {{ goitap1.tenGoiTap }} - Gói
+                  {{ selectedPackage.goiThang }}</b
+                >
+                <p class="box-title">
+                  Kiểm tra: Profile -> Thông tin tài khoản xem chi tiết
+                </p>
+              </div>
+              <div class="popup-div">
+                <img [src]="qrImageUrl" alt="QR Code" class="img-qr" />
+              </div>
+              <div class="popup-btn">
+                <button
+                  (click)="createDSDK(selectedPackage)"
+                  class="popup-btn-left"
+                  pButton
+                  pRipple
+                  label="Single"
+                >
+                  Xác nhận
+                </button>
+                <button (click)="cancelSignUp()" class="popup-btn-right">
+                  Hủy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="footer-line"></div>

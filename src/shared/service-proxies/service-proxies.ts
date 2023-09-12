@@ -2027,6 +2027,617 @@ export class DSDKServiceProxy {
 }
 
 @Injectable()
+export class FitnessServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param name (optional) 
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
+     * @return Success
+     */
+    pagedResult(name: string | undefined, pageIndex: number | undefined, pageSize: number | undefined): Observable<FitnessDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/Fitness/PagedResult?";
+        if (name === null)
+            throw new Error("The parameter 'name' cannot be null.");
+        else if (name !== undefined)
+            url_ += "Name=" + encodeURIComponent("" + name) + "&";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processPagedResult(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPagedResult(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FitnessDtoPagedResultDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FitnessDtoPagedResultDto>;
+        }));
+    }
+
+    protected processPagedResult(response: HttpResponseBase): Observable<FitnessDtoPagedResultDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = FitnessDtoPagedResultDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addFitness(body: FitnessDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Fitness/AddFitness";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddFitness(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddFitness(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddFitness(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getFitness(): Observable<Fitness[]> {
+        let url_ = this.baseUrl + "/api/services/app/Fitness/getFitness";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetFitness(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetFitness(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<Fitness[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<Fitness[]>;
+        }));
+    }
+
+    protected processGetFitness(response: HttpResponseBase): Observable<Fitness[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(Fitness.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    deleteFitness(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Fitness/DeleteFitness?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteFitness(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteFitness(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteFitness(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    updateFitness(id: number | undefined, body: FitnessDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Fitness/UpdateFitness?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateFitness(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateFitness(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processUpdateFitness(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
+export class FitnessListServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addFitnessList(body: FitnesListDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/FitnessList/AddFitnessList";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddFitnessList(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddFitnessList(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddFitnessList(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param idFitness (optional) 
+     * @return Success
+     */
+    getFitnessListById(idFitness: number | undefined): Observable<FitnesListDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/FitnessList/getFitnessListById?";
+        if (idFitness === null)
+            throw new Error("The parameter 'idFitness' cannot be null.");
+        else if (idFitness !== undefined)
+            url_ += "IdFitness=" + encodeURIComponent("" + idFitness) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetFitnessListById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetFitnessListById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FitnesListDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FitnesListDto[]>;
+        }));
+    }
+
+    protected processGetFitnessListById(response: HttpResponseBase): Observable<FitnesListDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(FitnesListDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getFitnessList(): Observable<FitnessList[]> {
+        let url_ = this.baseUrl + "/api/services/app/FitnessList/getFitnessList";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetFitnessList(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetFitnessList(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FitnessList[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FitnessList[]>;
+        }));
+    }
+
+    protected processGetFitnessList(response: HttpResponseBase): Observable<FitnessList[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(FitnessList.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    deleteFitnessList(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/FitnessList/DeleteFitnessList?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteFitnessList(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteFitnessList(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteFitnessList(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    updateFitnessList(id: number | undefined, body: FitnesListDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/FitnessList/UpdateFitnessList?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateFitnessList(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateFitnessList(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processUpdateFitnessList(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
 export class GoiTapServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -3156,6 +3767,551 @@ export class LoiichServiceProxy {
     }
 
     protected processUpdateLoiich(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
+export class NhuCauServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addNhuCau(body: NhuCauDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCau/AddNhuCau";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddNhuCau(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddNhuCau(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddNhuCau(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getNhuCau(): Observable<NhuCau[]> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCau/getNhuCau";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNhuCau(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNhuCau(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<NhuCau[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<NhuCau[]>;
+        }));
+    }
+
+    protected processGetNhuCau(response: HttpResponseBase): Observable<NhuCau[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(NhuCau.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    deleteNhuCau(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCau/DeleteNhuCau?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteNhuCau(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteNhuCau(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteNhuCau(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    upNhuCau(id: number | undefined, body: NhuCauDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCau/UpNhuCau?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpNhuCau(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpNhuCau(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processUpNhuCau(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
+export class NhuCauTapLuyenServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addNhuCauTL(body: NhuCauTapLuyenDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCauTapLuyen/AddNhuCauTL";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddNhuCauTL(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddNhuCauTL(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddNhuCauTL(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param idNhuCau (optional) 
+     * @return Success
+     */
+    getNhCauTLById(idNhuCau: number | undefined): Observable<NhuCauTapLuyenDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCauTapLuyen/getNhCauTLById?";
+        if (idNhuCau === null)
+            throw new Error("The parameter 'idNhuCau' cannot be null.");
+        else if (idNhuCau !== undefined)
+            url_ += "IdNhuCau=" + encodeURIComponent("" + idNhuCau) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNhCauTLById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNhCauTLById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<NhuCauTapLuyenDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<NhuCauTapLuyenDto[]>;
+        }));
+    }
+
+    protected processGetNhCauTLById(response: HttpResponseBase): Observable<NhuCauTapLuyenDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(NhuCauTapLuyenDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getNhuCauTl(): Observable<NhuCauTapLuyen[]> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCauTapLuyen/getNhuCauTl";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNhuCauTl(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNhuCauTl(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<NhuCauTapLuyen[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<NhuCauTapLuyen[]>;
+        }));
+    }
+
+    protected processGetNhuCauTl(response: HttpResponseBase): Observable<NhuCauTapLuyen[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(NhuCauTapLuyen.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    deleteNhuCauTL(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCauTapLuyen/DeleteNhuCauTL?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteNhuCauTL(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteNhuCauTL(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteNhuCauTL(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    updateNhuCauTL(id: number | undefined, body: NhuCauTapLuyenDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/NhuCauTapLuyen/UpdateNhuCauTL?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateNhuCauTL(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateNhuCauTL(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processUpdateNhuCauTL(response: HttpResponseBase): Observable<boolean> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7491,6 +8647,617 @@ export interface IExternalLoginProviderInfoModel {
     clientId: string | undefined;
 }
 
+export class FitnesListDto implements IFitnesListDto {
+    idFitness: number;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    tieuDe11: string | undefined;
+    tieuDe12: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+    thongTin13: string | undefined;
+    thongTin14: string | undefined;
+    thongTin15: string | undefined;
+    thongTin16: string | undefined;
+
+    constructor(data?: IFitnesListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.idFitness = _data["idFitness"];
+            this.img1 = _data["img1"];
+            this.img2 = _data["img2"];
+            this.img3 = _data["img3"];
+            this.img4 = _data["img4"];
+            this.img5 = _data["img5"];
+            this.tieuDe = _data["tieuDe"];
+            this.tieuDe1 = _data["tieuDe1"];
+            this.tieuDe2 = _data["tieuDe2"];
+            this.tieuDe3 = _data["tieuDe3"];
+            this.tieuDe4 = _data["tieuDe4"];
+            this.tieuDe5 = _data["tieuDe5"];
+            this.tieuDe6 = _data["tieuDe6"];
+            this.tieuDe7 = _data["tieuDe7"];
+            this.tieuDe8 = _data["tieuDe8"];
+            this.tieuDe9 = _data["tieuDe9"];
+            this.tieuDe10 = _data["tieuDe10"];
+            this.tieuDe11 = _data["tieuDe11"];
+            this.tieuDe12 = _data["tieuDe12"];
+            this.thongTin1 = _data["thongTin1"];
+            this.thongTin2 = _data["thongTin2"];
+            this.thongTin3 = _data["thongTin3"];
+            this.thongTin4 = _data["thongTin4"];
+            this.thongTin5 = _data["thongTin5"];
+            this.thongTin6 = _data["thongTin6"];
+            this.thongTin7 = _data["thongTin7"];
+            this.thongTin8 = _data["thongTin8"];
+            this.thongTin9 = _data["thongTin9"];
+            this.thongTin10 = _data["thongTin10"];
+            this.thongTin11 = _data["thongTin11"];
+            this.thongTin12 = _data["thongTin12"];
+            this.thongTin13 = _data["thongTin13"];
+            this.thongTin14 = _data["thongTin14"];
+            this.thongTin15 = _data["thongTin15"];
+            this.thongTin16 = _data["thongTin16"];
+        }
+    }
+
+    static fromJS(data: any): FitnesListDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new FitnesListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["idFitness"] = this.idFitness;
+        data["img1"] = this.img1;
+        data["img2"] = this.img2;
+        data["img3"] = this.img3;
+        data["img4"] = this.img4;
+        data["img5"] = this.img5;
+        data["tieuDe"] = this.tieuDe;
+        data["tieuDe1"] = this.tieuDe1;
+        data["tieuDe2"] = this.tieuDe2;
+        data["tieuDe3"] = this.tieuDe3;
+        data["tieuDe4"] = this.tieuDe4;
+        data["tieuDe5"] = this.tieuDe5;
+        data["tieuDe6"] = this.tieuDe6;
+        data["tieuDe7"] = this.tieuDe7;
+        data["tieuDe8"] = this.tieuDe8;
+        data["tieuDe9"] = this.tieuDe9;
+        data["tieuDe10"] = this.tieuDe10;
+        data["tieuDe11"] = this.tieuDe11;
+        data["tieuDe12"] = this.tieuDe12;
+        data["thongTin1"] = this.thongTin1;
+        data["thongTin2"] = this.thongTin2;
+        data["thongTin3"] = this.thongTin3;
+        data["thongTin4"] = this.thongTin4;
+        data["thongTin5"] = this.thongTin5;
+        data["thongTin6"] = this.thongTin6;
+        data["thongTin7"] = this.thongTin7;
+        data["thongTin8"] = this.thongTin8;
+        data["thongTin9"] = this.thongTin9;
+        data["thongTin10"] = this.thongTin10;
+        data["thongTin11"] = this.thongTin11;
+        data["thongTin12"] = this.thongTin12;
+        data["thongTin13"] = this.thongTin13;
+        data["thongTin14"] = this.thongTin14;
+        data["thongTin15"] = this.thongTin15;
+        data["thongTin16"] = this.thongTin16;
+        return data;
+    }
+
+    clone(): FitnesListDto {
+        const json = this.toJSON();
+        let result = new FitnesListDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IFitnesListDto {
+    idFitness: number;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    tieuDe11: string | undefined;
+    tieuDe12: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+    thongTin13: string | undefined;
+    thongTin14: string | undefined;
+    thongTin15: string | undefined;
+    thongTin16: string | undefined;
+}
+
+export class Fitness implements IFitness {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    idFitness: number;
+    imgFitness: string | undefined;
+    name: string | undefined;
+    nameFitness: string | undefined;
+    time: string | undefined;
+    contentFitness: string | undefined;
+
+    constructor(data?: IFitness) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
+            this.tenantId = _data["tenantId"];
+            this.idFitness = _data["idFitness"];
+            this.imgFitness = _data["imgFitness"];
+            this.name = _data["name"];
+            this.nameFitness = _data["nameFitness"];
+            this.time = _data["time"];
+            this.contentFitness = _data["contentFitness"];
+        }
+    }
+
+    static fromJS(data: any): Fitness {
+        data = typeof data === 'object' ? data : {};
+        let result = new Fitness();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["tenantId"] = this.tenantId;
+        data["idFitness"] = this.idFitness;
+        data["imgFitness"] = this.imgFitness;
+        data["name"] = this.name;
+        data["nameFitness"] = this.nameFitness;
+        data["time"] = this.time;
+        data["contentFitness"] = this.contentFitness;
+        return data;
+    }
+
+    clone(): Fitness {
+        const json = this.toJSON();
+        let result = new Fitness();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IFitness {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    idFitness: number;
+    imgFitness: string | undefined;
+    name: string | undefined;
+    nameFitness: string | undefined;
+    time: string | undefined;
+    contentFitness: string | undefined;
+}
+
+export class FitnessDto implements IFitnessDto {
+    idFitness: number;
+    imgFitness: string | undefined;
+    name: string | undefined;
+    nameFitness: string | undefined;
+    time: string | undefined;
+    contentFitness: string | undefined;
+
+    constructor(data?: IFitnessDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.idFitness = _data["idFitness"];
+            this.imgFitness = _data["imgFitness"];
+            this.name = _data["name"];
+            this.nameFitness = _data["nameFitness"];
+            this.time = _data["time"];
+            this.contentFitness = _data["contentFitness"];
+        }
+    }
+
+    static fromJS(data: any): FitnessDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new FitnessDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["idFitness"] = this.idFitness;
+        data["imgFitness"] = this.imgFitness;
+        data["name"] = this.name;
+        data["nameFitness"] = this.nameFitness;
+        data["time"] = this.time;
+        data["contentFitness"] = this.contentFitness;
+        return data;
+    }
+
+    clone(): FitnessDto {
+        const json = this.toJSON();
+        let result = new FitnessDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IFitnessDto {
+    idFitness: number;
+    imgFitness: string | undefined;
+    name: string | undefined;
+    nameFitness: string | undefined;
+    time: string | undefined;
+    contentFitness: string | undefined;
+}
+
+export class FitnessDtoPagedResultDto implements IFitnessDtoPagedResultDto {
+    items: FitnessDto[] | undefined;
+    totalCount: number;
+
+    constructor(data?: IFitnessDtoPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items.push(FitnessDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): FitnessDtoPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new FitnessDtoPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+
+    clone(): FitnessDtoPagedResultDto {
+        const json = this.toJSON();
+        let result = new FitnessDtoPagedResultDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IFitnessDtoPagedResultDto {
+    items: FitnessDto[] | undefined;
+    totalCount: number;
+}
+
+export class FitnessList implements IFitnessList {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    idFitness: number;
+    tenantId: number | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    tieuDe11: string | undefined;
+    tieuDe12: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+    thongTin13: string | undefined;
+    thongTin14: string | undefined;
+    thongTin15: string | undefined;
+    thongTin16: string | undefined;
+
+    constructor(data?: IFitnessList) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
+            this.idFitness = _data["idFitness"];
+            this.tenantId = _data["tenantId"];
+            this.img1 = _data["img1"];
+            this.img2 = _data["img2"];
+            this.img3 = _data["img3"];
+            this.img4 = _data["img4"];
+            this.img5 = _data["img5"];
+            this.tieuDe = _data["tieuDe"];
+            this.tieuDe1 = _data["tieuDe1"];
+            this.tieuDe2 = _data["tieuDe2"];
+            this.tieuDe3 = _data["tieuDe3"];
+            this.tieuDe4 = _data["tieuDe4"];
+            this.tieuDe5 = _data["tieuDe5"];
+            this.tieuDe6 = _data["tieuDe6"];
+            this.tieuDe7 = _data["tieuDe7"];
+            this.tieuDe8 = _data["tieuDe8"];
+            this.tieuDe9 = _data["tieuDe9"];
+            this.tieuDe10 = _data["tieuDe10"];
+            this.tieuDe11 = _data["tieuDe11"];
+            this.tieuDe12 = _data["tieuDe12"];
+            this.thongTin1 = _data["thongTin1"];
+            this.thongTin2 = _data["thongTin2"];
+            this.thongTin3 = _data["thongTin3"];
+            this.thongTin4 = _data["thongTin4"];
+            this.thongTin5 = _data["thongTin5"];
+            this.thongTin6 = _data["thongTin6"];
+            this.thongTin7 = _data["thongTin7"];
+            this.thongTin8 = _data["thongTin8"];
+            this.thongTin9 = _data["thongTin9"];
+            this.thongTin10 = _data["thongTin10"];
+            this.thongTin11 = _data["thongTin11"];
+            this.thongTin12 = _data["thongTin12"];
+            this.thongTin13 = _data["thongTin13"];
+            this.thongTin14 = _data["thongTin14"];
+            this.thongTin15 = _data["thongTin15"];
+            this.thongTin16 = _data["thongTin16"];
+        }
+    }
+
+    static fromJS(data: any): FitnessList {
+        data = typeof data === 'object' ? data : {};
+        let result = new FitnessList();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["idFitness"] = this.idFitness;
+        data["tenantId"] = this.tenantId;
+        data["img1"] = this.img1;
+        data["img2"] = this.img2;
+        data["img3"] = this.img3;
+        data["img4"] = this.img4;
+        data["img5"] = this.img5;
+        data["tieuDe"] = this.tieuDe;
+        data["tieuDe1"] = this.tieuDe1;
+        data["tieuDe2"] = this.tieuDe2;
+        data["tieuDe3"] = this.tieuDe3;
+        data["tieuDe4"] = this.tieuDe4;
+        data["tieuDe5"] = this.tieuDe5;
+        data["tieuDe6"] = this.tieuDe6;
+        data["tieuDe7"] = this.tieuDe7;
+        data["tieuDe8"] = this.tieuDe8;
+        data["tieuDe9"] = this.tieuDe9;
+        data["tieuDe10"] = this.tieuDe10;
+        data["tieuDe11"] = this.tieuDe11;
+        data["tieuDe12"] = this.tieuDe12;
+        data["thongTin1"] = this.thongTin1;
+        data["thongTin2"] = this.thongTin2;
+        data["thongTin3"] = this.thongTin3;
+        data["thongTin4"] = this.thongTin4;
+        data["thongTin5"] = this.thongTin5;
+        data["thongTin6"] = this.thongTin6;
+        data["thongTin7"] = this.thongTin7;
+        data["thongTin8"] = this.thongTin8;
+        data["thongTin9"] = this.thongTin9;
+        data["thongTin10"] = this.thongTin10;
+        data["thongTin11"] = this.thongTin11;
+        data["thongTin12"] = this.thongTin12;
+        data["thongTin13"] = this.thongTin13;
+        data["thongTin14"] = this.thongTin14;
+        data["thongTin15"] = this.thongTin15;
+        data["thongTin16"] = this.thongTin16;
+        return data;
+    }
+
+    clone(): FitnessList {
+        const json = this.toJSON();
+        let result = new FitnessList();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IFitnessList {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    idFitness: number;
+    tenantId: number | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    tieuDe11: string | undefined;
+    tieuDe12: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+    thongTin13: string | undefined;
+    thongTin14: string | undefined;
+    thongTin15: string | undefined;
+    thongTin16: string | undefined;
+}
+
 export class FlatPermissionDto implements IFlatPermissionDto {
     name: string | undefined;
     displayName: string | undefined;
@@ -8045,6 +9812,7 @@ export class IntroPT implements IIntroPT {
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
     idPt: number;
+    namePT: string | undefined;
     nameIntroPt: string | undefined;
     imgPtAva: string | undefined;
     introPhone: string | undefined;
@@ -8057,6 +9825,9 @@ export class IntroPT implements IIntroPT {
     thongTin2: string | undefined;
     thongTin3: string | undefined;
     thongTin4: string | undefined;
+    taiSaoChon: string | undefined;
+    uuDiem: string | undefined;
+    nhuocDiem: string | undefined;
 
     constructor(data?: IIntroPT) {
         if (data) {
@@ -8079,6 +9850,7 @@ export class IntroPT implements IIntroPT {
             this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
             this.tenantId = _data["tenantId"];
             this.idPt = _data["idPt"];
+            this.namePT = _data["namePT"];
             this.nameIntroPt = _data["nameIntroPt"];
             this.imgPtAva = _data["imgPtAva"];
             this.introPhone = _data["introPhone"];
@@ -8091,6 +9863,9 @@ export class IntroPT implements IIntroPT {
             this.thongTin2 = _data["thongTin2"];
             this.thongTin3 = _data["thongTin3"];
             this.thongTin4 = _data["thongTin4"];
+            this.taiSaoChon = _data["taiSaoChon"];
+            this.uuDiem = _data["uuDiem"];
+            this.nhuocDiem = _data["nhuocDiem"];
         }
     }
 
@@ -8113,6 +9888,7 @@ export class IntroPT implements IIntroPT {
         data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
         data["tenantId"] = this.tenantId;
         data["idPt"] = this.idPt;
+        data["namePT"] = this.namePT;
         data["nameIntroPt"] = this.nameIntroPt;
         data["imgPtAva"] = this.imgPtAva;
         data["introPhone"] = this.introPhone;
@@ -8125,6 +9901,9 @@ export class IntroPT implements IIntroPT {
         data["thongTin2"] = this.thongTin2;
         data["thongTin3"] = this.thongTin3;
         data["thongTin4"] = this.thongTin4;
+        data["taiSaoChon"] = this.taiSaoChon;
+        data["uuDiem"] = this.uuDiem;
+        data["nhuocDiem"] = this.nhuocDiem;
         return data;
     }
 
@@ -8147,6 +9926,7 @@ export interface IIntroPT {
     deletionTime: moment.Moment | undefined;
     tenantId: number | undefined;
     idPt: number;
+    namePT: string | undefined;
     nameIntroPt: string | undefined;
     imgPtAva: string | undefined;
     introPhone: string | undefined;
@@ -8159,10 +9939,14 @@ export interface IIntroPT {
     thongTin2: string | undefined;
     thongTin3: string | undefined;
     thongTin4: string | undefined;
+    taiSaoChon: string | undefined;
+    uuDiem: string | undefined;
+    nhuocDiem: string | undefined;
 }
 
 export class IntroPtDto implements IIntroPtDto {
     idPt: number;
+    namePT: string | undefined;
     nameIntroPt: string | undefined;
     imgPtAva: string | undefined;
     introPhone: string | undefined;
@@ -8175,6 +9959,9 @@ export class IntroPtDto implements IIntroPtDto {
     thongTin2: string | undefined;
     thongTin3: string | undefined;
     thongTin4: string | undefined;
+    taiSaoChon: string | undefined;
+    uuDiem: string | undefined;
+    nhuocDiem: string | undefined;
 
     constructor(data?: IIntroPtDto) {
         if (data) {
@@ -8188,6 +9975,7 @@ export class IntroPtDto implements IIntroPtDto {
     init(_data?: any) {
         if (_data) {
             this.idPt = _data["idPt"];
+            this.namePT = _data["namePT"];
             this.nameIntroPt = _data["nameIntroPt"];
             this.imgPtAva = _data["imgPtAva"];
             this.introPhone = _data["introPhone"];
@@ -8200,6 +9988,9 @@ export class IntroPtDto implements IIntroPtDto {
             this.thongTin2 = _data["thongTin2"];
             this.thongTin3 = _data["thongTin3"];
             this.thongTin4 = _data["thongTin4"];
+            this.taiSaoChon = _data["taiSaoChon"];
+            this.uuDiem = _data["uuDiem"];
+            this.nhuocDiem = _data["nhuocDiem"];
         }
     }
 
@@ -8213,6 +10004,7 @@ export class IntroPtDto implements IIntroPtDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["idPt"] = this.idPt;
+        data["namePT"] = this.namePT;
         data["nameIntroPt"] = this.nameIntroPt;
         data["imgPtAva"] = this.imgPtAva;
         data["introPhone"] = this.introPhone;
@@ -8225,6 +10017,9 @@ export class IntroPtDto implements IIntroPtDto {
         data["thongTin2"] = this.thongTin2;
         data["thongTin3"] = this.thongTin3;
         data["thongTin4"] = this.thongTin4;
+        data["taiSaoChon"] = this.taiSaoChon;
+        data["uuDiem"] = this.uuDiem;
+        data["nhuocDiem"] = this.nhuocDiem;
         return data;
     }
 
@@ -8238,6 +10033,7 @@ export class IntroPtDto implements IIntroPtDto {
 
 export interface IIntroPtDto {
     idPt: number;
+    namePT: string | undefined;
     nameIntroPt: string | undefined;
     imgPtAva: string | undefined;
     introPhone: string | undefined;
@@ -8250,6 +10046,9 @@ export interface IIntroPtDto {
     thongTin2: string | undefined;
     thongTin3: string | undefined;
     thongTin4: string | undefined;
+    taiSaoChon: string | undefined;
+    uuDiem: string | undefined;
+    nhuocDiem: string | undefined;
 }
 
 export class IsTenantAvailableInput implements IIsTenantAvailableInput {
@@ -8600,6 +10399,502 @@ export class LoiichDto implements ILoiichDto {
 export interface ILoiichDto {
     imgLoiIch: string | undefined;
     contentLoiIch: string | undefined;
+}
+
+export class NhuCau implements INhuCau {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    nameNhuCau: string | undefined;
+    contentNhuCau: string | undefined;
+    imgNhuCau: string | undefined;
+
+    constructor(data?: INhuCau) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
+            this.tenantId = _data["tenantId"];
+            this.nameNhuCau = _data["nameNhuCau"];
+            this.contentNhuCau = _data["contentNhuCau"];
+            this.imgNhuCau = _data["imgNhuCau"];
+        }
+    }
+
+    static fromJS(data: any): NhuCau {
+        data = typeof data === 'object' ? data : {};
+        let result = new NhuCau();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["tenantId"] = this.tenantId;
+        data["nameNhuCau"] = this.nameNhuCau;
+        data["contentNhuCau"] = this.contentNhuCau;
+        data["imgNhuCau"] = this.imgNhuCau;
+        return data;
+    }
+
+    clone(): NhuCau {
+        const json = this.toJSON();
+        let result = new NhuCau();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface INhuCau {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    nameNhuCau: string | undefined;
+    contentNhuCau: string | undefined;
+    imgNhuCau: string | undefined;
+}
+
+export class NhuCauDto implements INhuCauDto {
+    tenantId: number | undefined;
+    nameNhuCau: string | undefined;
+    contentNhuCau: string | undefined;
+    imgNhuCau: string | undefined;
+
+    constructor(data?: INhuCauDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.tenantId = _data["tenantId"];
+            this.nameNhuCau = _data["nameNhuCau"];
+            this.contentNhuCau = _data["contentNhuCau"];
+            this.imgNhuCau = _data["imgNhuCau"];
+        }
+    }
+
+    static fromJS(data: any): NhuCauDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new NhuCauDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenantId"] = this.tenantId;
+        data["nameNhuCau"] = this.nameNhuCau;
+        data["contentNhuCau"] = this.contentNhuCau;
+        data["imgNhuCau"] = this.imgNhuCau;
+        return data;
+    }
+
+    clone(): NhuCauDto {
+        const json = this.toJSON();
+        let result = new NhuCauDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface INhuCauDto {
+    tenantId: number | undefined;
+    nameNhuCau: string | undefined;
+    contentNhuCau: string | undefined;
+    imgNhuCau: string | undefined;
+}
+
+export class NhuCauTapLuyen implements INhuCauTapLuyen {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    idNhuCau: number;
+    nameNhuCau: string | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+
+    constructor(data?: INhuCauTapLuyen) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
+            this.tenantId = _data["tenantId"];
+            this.idNhuCau = _data["idNhuCau"];
+            this.nameNhuCau = _data["nameNhuCau"];
+            this.img1 = _data["img1"];
+            this.img2 = _data["img2"];
+            this.img3 = _data["img3"];
+            this.img4 = _data["img4"];
+            this.img5 = _data["img5"];
+            this.tieuDe = _data["tieuDe"];
+            this.tieuDe1 = _data["tieuDe1"];
+            this.tieuDe2 = _data["tieuDe2"];
+            this.tieuDe3 = _data["tieuDe3"];
+            this.tieuDe4 = _data["tieuDe4"];
+            this.tieuDe5 = _data["tieuDe5"];
+            this.tieuDe6 = _data["tieuDe6"];
+            this.tieuDe7 = _data["tieuDe7"];
+            this.tieuDe8 = _data["tieuDe8"];
+            this.tieuDe9 = _data["tieuDe9"];
+            this.tieuDe10 = _data["tieuDe10"];
+            this.thongTin1 = _data["thongTin1"];
+            this.thongTin2 = _data["thongTin2"];
+            this.thongTin3 = _data["thongTin3"];
+            this.thongTin4 = _data["thongTin4"];
+            this.thongTin5 = _data["thongTin5"];
+            this.thongTin6 = _data["thongTin6"];
+            this.thongTin7 = _data["thongTin7"];
+            this.thongTin8 = _data["thongTin8"];
+            this.thongTin9 = _data["thongTin9"];
+            this.thongTin10 = _data["thongTin10"];
+            this.thongTin11 = _data["thongTin11"];
+            this.thongTin12 = _data["thongTin12"];
+        }
+    }
+
+    static fromJS(data: any): NhuCauTapLuyen {
+        data = typeof data === 'object' ? data : {};
+        let result = new NhuCauTapLuyen();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["tenantId"] = this.tenantId;
+        data["idNhuCau"] = this.idNhuCau;
+        data["nameNhuCau"] = this.nameNhuCau;
+        data["img1"] = this.img1;
+        data["img2"] = this.img2;
+        data["img3"] = this.img3;
+        data["img4"] = this.img4;
+        data["img5"] = this.img5;
+        data["tieuDe"] = this.tieuDe;
+        data["tieuDe1"] = this.tieuDe1;
+        data["tieuDe2"] = this.tieuDe2;
+        data["tieuDe3"] = this.tieuDe3;
+        data["tieuDe4"] = this.tieuDe4;
+        data["tieuDe5"] = this.tieuDe5;
+        data["tieuDe6"] = this.tieuDe6;
+        data["tieuDe7"] = this.tieuDe7;
+        data["tieuDe8"] = this.tieuDe8;
+        data["tieuDe9"] = this.tieuDe9;
+        data["tieuDe10"] = this.tieuDe10;
+        data["thongTin1"] = this.thongTin1;
+        data["thongTin2"] = this.thongTin2;
+        data["thongTin3"] = this.thongTin3;
+        data["thongTin4"] = this.thongTin4;
+        data["thongTin5"] = this.thongTin5;
+        data["thongTin6"] = this.thongTin6;
+        data["thongTin7"] = this.thongTin7;
+        data["thongTin8"] = this.thongTin8;
+        data["thongTin9"] = this.thongTin9;
+        data["thongTin10"] = this.thongTin10;
+        data["thongTin11"] = this.thongTin11;
+        data["thongTin12"] = this.thongTin12;
+        return data;
+    }
+
+    clone(): NhuCauTapLuyen {
+        const json = this.toJSON();
+        let result = new NhuCauTapLuyen();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface INhuCauTapLuyen {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    idNhuCau: number;
+    nameNhuCau: string | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+}
+
+export class NhuCauTapLuyenDto implements INhuCauTapLuyenDto {
+    idNhuCau: number;
+    nameNhuCau: string | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
+
+    constructor(data?: INhuCauTapLuyenDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.idNhuCau = _data["idNhuCau"];
+            this.nameNhuCau = _data["nameNhuCau"];
+            this.img1 = _data["img1"];
+            this.img2 = _data["img2"];
+            this.img3 = _data["img3"];
+            this.img4 = _data["img4"];
+            this.img5 = _data["img5"];
+            this.tieuDe = _data["tieuDe"];
+            this.tieuDe1 = _data["tieuDe1"];
+            this.tieuDe2 = _data["tieuDe2"];
+            this.tieuDe3 = _data["tieuDe3"];
+            this.tieuDe4 = _data["tieuDe4"];
+            this.tieuDe5 = _data["tieuDe5"];
+            this.tieuDe6 = _data["tieuDe6"];
+            this.tieuDe7 = _data["tieuDe7"];
+            this.tieuDe8 = _data["tieuDe8"];
+            this.tieuDe9 = _data["tieuDe9"];
+            this.tieuDe10 = _data["tieuDe10"];
+            this.thongTin1 = _data["thongTin1"];
+            this.thongTin2 = _data["thongTin2"];
+            this.thongTin3 = _data["thongTin3"];
+            this.thongTin4 = _data["thongTin4"];
+            this.thongTin5 = _data["thongTin5"];
+            this.thongTin6 = _data["thongTin6"];
+            this.thongTin7 = _data["thongTin7"];
+            this.thongTin8 = _data["thongTin8"];
+            this.thongTin9 = _data["thongTin9"];
+            this.thongTin10 = _data["thongTin10"];
+            this.thongTin11 = _data["thongTin11"];
+            this.thongTin12 = _data["thongTin12"];
+        }
+    }
+
+    static fromJS(data: any): NhuCauTapLuyenDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new NhuCauTapLuyenDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["idNhuCau"] = this.idNhuCau;
+        data["nameNhuCau"] = this.nameNhuCau;
+        data["img1"] = this.img1;
+        data["img2"] = this.img2;
+        data["img3"] = this.img3;
+        data["img4"] = this.img4;
+        data["img5"] = this.img5;
+        data["tieuDe"] = this.tieuDe;
+        data["tieuDe1"] = this.tieuDe1;
+        data["tieuDe2"] = this.tieuDe2;
+        data["tieuDe3"] = this.tieuDe3;
+        data["tieuDe4"] = this.tieuDe4;
+        data["tieuDe5"] = this.tieuDe5;
+        data["tieuDe6"] = this.tieuDe6;
+        data["tieuDe7"] = this.tieuDe7;
+        data["tieuDe8"] = this.tieuDe8;
+        data["tieuDe9"] = this.tieuDe9;
+        data["tieuDe10"] = this.tieuDe10;
+        data["thongTin1"] = this.thongTin1;
+        data["thongTin2"] = this.thongTin2;
+        data["thongTin3"] = this.thongTin3;
+        data["thongTin4"] = this.thongTin4;
+        data["thongTin5"] = this.thongTin5;
+        data["thongTin6"] = this.thongTin6;
+        data["thongTin7"] = this.thongTin7;
+        data["thongTin8"] = this.thongTin8;
+        data["thongTin9"] = this.thongTin9;
+        data["thongTin10"] = this.thongTin10;
+        data["thongTin11"] = this.thongTin11;
+        data["thongTin12"] = this.thongTin12;
+        return data;
+    }
+
+    clone(): NhuCauTapLuyenDto {
+        const json = this.toJSON();
+        let result = new NhuCauTapLuyenDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface INhuCauTapLuyenDto {
+    idNhuCau: number;
+    nameNhuCau: string | undefined;
+    img1: string | undefined;
+    img2: string | undefined;
+    img3: string | undefined;
+    img4: string | undefined;
+    img5: string | undefined;
+    tieuDe: string | undefined;
+    tieuDe1: string | undefined;
+    tieuDe2: string | undefined;
+    tieuDe3: string | undefined;
+    tieuDe4: string | undefined;
+    tieuDe5: string | undefined;
+    tieuDe6: string | undefined;
+    tieuDe7: string | undefined;
+    tieuDe8: string | undefined;
+    tieuDe9: string | undefined;
+    tieuDe10: string | undefined;
+    thongTin1: string | undefined;
+    thongTin2: string | undefined;
+    thongTin3: string | undefined;
+    thongTin4: string | undefined;
+    thongTin5: string | undefined;
+    thongTin6: string | undefined;
+    thongTin7: string | undefined;
+    thongTin8: string | undefined;
+    thongTin9: string | undefined;
+    thongTin10: string | undefined;
+    thongTin11: string | undefined;
+    thongTin12: string | undefined;
 }
 
 export class PermissionDto implements IPermissionDto {

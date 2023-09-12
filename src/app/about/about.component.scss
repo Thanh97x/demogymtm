@@ -1,6 +1,9 @@
 section.signup.page_customer_account.section {
-    // background: #F2F4F3;
-    background: url('./img/pngtree-large-room-full-of-equipment-in-a-gym-picture-image_2611111.png')  top center / cover no-repeat ;
+    background: url('./img/7.jpg') center/cover no-repeat; /* Đặt hình nền */
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+    justify-content: center; /* Căn nội dung theo chiều ngang (giữa màn hình) */
+    align-items: center; /* Căn nội dung theo chiều dọc (giữa màn hình) */
+    min-height: 100vh; /* Thiết lập chiều cao tối thiểu bằng chiều cao của màn hình */
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -132,7 +135,7 @@ strong {
     text-transform: uppercase;
     margin-bottom: 16px;
     padding: 10px 10px 10px 0;
-    border-bottom: 1px solid #e0e0e0 !important;
+    border-bottom: 1px solid #3e3636 !important;
     position: relative;
 }
 

@@ -25,7 +25,11 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.AiCanTapServiceProxy,
         ApiServiceProxies.PtGymServiceProxy,
         ApiServiceProxies.IntroPtServiceProxy,
-        
+        ApiServiceProxies.FitnessServiceProxy,
+        ApiServiceProxies.FitnessListServiceProxy,
+        ApiServiceProxies.NhuCauServiceProxy,
+        ApiServiceProxies.NhuCauTapLuyenServiceProxy,
+                
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

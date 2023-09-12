@@ -1,43 +1,45 @@
 <div class="gym-fitness">
-    <div class="container">
-        <div class="row">
-            <div class="col-right col-md-9">
-                <div class="td-sanpham">
-                    <a href="/landingpage/fitness">
-                        <h3>Finness</h3>
-                    </a>
+  <div class="container">
+    <div class="row">
+      <div class="col-right col-md-9">
+        <div class="td-sanpham">
+          <a href="/landingpage/fitness">
+            <h3>Fitness</h3>
+          </a>
+        </div>
+        <div class="box-left news service" *ngFor="let fitness of ListFitness">
+          <div class="box-ds">
+            <div class="row">
+              <div
+                class="col-sm-4"
+                [routerLink]="['/landingpage/fitness/', fitness.id]"
+              >
+                <figure>
+                  <a href="javacrip:;">
+                    <img
+                      [src]="
+                        '../../assets/img-landingpage/fitness/fitness-img/' +
+                        fitness.imgFitness
+                      "
+                      alt="Cách hít thở hợp lý cho người mới tập gym"
+                    />
+                  </a>
+                </figure>
+              </div>
+              <div class="col-sm-8">
+                <h3 class="title-tt">
+                  <a href="javascript:;">
+                    {{ fitness.nameFitness }}
+                  </a>
+                </h3>
+                <time>{{ fitness.time }}</time>
+                <div class="sum-pro">
+                  <p>{{ fitness.contentFitness }}</p>
                 </div>
-                <div class="box-left news service">
-                    <div class="box-ds">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <figure>
-                                    <a href="/landingpage/fitness/cach-hit-tho-cho-nguoi-moi-tap">
-                                        <img src="https://mdfitness.vn/4725841D002D6361/047A9E34C665595647258908000AA878/$File/cach-hit-tho-dung-khi-tap-gym-sm.jpg"
-                                            alt="Cách hít thở hợp lý cho người mới tập gym">
-
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="col-sm-8">
-                                <h3 class="title-tt">
-                                    <a href="/landingpage/fitness/cach-hit-tho-cho-nguoi-moi-tap">
-                                        Cách hít thở hợp lý cho người mới tập gym
-                                    </a>
-                                </h3>
-                                <time>12-7-2023</time>
-                                <div class="sum-pro">
-                                    <p> Hiện nay tập gym đang trở thành một trào lưu mà nhiều bạn trẻ hướng tới, không
-                                        chỉ nam giới mà ở cả những bạn nữ. Tuy nhiên không phải ai cũng có những kiến
-                                        thức để bước vào khóa tập gym tốt nhất kể cả những điều tưởng chừng như là rất
-                                        đơn giản, nhưng nó lại ảnh hưởng đến quá trình luyện tập, ảnh hưởng đến kết quả
-                                        luyện tập với mỗi người tập gym, đặc biệt là những bạn trẻ mới bước vào quá
-                                        trình luyện tập gym. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-ds">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="box-ds">
                         <div class="row">
                             <div class="col-sm-4">
                                 <figure>
@@ -143,77 +145,47 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 hidden-xs hidden-sm">
-                <div class="box-sidebar">
-                    <h3 class="sidebar-h3">Nhu Cầu Tập Luyện</h3>
-                    <div class="box-canhan">
-                        <ul class="dm-tt">
-                            <li>
-                                <a href="/landingpage/fitness/kinh-nghiem-cho-nu-moi">Kinh nghiệm cho nữ giới mới tập
-                                    gym</a>
-                            </li>
-                            <li>
-                                <a href="/landingpage/fitness/mot-so-bai-hieu-qua-nu-gioi">Một số bài tập gym hiệu quả
-                                    dành cho nữ giới</a>
-                            </li>
-                            <li>
-                                <a href="/landingpage/fitness/kinh-nghiem-dong-luc-ben-bi">Kinh nghiệm tạo động lực tập
-                                    luyện kiên trì, bền bỉ </a>
-                            </li>
-                            <li>
-                                <a href="/landingpage/fitness/than-hinh-dep">Tập Gym như thế nào để có
-                                    thân hình đẹp nhất?</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="box-sidebar">
-                    <h3 class="sidebar-h3">Tin Tức Mới</h3>
-                    <div class="box-canhan">
-                        <div class="box-new">
-                            <h2>
-                                <a href="/landingpage/fitness/cach-hit-tho-cho-nguoi-moi-tap">Cách hít thở hợp lý cho
-                                    người mới tập Gym</a>
-                            </h2>
-                            <figure>
-                                <a href="/landingpage/fitness/cach-hit-tho-cho-nguoi-moi-tap">
-                                    <img src="https://mdfitness.vn/4725841D002D6361/047A9E34C665595647258908000AA878/$File/cach-hit-tho-dung-khi-tap-gym-sm.jpg"
-                                        alt="Cách hít thở hợp lý cho người mới tập gym" class="box-new-img">
-                                </a>
-                            </figure>
-                        </div>
-                        <div class="box-new">
-                            <h2>
-                                <a href="/landingpage/fitness/bai-tap-co-ban-cho-nu-moi-bat-dau"> Các Bài Tập Gym Cơ Bản
-                                    Cho Nữ Mới Bắt Đầu </a>
-                            </h2>
-                            <figure>
-                                <a href="/landingpage/fitness/bai-tap-co-ban-cho-nu-moi-bat-dau">
-                                    <img src="https://images.elipsport.vn/anh-seo-tin-tuc/2021/2/22/cac-bai-tap-gym-cho-nu-2.jpg"
-                                        alt=" Các Bài Tập Gym Cơ Bản Cho Nữ Mới Bắt Đầu " class="box-new-img">
-
-                                </a>
-                            </figure>
-                        </div>
-                        <div class="box-new">
-                            <h2>
-                                <a href="/landingpage/fitness/vi-sao-nen-tap-gym">Vì Sao Nên Tập Gym Hằng Ngày</a>
-                            </h2>
-                            <figure>
-                                <a href="/landingpage/fitness/vi-sao-nen-tap-gym">
-                                    <img src="https://mdfitness.vn/4725841D002D6361/4410D2E5576AA370472588D0000B63EC/$File/ly-do-nen-tap-gym-hang-ngay-sm.jpg"
-                                        alt="Vì Sao Nên Tập Gym Hằng Ngày" class="box-new-img">
-
-                                </a>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </div> -->
         </div>
+      </div>
+      <div class="col-sm-3 hidden-xs hidden-sm">
+        <div class="box-sidebar">
+          <h3 class="sidebar-h3">Nhu Cầu Tập Luyện</h3>
+          <div class="box-canhan" *ngFor="let nhucau of ListNhuCau">
+            <ul class="dm-tt">
+              <li [routerLink]="['/landingpage/fitness/nhucau/', nhucau.id]">
+                <a href="javascript:;">{{ nhucau.nameNhuCau }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="box-sidebar">
+          <h3 class="sidebar-h3">Tin Tức Mới</h3>
+          <div class="box-canhan" *ngFor="let fitnes of ListFitness">
+            <div
+              class="box-new"
+              *ngIf="fitnes.id === 1 || fitnes.id === 2 || fitnes.id === 4"
+              (click)="naviateToFitness(fitnes.id)"
+            >
+              <h2 class="content-box-new">
+                <a href="javascript:;">{{ fitnes.nameFitness }}</a>
+              </h2>
+              <figure>
+                <a href="javascript:;">
+                  <img
+                    [src]="
+                      '../../assets/img-landingpage/fitness/fitness-img/' +
+                      fitnes.imgFitness
+                    "
+                    alt="Cách hít thở hợp lý cho người mới tập gym"
+                    class="box-new-img"
+                  />
+                </a>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

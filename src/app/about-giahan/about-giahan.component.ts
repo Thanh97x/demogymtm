@@ -52,7 +52,5 @@ export class AboutGiahanComponent implements OnInit {
     this.goitap.getGoiTap().subscribe((result)=>{
     this.ListGoiTap=result
     })
-    
   }
-  
 }

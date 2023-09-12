@@ -1,15 +1,17 @@
-import { SaleServiceProxy, SaleDto } from './../../shared/service-proxies/service-proxies';
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  SaleServiceProxy,
+  SaleDto,
+} from "./../../shared/service-proxies/service-proxies";
+import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-property-box-sale',
-  templateUrl: './property-box-sale.component.html',
-  styleUrls: ['./property-box-sale.component.css']
+  selector: "app-property-box-sale",
+  templateUrl: "./property-box-sale.component.html",
+  styleUrls: ["./property-box-sale.component.css"],
 })
 export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
-
-  targetDate: Date = new Date('2023-8-30'); // Set your target date here
+  targetDate: Date = new Date("2023-9-15"); // Set your target date here
   remainingTime: any;
   countdownInterval: any;
 
@@ -33,11 +35,12 @@ export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
 
       this.remainingTime = {
         days: Math.floor(timeDifference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        hours: Math.floor(
+          (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
         minutes: Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((timeDifference % (1000 * 60)) / 1000)
+        seconds: Math.floor((timeDifference % (1000 * 60)) / 1000),
       };
-
     }, 1000);
   }
 
@@ -51,46 +54,44 @@ export class PropertyBoxSaleComponent implements OnInit, OnDestroy {
 
   constructor(
     private elementRef: ElementRef,
-    private saleservice:SaleServiceProxy
-    ) { }
+    private saleservice: SaleServiceProxy
+  ) {}
 
+  createSale() {
+    if (this.newSale.address && this.newSale.address.trim() !== "") {
+      this.saleservice.addAyns(this.newSale).subscribe(
+        (res) => {
+          console.log("thanh cong", res);
+          this.isRegistrationSuccess = true;
+          this.isFormSubmitted = true;
+          this.newSale = new SaleDto();
 
-    createSale(){
-      if(this.newSale.address && this.newSale.address.trim() !== ''){
-        this.saleservice.addAyns(this.newSale).subscribe(
-          (res) => {
-            console.log("thanh cong", res);
-            this.isRegistrationSuccess = true;
-            this.isFormSubmitted = true;
-            this.newSale = new SaleDto();
-    
-            // Đặt thời gian chờ 5 giây trước khi ẩn thông báo
-            setTimeout(()=> {
-              this.isRegistrationSuccess = false;
-              this.isFormSubmitted = false;
-            }, 5000);
-          },
-          (error) => {
-            console.log("that bai", error);
+          // Đặt thời gian chờ 5 giây trước khi ẩn thông báo
+          setTimeout(() => {
             this.isRegistrationSuccess = false;
-            this.isFormSubmitted = true;
-    
-            // Đặt thời gian chờ 5 giây trước khi ẩn thông báo thành công và thất bại
-            setTimeout(()=> {
-              this.isRegistrationSuccess = false;
-              this.isFormSubmitted = false;
-            }, 5000);
-          },
-        );
-      } else {
-        this.isRegistrationSuccess = false;
-        this.isFormSubmitted = true;
-
-        setTimeout(()=> {
+            this.isFormSubmitted = false;
+          }, 5000);
+        },
+        (error) => {
+          console.log("that bai", error);
           this.isRegistrationSuccess = false;
-          this.isFormSubmitted = false;
-        }, 5000);
-      }
+          this.isFormSubmitted = true;
+
+          // Đặt thời gian chờ 5 giây trước khi ẩn thông báo thành công và thất bại
+          setTimeout(() => {
+            this.isRegistrationSuccess = false;
+            this.isFormSubmitted = false;
+          }, 5000);
+        }
+      );
+    } else {
+      this.isRegistrationSuccess = false;
+      this.isFormSubmitted = true;
+
+      setTimeout(() => {
+        this.isRegistrationSuccess = false;
+        this.isFormSubmitted = false;
+      }, 5000);
     }
   }
-
+}

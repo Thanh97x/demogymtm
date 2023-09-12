@@ -78,17 +78,7 @@
                                     <strong>Tại Sao Bạn Nên Chọn {{introgym.nameIntroPt}} ?</strong>
                                 </h2>
                                 <ul>
-                                    <li>Với 8 năm kinh nghiệm, mình đảm bảo về kiến thức để giúp bạn tập 1 cách tốt
-                                        nhất.</li>
-                                    <li>2 Kinh nghiệm ăn chay và tập luyện của sẽ giúp ích cho bạn nếu bạn cũng ăn chay.
-                                    </li>
-                                    <li>Được mình tự tay lên thực đơn và lịch tập phù hợp nhất với bạn.</li>
-                                    <li>Hỗ trợ các bạn điều chỉnh vóc dáng tư thế.</li>
-                                    <li>Hỗ trợ điều trị một số chấn thương xương khớp.</li>
-                                    <li>Chỉ nhận ít học viên, đảm bảo huấn luyện bạn đạt mục tiêu như mong muốn.</li>
-                                    <li>Được hướng dẫn tận tình về vấn đề dinh dưỡng</li>
-                                    <li>Được hướng dẫn tập giãn cơ để tăng khả năng phục hồi và phát triển cơ.</li>
-                                    <li>Cam kết sau 1 tháng sẽ có kết quả nếu theo PP của huấn luyện viên thể hình</li>
+                                    <li *ngFor="let reason of introgym.taiSaoChon.split('/')">{{reason}}</li>
                                 </ul>
                                 <p class="img-hlv-1">
                                     <img [src]="'../../assets/img-landingpage/imgAvataPt/imgpt2/' + introgym.imgPt2"
@@ -149,35 +139,25 @@
                                         </div>
                                         <div class="cb-review-block cb-review-pad cb-score-pros cb-clearfix">
                                             <div class="cb-pros-cons-block cb-clearfix">
-                                                <div class="cb-pros">
+                                                <div class="cb-pros" >
                                                     <div
                                                         class="cb-pros-title cb-lr-font-heading cb-font-header cb-block-header cb-clearfix">
                                                         ƯU ĐIỂM
                                                     </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Hỗ trợ lên thực đơn và lịch tập
+                                                    <div class="cb-pros-cons cb-pro" *ngFor="let uudiem of introgym.uuDiem.split('/')">
+                                                        {{uudiem}}
                                                     </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Hỗ trợ giãn cơ sau tập
-                                                    </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Hỗ trợ điều chỉnh vóc dáng
-                                                    </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Đẹp trai
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="cb-cons">
                                                     <div
                                                         class="cb-pros-title cb-lr-font-heading cb-font-header cb-block-header cb-clearfix">
                                                         NHƯỢC ĐIỂM
                                                     </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Nói hơi nhiều
+                                                    <div class="cb-pros-cons cb-pro" *ngFor="let nhuocDiem of introgym.nhuocDiem.split('/')">
+                                                        {{nhuocDiem}}
                                                     </div>
-                                                    <div class="cb-pros-cons cb-pro">
-                                                        Đã có vợ
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                             <div class="cb-score-box cb-lr-font-heading cb-font-header"
