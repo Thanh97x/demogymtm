@@ -8,7 +8,16 @@
         <div class="coach-list-view agents-list-view">
           <div
             class="coach-list-wrap agent-list-wrap"
-            *ngFor="let ptGym of ListPt"
+            *ngFor="
+              let ptGym of ListPt
+                | paginate
+                  : {
+                      id: 'server',
+                      itemsPerPage: pageSize,
+                      currentPage: p,
+                      totalItems: totalItems
+                    }
+            "
           >
             <div class="d-flex">
               <div class="coach-img agent-list-image">
@@ -72,8 +81,9 @@
                         <i class="fa-brands fa-square-facebook"></i>
                       </a>
                       <a
-                        href="http://localhost:4200/landingpage/coach/hlv"
+                        href="javascript:;"
                         class="coach-viewhlv"
+                        (click)="navigateToPtGym(ptGym.id)"
                       >
                         <strong>View Listings</strong>
                       </a>
@@ -81,6 +91,15 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="float-sm-right m-auto">
+              <abp-pagination-controls
+                id="server"
+                (pageChange)="getDataPage($event)"
+              >
+              </abp-pagination-controls>
             </div>
           </div>
         </div>
@@ -93,6 +112,7 @@
           box-sizing: border-box;
           min-height: 1px;
         "
+        *ngFor="let fontregister of ListFontRegister"
       >
         <div class="theiaStickySidebar">
           <aside id="sidebar" class="sidebar-wrap">
@@ -106,8 +126,7 @@
               <div class="widege-body">
                 <div class="widege-body-content">
                   <p>
-                    Bạn muốn đăng ký thông tin của bạn lên Website của chúng
-                    tôi, hãy liên hệ ngay theo thông tin bên dưới
+                    {{ fontregister.content }}
                   </p>
                   <ul class="list-unstyled contact-list">
                     <li>
@@ -115,8 +134,8 @@
                       <a
                         href="https://myaccount.google.com/u/1/"
                         class="name-gmail-gym"
-                        >phonggymtm@gmail.com</a
-                      >
+                        >{{ fontregister.email }}
+                      </a>
                     </li>
                     <li>
                       <i class="fa-solid fa-address-card"></i> :
@@ -146,17 +165,19 @@
               class="widget widget-wrap widget-contact-us"
             >
               <div class="widget-header">
-                <h3 class="widege-title">GYM TM - Từ Sơn</h3>
+                <h3 class="widege-title">{{ fontregister.name }}</h3>
               </div>
               <div class="img-fitness"></div>
               <div class="widege-body">
                 <li class="contact-1">
-                  <i class="fa-solid fa-house"> </i> : 48 xóm Tân Hậu - Kim
-                  Thiều - Hương Mạc - Từ Sơn - Bắc Ninh
+                  <i class="fa-solid fa-house"> </i> :
+                  {{ fontregister.address }}
                 </li>
                 <li class="contact-2">
                   <i class="fa-solid fa-phone"></i> :
-                  <a class="phone-gym" href="tel:0346217095">0346217095</a>
+                  <a class="phone-gym" href="tel:0346217095">{{
+                    fontregister.phone
+                  }}</a>
                 </li>
               </div>
             </div>

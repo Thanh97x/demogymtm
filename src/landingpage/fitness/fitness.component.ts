@@ -14,6 +14,11 @@ export class FitnessComponent implements OnInit {
   ListFitness: any;
   ListNhuCau: any;
   idFitness: any;
+  pageSize = 5;
+  totalItems = 0;
+  currentPage = 1; // Thêm biến đếm số trang
+  id = 1;
+  p: number = 1;
 
   constructor(
     private fitnes: FitnessServiceProxy,
@@ -36,5 +41,15 @@ export class FitnessComponent implements OnInit {
 
   naviateToFitness(id: number) {
     this.router.navigate(["/landingpage/fitness", id]);
+  }
+
+  getDataPage(pageNumber: number): void {
+    const skipCount = (pageNumber - 1) * this.pageSize;
+    this.fitnes.getFitness().subscribe((res) => {
+      this.ListFitness = res.slice(skipCount, skipCount + this.pageSize);
+      this.totalItems = res.length;
+      this.currentPage = pageNumber;
+      this.p = pageNumber;
+    });
   }
 }

@@ -254,3 +254,19 @@ a.name-reg-lh {
     transform: translateX(5px); /* Di chuyển sang phải 5px khi hover vào */
 }
 
+.col-12 {
+    display: flex;
+    border: 1px solid #efefeb;
+    margin-bottom: 15px;
+}
+
+.row-page {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* margin-right: -15px;
+    margin-left: -15px; */
+    background-color: #fff;
+    border: 1px solid #efefeb;
+    /* margin-bottom: 15px; */
+}
