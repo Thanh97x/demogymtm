@@ -1128,6 +1128,126 @@ export class CalenderServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    nguoiSDThang(year: number | undefined): Observable<number[]> {
+        let url_ = this.baseUrl + "/api/services/app/Calender/NguoiSDThang?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processNguoiSDThang(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processNguoiSDThang(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number[]>;
+        }));
+    }
+
+    protected processNguoiSDThang(response: HttpResponseBase): Observable<number[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(item);
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    tongHVTrongNam(year: number | undefined): Observable<number> {
+        let url_ = this.baseUrl + "/api/services/app/Calender/TongHVTrongNam?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processTongHVTrongNam(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processTongHVTrongNam(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processTongHVTrongNam(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -2003,6 +2123,248 @@ export class DSDKServiceProxy {
     }
 
     protected processUpdateDSDK(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    tongTienTheoThang(year: number | undefined): Observable<{ [key: string]: number; }> {
+        let url_ = this.baseUrl + "/api/services/app/DSDK/TongTienTheoThang?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processTongTienTheoThang(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processTongTienTheoThang(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<{ [key: string]: number; }>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<{ [key: string]: number; }>;
+        }));
+    }
+
+    protected processTongTienTheoThang(response: HttpResponseBase): Observable<{ [key: string]: number; }> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (resultData200) {
+                result200 = {} as any;
+                for (let key in resultData200) {
+                    if (resultData200.hasOwnProperty(key))
+                        (<any>result200)[key] = resultData200[key] !== undefined ? resultData200[key] : <any>null;
+                }
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    tongNguoiTheoThang(year: number | undefined): Observable<number[]> {
+        let url_ = this.baseUrl + "/api/services/app/DSDK/TongNguoiTheoThang?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processTongNguoiTheoThang(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processTongNguoiTheoThang(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number[]>;
+        }));
+    }
+
+    protected processTongNguoiTheoThang(response: HttpResponseBase): Observable<number[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(item);
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    tongNguoiTongNam(year: number | undefined): Observable<number> {
+        let url_ = this.baseUrl + "/api/services/app/DSDK/TongNguoiTongNam?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processTongNguoiTongNam(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processTongNguoiTongNam(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processTongNguoiTongNam(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param year (optional) 
+     * @return Success
+     */
+    tongDoanhThuNam(year: number | undefined): Observable<string> {
+        let url_ = this.baseUrl + "/api/services/app/DSDK/TongDoanhThuNam?";
+        if (year === null)
+            throw new Error("The parameter 'year' cannot be null.");
+        else if (year !== undefined)
+            url_ += "year=" + encodeURIComponent("" + year) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processTongDoanhThuNam(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processTongDoanhThuNam(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<string>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<string>;
+        }));
+    }
+
+    protected processTongDoanhThuNam(response: HttpResponseBase): Observable<string> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7820,6 +8182,7 @@ export class CTGoiTapDto implements ICTGoiTapDto {
     goiTapId: number;
     goiThang: string | undefined;
     mucGia: string | undefined;
+    kieuGia: string | undefined;
     imgGoiTap: string | undefined;
     thongTinMoTa1: string | undefined;
     thongTinMoTa2: string | undefined;
@@ -7840,6 +8203,7 @@ export class CTGoiTapDto implements ICTGoiTapDto {
             this.goiTapId = _data["goiTapId"];
             this.goiThang = _data["goiThang"];
             this.mucGia = _data["mucGia"];
+            this.kieuGia = _data["kieuGia"];
             this.imgGoiTap = _data["imgGoiTap"];
             this.thongTinMoTa1 = _data["thongTinMoTa1"];
             this.thongTinMoTa2 = _data["thongTinMoTa2"];
@@ -7860,6 +8224,7 @@ export class CTGoiTapDto implements ICTGoiTapDto {
         data["goiTapId"] = this.goiTapId;
         data["goiThang"] = this.goiThang;
         data["mucGia"] = this.mucGia;
+        data["kieuGia"] = this.kieuGia;
         data["imgGoiTap"] = this.imgGoiTap;
         data["thongTinMoTa1"] = this.thongTinMoTa1;
         data["thongTinMoTa2"] = this.thongTinMoTa2;
@@ -7880,6 +8245,7 @@ export interface ICTGoiTapDto {
     goiTapId: number;
     goiThang: string | undefined;
     mucGia: string | undefined;
+    kieuGia: string | undefined;
     imgGoiTap: string | undefined;
     thongTinMoTa1: string | undefined;
     thongTinMoTa2: string | undefined;
@@ -8424,6 +8790,7 @@ export class DSDKDto implements IDSDKDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
+    dataTongTien: number;
     tongTien: string | undefined;
 
     constructor(data?: IDSDKDto) {
@@ -8444,6 +8811,7 @@ export class DSDKDto implements IDSDKDto {
             this.ngayDangKy = _data["ngayDangKy"] ? moment(_data["ngayDangKy"].toString()) : <any>undefined;
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
             this.trangThai = _data["trangThai"];
+            this.dataTongTien = _data["dataTongTien"];
             this.tongTien = _data["tongTien"];
         }
     }
@@ -8464,6 +8832,7 @@ export class DSDKDto implements IDSDKDto {
         data["ngayDangKy"] = this.ngayDangKy ? this.ngayDangKy.toISOString() : <any>undefined;
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
         data["trangThai"] = this.trangThai;
+        data["dataTongTien"] = this.dataTongTien;
         data["tongTien"] = this.tongTien;
         return data;
     }
@@ -8484,6 +8853,7 @@ export interface IDSDKDto {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
+    dataTongTien: number;
     tongTien: string | undefined;
 }
 
@@ -8497,6 +8867,8 @@ export class DSDKOuputDto implements IDSDKOuputDto {
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
     tongTien: string | undefined;
+    dataTongTien: number;
+    monthlyRevenues: { [key: string]: number; } | undefined;
 
     constructor(data?: IDSDKOuputDto) {
         if (data) {
@@ -8518,6 +8890,14 @@ export class DSDKOuputDto implements IDSDKOuputDto {
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
             this.trangThai = _data["trangThai"];
             this.tongTien = _data["tongTien"];
+            this.dataTongTien = _data["dataTongTien"];
+            if (_data["monthlyRevenues"]) {
+                this.monthlyRevenues = {} as any;
+                for (let key in _data["monthlyRevenues"]) {
+                    if (_data["monthlyRevenues"].hasOwnProperty(key))
+                        (<any>this.monthlyRevenues)[key] = _data["monthlyRevenues"][key];
+                }
+            }
         }
     }
 
@@ -8539,6 +8919,14 @@ export class DSDKOuputDto implements IDSDKOuputDto {
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
         data["trangThai"] = this.trangThai;
         data["tongTien"] = this.tongTien;
+        data["dataTongTien"] = this.dataTongTien;
+        if (this.monthlyRevenues) {
+            data["monthlyRevenues"] = {};
+            for (let key in this.monthlyRevenues) {
+                if (this.monthlyRevenues.hasOwnProperty(key))
+                    (<any>data["monthlyRevenues"])[key] = (<any>this.monthlyRevenues)[key];
+            }
+        }
         return data;
     }
 
@@ -8560,6 +8948,8 @@ export interface IDSDKOuputDto {
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
     tongTien: string | undefined;
+    dataTongTien: number;
+    monthlyRevenues: { [key: string]: number; } | undefined;
 }
 
 export class DanhSachDangKy implements IDanhSachDangKy {
@@ -8579,6 +8969,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
+    dataTongTien: number;
     tongTien: string | undefined;
 
     constructor(data?: IDanhSachDangKy) {
@@ -8608,6 +8999,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
             this.ngayDangKy = _data["ngayDangKy"] ? moment(_data["ngayDangKy"].toString()) : <any>undefined;
             this.ngayHetHan = _data["ngayHetHan"] ? moment(_data["ngayHetHan"].toString()) : <any>undefined;
             this.trangThai = _data["trangThai"];
+            this.dataTongTien = _data["dataTongTien"];
             this.tongTien = _data["tongTien"];
         }
     }
@@ -8637,6 +9029,7 @@ export class DanhSachDangKy implements IDanhSachDangKy {
         data["ngayDangKy"] = this.ngayDangKy ? this.ngayDangKy.toISOString() : <any>undefined;
         data["ngayHetHan"] = this.ngayHetHan ? this.ngayHetHan.toISOString() : <any>undefined;
         data["trangThai"] = this.trangThai;
+        data["dataTongTien"] = this.dataTongTien;
         data["tongTien"] = this.tongTien;
         return data;
     }
@@ -8666,6 +9059,7 @@ export interface IDanhSachDangKy {
     ngayDangKy: moment.Moment;
     ngayHetHan: moment.Moment;
     trangThai: string | undefined;
+    dataTongTien: number;
     tongTien: string | undefined;
 }
 

@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 header-home">
-          <h1>{{ "HomePage" | localize }}</h1>
+          <h1>{{ "Thống Kê" | localize }}</h1>
         </div>
       </div>
     </div>
@@ -20,75 +20,43 @@
             <div class="icon">
               <i class="fas fa-star"></i>
             </div>
-            <!-- <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/stargazers"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a> -->
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>2.6k+</h3>
-              <p>Contributors</p>
+              <h3>{{ ListTNTN }}</h3>
+              <p>Tổng Người Đăng kí (năm)</p>
             </div>
             <div class="icon">
               <i class="fas fa-users"></i>
             </div>
-            <!-- <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/graphs/contributors"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a> -->
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>{{ ListTongCalender }}</h3>
+              <p>Học Viên Tịch Cực (năm)</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-code"></i>
+            </div>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>1.6k+</h3>
-              <p>Used / Dependents</p>
+              <h3>{{ ListTDTTN }}</h3>
+              <p>Doanh Thu (Năm)</p>
             </div>
             <div class="icon">
               <i class="fas fa-tools"></i>
             </div>
-            <!-- <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/dependents"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a> -->
-          </div>
-        </div>
-        <div class="col-lg-3 col-6">
-          <div class="small-box bg-primary">
-            <div class="inner">
-              <h3>900</h3>
-              <p>Members / month</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <!-- <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/members"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a> -->
           </div>
         </div>
       </div>
-      <!--  -->
-      <!-- <div class="item">
-        <span class="txt">Cao</span>
-        <div class="item-ct">
-            <input type="range" id="cus-height" [(ngModel)]="height" min="0" max="200" value="155" oninput="caculatorBmi()">
-            <span class="num-range" id="num-height">{{height}}</span>
-        </div>
-      </div> -->
-      <!--  -->
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -101,6 +69,24 @@
           </div>
         </div>
       </div>
+      <!-- {{ basicData1 | json }} -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Học Viên Tích Cực</h3>
+            </div>
+            <div class="card-body table-responsive p-0">
+              <p-chart
+                type="bar"
+                [data]="basicData1"
+                [options]="basicOptions"
+              ></p-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -108,7 +94,11 @@
               <h3 class="card-title">Doanh Thu</h3>
             </div>
             <div class="card-body table-responsive p-0">
-              <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+              <p-chart
+                type="bar"
+                [data]="basicData"
+                [options]="options"
+              ></p-chart>
             </div>
           </div>
         </div>

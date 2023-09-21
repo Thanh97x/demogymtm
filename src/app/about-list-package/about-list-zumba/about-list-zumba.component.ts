@@ -65,6 +65,7 @@ export class AboutListZumbaComponent implements OnInit {
     this.newDSDK.soThang = selectedPackage.goiThang;
     this.newDSDK.goiTapId = selectedPackage.goiTapId;
     this.newDSDK.tongTien = selectedPackage.mucGia;
+    this.newDSDK.dataTongTien = selectedPackage.kieuGia;
 
     // Gọi dịch vụ để lấy thông tin tenGoiTap
     this.goiTapService
